@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACL,MAAM,EAAE,iBAAiB;EACzB,aAAa,EAAE,GAAG;EAClB,OAAO,EAAE,IAAI;CACb",
+    "sources": [
+        "Meal.scss"
+    ],
+    "names": [],
+    "file": "Meal.css"
+}
