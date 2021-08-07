@@ -1,13 +1,13 @@
 .formField {
 	margin-top: $spacing_m;
 	&_field {
-		border: 1px solid $color_base_light;
-		border-radius: $radius_base;
+		border: 1px solid $color_b_light;
+		border-radius: $radius_b;
 		position: relative;
 		width: 100%;
 		label {
 			background-color: $color_background;
-			border-radius: $radius_base;
+			border-radius: $radius_b;
 			font-size: $font_size_xs;
 			font-weight: $font_weight_bold;
 			left: 10px;
@@ -16,16 +16,16 @@
 			top: -11px;
 		}
 		input {
-			font-size: $font_size_base;
+			font-size: $font_size_b;
 			padding: $spacing_s;
 			width: 100%;
 		}
 		::placeholder {
-			color: $color_base_medium;
+			color: $color_b_medium;
 		}
 	}
 	&__disabled {
-		background-color: $color_base_light;
+		background-color: $color_b_light;
 		label {
 			background-color: transparent;
 		}
