@@ -1,17 +1,19 @@
-import Meal from "../components/Meal/Meal";
+import Meal from "../components/Meal/Meal"
+import DiaryHeader from "../components/DiaryHeader/DiaryHeader"
 
 const Diary = () => {
 	return (
 		<>
-			<header className="page_header">
-				<nav>
-					<button type="button">Anterior</button>
-					<button type="button">Siguiente</button>
-				</nav>
-				<span>Hoy</span>
-				<h1>30 julio 2021</h1>
-			</header>
+			<DiaryHeader type="day"/>
 			<section className="container">
+				<Meal id="123123213" />
+				<Meal id="123123213" />
+				<Meal id="123123213" />
+				<Meal id="123123213" />
+				<Meal id="123123213" />
+				<Meal id="123123213" />
+				<Meal id="123123213" />
+				<Meal id="123123213" />
 				<Meal id="123123213" />
 				<Meal id="123123213" />
 				<Meal id="123123213" />
@@ -19,7 +21,7 @@ const Diary = () => {
 				<Meal id="123123213" />
 			</section>
 		</>
-	);
+	)
 }
 
-export default Diary;
+export default Diary
