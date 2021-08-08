@@ -7,7 +7,7 @@ const Ingredients = () => {
 				</div>
 			</header>
 		</>
-	);
+	)
 }
 
-export default Ingredients;
+export default Ingredients

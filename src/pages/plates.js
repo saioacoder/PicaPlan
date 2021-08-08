@@ -7,7 +7,7 @@ const Plates = () => {
 				</div>
 			</header>
 		</>
-	);
+	)
 }
 
-export default Plates;
+export default Plates

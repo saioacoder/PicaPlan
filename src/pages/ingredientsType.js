@@ -7,7 +7,7 @@ const IngredientTypes = () => {
 				</div>
 			</header>
 		</>
-	);
+	)
 }
 
-export default IngredientTypes;
+export default IngredientTypes

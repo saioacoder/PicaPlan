@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
-import Diary from './pages/diary';
-import Ingredients from "./pages/ingredients";
-import IngredientTypes from "./pages/ingredientsType";
-import Plates from "./pages/plates";
-import PlateTypes from "./pages/platesType";
+import Diary from './pages/diary'
+import Ingredients from "./pages/ingredients"
+import IngredientTypes from "./pages/ingredientsType"
+import Plates from "./pages/plates"
+import PlateTypes from "./pages/platesType"
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
 				</Route>
       </Switch>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

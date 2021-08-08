@@ -7,7 +7,7 @@ const PlateTypes = () => {
 				</div>
 			</header>
 		</>
-	);
+	)
 }
 
-export default PlateTypes;
+export default PlateTypes
