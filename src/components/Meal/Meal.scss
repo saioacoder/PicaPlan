@@ -1,35 +1,70 @@
 @import '../../styles/variables';
 
 .meal {
-	border-bottom: $border_b solid $color_b_light;
+	align-items: stretch;
+	background-color: $color_background_light;
+	border-radius: $radius_b;
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: space-between;
-	padding: $spacing_b 0;
-	&__title {
-		font-size: $font_size_l;
-		font-weight: $font_weight_mediumbold;
-		margin-bottom: $spacing_xxxs;
-		width: 100%;
+	margin-top: $spacing_xxs;
+	overflow-x: hidden;
+	position: relative;
+	&__content {
+		padding: $spacing_s 0 $spacing_b $spacing_b;
 	}
 	&__type {
-		background-color: rgb(99, 158, 212);
-		border-radius: $radius_s;
-		color: $color_background;
-		font-size: $font_size_xxxs;
-		font-weight: $font_weight_bold;
+		color: $color_highlight;
+		font-size: $font_size_xxs;
+		font-weight: $font_weight_mediumbold;
+		letter-spacing: 1px;
 		margin-right: $spacing_xxs;
-		padding: $spacing_xxxs $spacing_xxs;
 		text-transform: uppercase;
 	}
 	&__time {
 		color: $color_b_extramedium;
 		font-size: $font_size_xxs;
 	}
+	&__title {
+		font-size: $font_size_l;
+		font-weight: $font_weight_mediumbold;
+		margin-top: $spacing_xxxs;
+		width: 100%;
+	}
+	&__submenuOpen {
+		cursor: pointer;
+		padding: 0 $spacing_m;
+		z-index: 1;
+	}
 	&__actions {
+		bottom: 0;
+		display: flex;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transition: 0.5s;
+		z-index: 1;
 		> * {
+			color: $color_background_light;
 			cursor: pointer;
-			margin-left: $spacing_xxs;
+			font-size: $font_size_l;
+			padding: 0 $spacing_m;
 		}
+		&--open {
+			transform: translateX(100%);
+		}
+	}
+	&__submenuClose {
+		background-color: $color_background_light;
+		color: $color_b;
+	}
+	&__submenuOpen {
+		background-color: $color_background_light;
+		color: $color_b;
+	}
+	&__edit {
+		background-color: $color_highlight;
+	}
+	&__remove {
+		background-color: $color_highlight_dark;
 	}
 }
