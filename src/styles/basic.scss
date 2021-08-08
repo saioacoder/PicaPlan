@@ -29,7 +29,7 @@ main {
 .container {
 	margin-left: auto;
 	margin-right: auto;
-	padding: 0 $spacing_b;
+	padding: 0 $spacing_xxs;
 	width: $width_desktop;
 	@include max_tablet {
 		width: 100%;
