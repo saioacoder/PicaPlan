@@ -1,10 +1,15 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import firebase from 'firebase/app'
 
-import Diary from './pages/diary'
-import Ingredients from "./pages/ingredients"
-import IngredientTypes from "./pages/ingredientsType"
-import Plates from "./pages/plates"
-import PlateTypes from "./pages/platesType"
+import firebaseConfig from './config'
+
+import Diary from './pages/diary/diary.jsx'
+import Ingredients from "./pages/ingredients/ingredients.jsx"
+import IngredientTypes from "./pages/ingredientTypes/ingredientTypes.jsx"
+import Plates from "./pages/plates/plates.jsx"
+import PlateTypes from "./pages/plateTypes/plateTypes.jsx"
+
+firebase.initializeApp(firebaseConfig)
 
 function App() {
   return (
