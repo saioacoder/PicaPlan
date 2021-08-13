@@ -1,4 +1,14 @@
+const theme = {
+	color_b: #1f1f22,
+	$color_b_extramedium: lighten($color_b, 45%),
+	$color_b_medium: lighten($color_b, 65%),
+	$color_b_light: lighten($color_b, 78%),
+	$color_b_extralight: lighten($color_b, 85%),
+
+}
+
 /* Colors */
+
 $color_b: #1f1f22;
 	$color_b_extramedium: lighten($color_b, 45%);
 	$color_b_medium: lighten($color_b, 65%);
