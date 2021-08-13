@@ -1,1 +1,3 @@
-# PicaPlan (in progress)
+# PicaPlan
+
+## In progress...
