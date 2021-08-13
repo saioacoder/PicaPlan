@@ -1,4 +1,4 @@
-import './DiaryHeader.scss';
+import './DiaryHeader.scss'
 
 const DiaryHeader = ({ type }) => {
 	return (
