@@ -9,7 +9,7 @@ const ButtonAddItem = ({ type }) => {
 		<button
 			className="buttonAddItem"
 			type="button"
-			onClick=""
+			//onClick=""
 		>
 			{iAdd}
 		</button>
