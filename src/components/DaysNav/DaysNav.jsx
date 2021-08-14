@@ -1,31 +1,50 @@
-import './DaysNav.scss'
+import { DAYS_NAME } from '../../logic/constants';
+import { addDays, subtractDays } from './DaysNav.logic';
+
+import './DaysNav.scss';
 
 const DaysNav = ({ selectedDay, onChangeDay }) => {
-	return (
-		<header className="daysNav">
-			<button type="button" className="daysNav__day daysNav__day--sel">
-				lun <span className="daysNav__dayNum">30</span>
-			</button>
-			<button type="button" className="daysNav__day">
-				mar <span className="daysNav__dayNum">31</span>
-			</button>
-			<button type="button" className="daysNav__day">
-				mie <span className="daysNav__dayNum">01</span>
-			</button>
-			<button type="button" className="daysNav__day">
-				jue <span className="daysNav__dayNum">02</span>
-			</button>
-			<button type="button" className="daysNav__day">
-				vie <span className="daysNav__dayNum">03</span>
-			</button>
-			<button type="button" className="daysNav__day">
-				sab <span className="daysNav__dayNum">04</span>
-			</button>
-			<button type="button" className="daysNav__day">
-				dom <span className="daysNav__dayNum">05</span>
-			</button>
-		</header>
-	)
-}
+	const day = new Date(selectedDay);
+	const weekDay = day.getDay();
+	const firstWeekDay = subtractDays(day, weekDay - 1).getTime();
 
-export default DaysNav
+	const formatedDate = (d) => {
+		const newDay = new Date(d);
+		const newWeekDay = newDay.getDay();
+		return {
+			name: DAYS_NAME[newWeekDay],
+			num: newDay.getDate(),
+			timestamp: newDay.getTime(),
+		};
+	};
+
+	const selectedWeek = [];
+	for (let i = 0; i < 7; i++) {
+		const nextDay = addDays(firstWeekDay, i);
+		selectedWeek[i] = formatedDate(nextDay);
+	}
+
+	return (
+		<div className="daysNav">
+			{selectedWeek.map(({ name, num, timestamp }) => {
+				return (
+					<button
+						key={timestamp}
+						type="button"
+						className={
+							DAYS_NAME[weekDay] === name
+								? 'daysNav__day daysNav__day--sel'
+								: 'daysNav__day'
+						}
+						onClick={onChangeDay}
+					>
+						{name}
+						<span className="daysNav__dayNum">{num}</span>
+					</button>
+				);
+			})}
+		</div>
+	);
+};
+
+export default DaysNav;
