@@ -31,7 +31,6 @@
 		width: 100%;
 	}
 	&__submenuOpen {
-		cursor: pointer;
 		font-size: $font_size_l;
 		padding: 0 $spacing_m;
 		z-index: 1;
@@ -46,7 +45,6 @@
 		z-index: 1;
 		> * {
 			color: $color_background_light;
-			cursor: pointer;
 			font-size: $font_size_l;
 			padding: 0 $spacing_m;
 		}
