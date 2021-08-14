@@ -1,8 +1,8 @@
 @import '../../styles/variables';
 
-.menu {
+.pageHeader {
 	padding: $spacing_xxs 0;
-	> * {
+	&__menu > * {
 		font-size: $font_size_xxs;
 		padding: 0 $spacing_xxs;
 	}
