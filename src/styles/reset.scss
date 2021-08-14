@@ -26,6 +26,9 @@ button, input, select, textarea {
 	appearance: none;
 	font-family: $font_family;
 }
+button {
+	cursor: pointer;
+}
 input, select, textarea {
 	&:-webkit-autofill {
 		box-shadow: 0 0 0px 1000px $color_background inset;
