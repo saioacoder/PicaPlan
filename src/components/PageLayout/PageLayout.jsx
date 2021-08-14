@@ -1,10 +1,10 @@
-import Menu from '../Menu/Menu.jsx'
+import Header from '../Header/Header.jsx'
 import Footer from '../Footer/Footer.jsx'
 
 const PageLayout = ({ children }) => {
 	return (
 		<>
-			<Menu />
+			<Header />
 			<main>{children}</main>
 			<Footer />
 		</>

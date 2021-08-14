@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { loadList } from '../../logic/shared'
 //import { PageHeader, PageTitle } from './ingredients.style'
 
-import Menu from '../../components/Menu/Menu.jsx'
+import PageLayout from '../../components/PageLayout/PageLayout.jsx'
 
 const Ingredients = () => {
 
@@ -16,15 +16,14 @@ const Ingredients = () => {
 	}, [])
 
 	return (
-		<>
-			<Menu />
+		<PageLayout>
 			<header className="pageHeader">
 				<h1>Ingredientes</h1>
 			</header>
 			{ingredients.map(({ id, name }) => {
 				return <li key={id}>{name}</li>
 			})}
-		</>
+		</PageLayout>
 	)
 
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { loadList } from '../../logic/shared'
 
-import Menu from '../../components/Menu/Menu.jsx'
+import PageLayout from '../../components/PageLayout/PageLayout.jsx'
 
 const PlateTypes = () => {
 
@@ -13,15 +13,14 @@ const PlateTypes = () => {
 	}, [])
 
 	return (
-		<>
-			<Menu />
+		<PageLayout>
 			<header className="pageHeader">
 				<h1>Tipos de platos</h1>
 			</header>
 			{plateTypes.map(({ id, name }) => {
 				return <li key={id}>{name}</li>
 			})}
-		</>
+		</PageLayout>
 	)
 
 }
