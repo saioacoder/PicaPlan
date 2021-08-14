@@ -1,7 +1,9 @@
+import './Footer.scss'
+
 const Footer = () => {
 	return (
-		<footer>
-			Footer
+		<footer className="pageFooter">
+			PicaPlan v1.0 - 2021
 		</footer>
 	)
 }
