@@ -1,6 +1,8 @@
 import Header from '../Header/Header.jsx'
 import Footer from '../Footer/Footer.jsx'
 
+import './PageLayout.scss'
+
 const PageLayout = ({ children }) => {
 	return (
 		<>
