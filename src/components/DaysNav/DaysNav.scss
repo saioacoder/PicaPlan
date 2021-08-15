@@ -7,7 +7,7 @@
 	column-gap: $spacing_xxs;
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	padding: 0 0 $spacing_xs;
+	padding: $spacing_xxxs 0 $spacing_xs;
 	position: sticky;
 	top: 0;
 	z-index: 10;

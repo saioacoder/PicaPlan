@@ -2,7 +2,7 @@
 
 .pageHeader {
 	display: flex;
-	padding: $spacing_s;
+	padding: $spacing_s $spacing_s $spacing_xs;
 	&__title {
 		flex-grow: 1;
 		font-size: $font_size_l;
