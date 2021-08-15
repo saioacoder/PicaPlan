@@ -10,7 +10,7 @@ import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 const Diary = () => {
 	const [days, setDays] = useState([]);
 	const [selectedDay, setSelectedDay] = useState(new Date().getTime());
-	const [selectedDayData, setSelectedDayData] = useState({});
+	const [selectedDayPlates, setSelectedDayPlates] = useState([]);
 
 	const isSameDay = (day1, day2) => {
 		const day1Parsed = new Date(day1).setHours(0, 0, 0, 0);
@@ -22,20 +22,28 @@ const Diary = () => {
 		loadList('days', setDays);
 	}, []);
 
-	// useEffect(() => {
-	// 	const newSelectedDayData = days.filter(day => isSameDay(day.date, selectedDay))
-	// 	setSelectedDayData(newSelectedDayData)
-	// 	//console.log(selectedDayData)
-	// }, [selectedDay])
+	useEffect(() => {
+		const selectedDayData = days.filter((day) =>
+			isSameDay(day.date, selectedDay)
+		);
+		if (selectedDayData.length)
+			setSelectedDayPlates(selectedDayData[0].plates);
+		else setSelectedDayPlates([]);
+	}, [days, selectedDay]);
 
 	return (
-		<PageLayout>
+		<PageLayout pageTitle="Diario">
 			<DaysNav selectedDay={selectedDay} onChangeDay={setSelectedDay} />
-			{selectedDayData === {}
-				? selectedDayData.plates.map(({ id }) => {
-						return <Meal key={id} />;
+			{selectedDayPlates.length
+				? selectedDayPlates.map((plate) => {
+						return (
+							<Meal
+								key={plate.idPlate + plate.idPlateType}
+								plateData={plate}
+							/>
+						);
 				  })
-				: 'Nada'}
+				: 'No hay datos'}
 			<ButtonAddItem type="day" />
 		</PageLayout>
 	);
