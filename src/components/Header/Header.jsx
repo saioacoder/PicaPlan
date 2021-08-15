@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -33,11 +34,11 @@ const Header = ({ pageTitle }) => {
 				>
 					{iClose}
 				</button>
-				<a href="../">Inicio</a>
-				<a href="../ingredients">Ingredientes</a>
-				<a href="../ingredientTypes">Tipos de ingredientes</a>
-				<a href="../plates">Platos</a>
-				<a href="../plateTypes">Tipos de platos</a>
+				<Link to="/">Inicio</Link>
+				<Link to="/ingredients">Ingredientes</Link>
+				<Link to="/ingredientTypes">Tipos de ingredientes</Link>
+				<Link to="/plates">Platos</Link>
+				<Link to="/plateTypes">Tipos de platos</Link>
 			</nav>
 		</header>
 	);

@@ -5,8 +5,10 @@
 	padding: $spacing_s $spacing_s $spacing_xs;
 	&__title {
 		flex-grow: 1;
-		font-size: $font_size_l;
+		font-size: $font_size_b;
 		font-weight: $font_weight_mediumbold;
+		letter-spacing: 0.1rem;
+		text-transform: uppercase;
 	}
 	&__menu {
 		background-color: $color_background_light;
