@@ -1,16 +1,16 @@
-import Header from '../Header/Header.jsx'
-import Footer from '../Footer/Footer.jsx'
+import Header from '../Header/Header.jsx';
+import Footer from '../Footer/Footer.jsx';
 
-import './PageLayout.scss'
+import './PageLayout.scss';
 
-const PageLayout = ({ children }) => {
+const PageLayout = ({ pageTitle, children }) => {
 	return (
 		<>
-			<Header />
+			<Header pageTitle={pageTitle} />
 			<main>{children}</main>
 			<Footer />
 		</>
-	)
-}
+	);
+};
 
-export default PageLayout
+export default PageLayout;
