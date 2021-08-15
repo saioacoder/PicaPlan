@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { loadList } from '../../logic/shared';
 
 import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
+import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const PlateTypes = () => {
@@ -15,7 +16,7 @@ const PlateTypes = () => {
 	return (
 		<PageLayout pageTitle="Tipos de platos">
 			{plateTypes.map(({ id, name }) => {
-				return <li key={id}>{name}</li>;
+				return <ItemCard key={id} name={name} size="small" />;
 			})}
 			<ButtonAddItem type="plateType" />
 		</PageLayout>

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { loadList } from '../../logic/shared';
 
 import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
+import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const IngredientTypes = () => {
@@ -15,7 +16,7 @@ const IngredientTypes = () => {
 	return (
 		<PageLayout pageTitle="Tipos de ingredientes">
 			{ingredientTypes.map(({ id, name }) => {
-				return <li key={id}>{name}</li>;
+				return <ItemCard key={id} name={name} size="small" />;
 			})}
 			<ButtonAddItem type="ingredientType" />
 		</PageLayout>
