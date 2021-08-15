@@ -1,35 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleRight, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { loadItem } from '../../logic/shared';
 
-import './Meal.scss'
+import ItemCard from '../ItemCard/ItemCard.jsx';
 
-const Meal = ({ id }) => {
-	const [isSubmenuOpen, setIsSubmenuOpen] = useState(true)
-	const iSubmenu = <FontAwesomeIcon icon={faAngleRight} />
-	const iEdit = <FontAwesomeIcon icon={faPen} />
-	const iRemove = <FontAwesomeIcon icon={faTrashAlt} />
+const Meal = ({ plateData }) => {
+	const { idPlate, idPlateType, quantity } = plateData;
+	const [plate, setPlate] = useState({});
+	const [plateType, setPlateType] = useState({});
 
-	const handleSubmenu = () => {
-		setIsSubmenuOpen(!isSubmenuOpen)
-	}
+	useEffect(() => {
+		if (plateData) {
+			loadItem('plates', idPlate, setPlate);
+			loadItem('plateTypes', idPlateType, setPlateType);
+		}
+	}, [plateData, idPlate, idPlateType]);
 
 	return (
-		<article className="meal">
-			<div className="meal__content">
-				<span className="meal__type">Desayuno</span>
-				<span className="meal__time">08:34</span>
-				<h2 className="meal__title">Melón con jamón y muchas más cosas para comer</h2>
-			</div>
-			<button type="button" className="meal__submenuOpen" onClick={handleSubmenu}>{iSubmenu}</button>
-			<div className={isSubmenuOpen ? 'meal__actions meal__actions--open' : 'meal__actions'}>
-				<button className="meal__submenuClose" onClick={handleSubmenu}>{iSubmenu}</button>
-				<button type="button" className="meal__edit">{iEdit}</button>
-				<button type="button" className="meal__remove">{iRemove}</button>
-			</div>
-		</article>
-	)
-}
+		<ItemCard
+			name={plate.name}
+			category={plateType.name}
+			extraInfo={quantity > 1 ? `${quantity} platos` : `${quantity} plato`}
+		/>
+	);
+};
 
-export default Meal
+export default Meal;
