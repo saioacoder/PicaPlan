@@ -9,7 +9,7 @@ import {
 
 import './ItemCard.scss';
 
-const ItemCard = ({ name, category = '', extraInfo = '' }) => {
+const ItemCard = ({ name, category = '', extraInfo = '', size = '' }) => {
 	const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
 	const iSubmenu = <FontAwesomeIcon icon={faAngleRight} />;
@@ -21,10 +21,14 @@ const ItemCard = ({ name, category = '', extraInfo = '' }) => {
 	};
 
 	return (
-		<article className="itemCard">
+		<article
+			className={size === 'small' ? 'itemCard itemCard--small' : 'itemCard'}
+		>
 			<div className="itemCard__content">
-				{category && <span className="itemCard__type">{category}</span>}
-				{extraInfo && <span className="itemCard__time">{extraInfo}</span>}
+				{category && <span className="itemCard__category">{category}</span>}
+				{extraInfo && (
+					<span className="itemCard__extraInfo">{extraInfo}</span>
+				)}
 				<h2 className="itemCard__title">{name}</h2>
 			</div>
 			<button

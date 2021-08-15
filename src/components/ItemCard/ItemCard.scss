@@ -10,25 +10,34 @@
 	overflow-x: hidden;
 	position: relative;
 	&__content {
-		padding: $spacing_s 0 $spacing_b $spacing_b;
+		padding: $spacing_s 0 $spacing_s $spacing_b;
 	}
-	&__type {
+	// &--small &__content {
+	// 	padding: $spacing_xxs $spacing_b $spacing_xs;
+	// }
+	&__category {
 		color: $color_highlight;
 		font-size: $font_size_xxs;
 		font-weight: $font_weight_mediumbold;
 		letter-spacing: 1px;
+		line-height: 0;
 		margin-right: $spacing_xxs;
 		text-transform: uppercase;
 	}
-	&__time {
+	&__extraInfo {
 		color: $color_b_extramedium;
 		font-size: $font_size_xxs;
+		line-height: 0;
 	}
 	&__title {
 		font-size: $font_size_l;
 		font-weight: $font_weight_mediumbold;
 		margin-top: $spacing_xxxs;
 		width: 100%;
+	}
+	&--small &__title {
+		font-size: $font_size_m;
+		margin-top: 0;
 	}
 	&__submenuOpen {
 		font-size: $font_size_l;
