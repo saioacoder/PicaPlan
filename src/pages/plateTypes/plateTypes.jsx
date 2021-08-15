@@ -1,30 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
-import { loadList } from '../../logic/shared'
+import { loadList } from '../../logic/shared';
 
-import ButtonAddItem from "../../components/ButtonAddItem/ButtonAddItem.jsx"
-import PageLayout from '../../components/PageLayout/PageLayout.jsx'
+import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
+import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const PlateTypes = () => {
-
-	const [plateTypes, setPlateTypes] = useState([])
+	const [plateTypes, setPlateTypes] = useState([]);
 
 	useEffect(() => {
-		loadList('plateTypes', setPlateTypes)
-	}, [])
+		loadList('plateTypes', setPlateTypes);
+	}, []);
 
 	return (
-		<PageLayout>
-			<header className="pageHeader">
-				<h1>Tipos de platos</h1>
-			</header>
+		<PageLayout pageTitle="Tipos de platos">
 			{plateTypes.map(({ id, name }) => {
-				return <li key={id}>{name}</li>
+				return <li key={id}>{name}</li>;
 			})}
 			<ButtonAddItem type="plateType" />
 		</PageLayout>
-	)
+	);
+};
 
-}
-
-export default PlateTypes
+export default PlateTypes;

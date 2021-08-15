@@ -1,33 +1,26 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
-import { loadList } from '../../logic/shared'
+import { loadList } from '../../logic/shared';
 
-import ButtonAddItem from "../../components/ButtonAddItem/ButtonAddItem.jsx"
-import PageLayout from '../../components/PageLayout/PageLayout.jsx'
+import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
+import ItemCard from '../../components/ItemCard/ItemCard.jsx';
+import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const Ingredients = () => {
-
-	const [ingredients, setIngredients] = useState([])
+	const [ingredients, setIngredients] = useState([]);
 
 	useEffect(() => {
-		loadList('ingredients', setIngredients)
-	}, [])
+		loadList('ingredients', setIngredients);
+	}, []);
 
 	return (
-		<PageLayout>
-			<header className="pageHeader">
-				<h1>Ingredientes</h1>
-			</header>
+		<PageLayout pageTitle="Ingredientes">
 			{ingredients.map(({ id, name }) => {
-				return <li key={id}>{name}</li>
+				return <ItemCard key={id} name={name} />;
 			})}
 			<ButtonAddItem type="ingredient" />
 		</PageLayout>
-	)
+	);
+};
 
-}
-
-export default Ingredients
-
-
-
+export default Ingredients;
