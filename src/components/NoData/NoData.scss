@@ -1,0 +1,38 @@
+@import '../../styles/variables';
+
+.noData {
+	align-items: center;
+	color: $color_b_medium;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	font-size: $font_size_s;
+	justify-content: center;
+	padding: $spacing_m;
+	svg {
+		animation-duration: 2.5s;
+		animation-iteration-count: infinite;
+		animation-name: rotateCookie;
+		font-size: 6rem;
+	}
+	p {
+		color: $color_b_medium;
+		font-style: italic;
+		font-weight: $font_weight_bold;
+		margin-top: $spacing_b;
+		text-align: center;
+		width: 50%;
+	}
+}
+
+@keyframes rotateCookie {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(-90deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}

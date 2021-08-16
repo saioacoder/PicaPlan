@@ -5,6 +5,7 @@ import { loadList } from '../../logic/shared';
 import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
 import Meal from '../../components/Meal/Meal.jsx';
+import NoData from '../../components/NoData/NoData.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const Diary = () => {
@@ -34,16 +35,18 @@ const Diary = () => {
 	return (
 		<PageLayout pageTitle="Diario">
 			<DaysNav selectedDay={selectedDay} onChangeDay={setSelectedDay} />
-			{selectedDayPlates.length
-				? selectedDayPlates.map((plate) => {
-						return (
-							<Meal
-								key={plate.idPlate + plate.idPlateType}
-								plateData={plate}
-							/>
-						);
-				  })
-				: 'No hay datos'}
+			{selectedDayPlates.length ? (
+				selectedDayPlates.map((plate) => {
+					return (
+						<Meal
+							key={plate.idPlate + plate.idPlateType}
+							plateData={plate}
+						/>
+					);
+				})
+			) : (
+				<NoData message="No hay platos asignados a este día" />
+			)}
 			<ButtonAddItem type="day" />
 		</PageLayout>
 	);
