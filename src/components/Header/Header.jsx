@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faCarrot } from '@fortawesome/free-solid-svg-icons';
 
 import './Header.scss';
 
@@ -10,8 +10,10 @@ const Header = ({ pageTitle }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const iMenu = <FontAwesomeIcon icon={faBars} />;
 	const iClose = <FontAwesomeIcon icon={faTimes} />;
+	const iLogo = <FontAwesomeIcon icon={faCarrot} />;
 	return (
 		<header className="pageHeader">
+			<div className="pageHeader__logo">{iLogo}</div>
 			<h1 className="pageHeader__title">{pageTitle}</h1>
 			<button
 				type="button"
@@ -34,7 +36,7 @@ const Header = ({ pageTitle }) => {
 				>
 					{iClose}
 				</button>
-				<Link to="/">Inicio</Link>
+				<Link to="/">Diario</Link>
 				<Link to="/ingredients">Ingredientes</Link>
 				<Link to="/ingredientTypes">Tipos de ingredientes</Link>
 				<Link to="/plates">Platos</Link>
