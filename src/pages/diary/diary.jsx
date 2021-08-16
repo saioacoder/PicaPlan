@@ -45,7 +45,7 @@ const Diary = () => {
 					);
 				})
 			) : (
-				<NoData message="No hay platos asignados a este día" />
+				<NoData message="Añade un plato a este día" />
 			)}
 			<ButtonAddItem type="day" />
 		</PageLayout>
