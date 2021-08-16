@@ -4,17 +4,19 @@
 	align-items: stretch;
 	background-color: $color_background_light;
 	border-radius: $radius_b;
+	cursor: pointer;
 	display: flex;
 	justify-content: space-between;
 	margin-top: $spacing_xxs;
 	overflow-x: hidden;
 	position: relative;
+	transition: $transition_duration;
+	&:hover {
+		border-radius: $radius_b $radius_b 0 $radius_b;
+	}
 	&__content {
 		padding: $spacing_s 0 $spacing_s $spacing_b;
 	}
-	// &--small &__content {
-	// 	padding: $spacing_xxs $spacing_b $spacing_xs;
-	// }
 	&__category {
 		color: $color_highlight;
 		font-size: $font_size_xxs;
@@ -54,8 +56,8 @@
 		z-index: 1;
 		> * {
 			color: $color_background_light;
-			font-size: $font_size_l;
-			padding: 0 $spacing_m;
+			font-size: $font_size_m;
+			padding: 0 $spacing_b;
 		}
 		&--open {
 			transform: translateX(100%);
