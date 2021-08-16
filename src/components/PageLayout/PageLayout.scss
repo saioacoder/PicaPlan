@@ -1,5 +1,7 @@
 @import '../../styles/variables';
 
 main {
+	display: flex;
+	flex-direction: column;
 	padding: 0 $spacing_s;
 }
