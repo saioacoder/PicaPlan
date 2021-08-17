@@ -14,7 +14,7 @@ const IngredientTypes = () => {
 	}, []);
 
 	return (
-		<PageLayout pageTitle="Tipos de ingredientes">
+		<PageLayout pageTitle="Tipos de ingredientes" menuSel="ingredientTypes">
 			{ingredientTypes.map(({ id, name }) => {
 				return <ItemCard key={id} name={name} size="small" />;
 			})}

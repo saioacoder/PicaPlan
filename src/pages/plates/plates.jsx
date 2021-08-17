@@ -14,7 +14,7 @@ const Plates = () => {
 	}, []);
 
 	return (
-		<PageLayout pageTitle="Platos">
+		<PageLayout pageTitle="Platos" menuSel="plates">
 			{plates.map(({ id, name }) => {
 				return <ItemCard key={id} name={name} size="small" />;
 			})}

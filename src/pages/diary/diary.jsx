@@ -33,7 +33,7 @@ const Diary = () => {
 	}, [days, selectedDay]);
 
 	return (
-		<PageLayout pageTitle="Diario">
+		<PageLayout pageTitle="Diario" menuSel="diary">
 			<DaysNav selectedDay={selectedDay} onChangeDay={setSelectedDay} />
 			{selectedDayPlates.length ? (
 				selectedDayPlates.map((plate) => {

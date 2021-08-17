@@ -14,7 +14,7 @@ const PlateTypes = () => {
 	}, []);
 
 	return (
-		<PageLayout pageTitle="Tipos de platos">
+		<PageLayout pageTitle="Tipos de platos" menuSel="plateTypes">
 			{plateTypes.map(({ id, name }) => {
 				return <ItemCard key={id} name={name} size="small" />;
 			})}

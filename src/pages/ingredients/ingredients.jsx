@@ -20,7 +20,7 @@ const Ingredients = () => {
 	}, []);
 
 	return (
-		<PageLayout pageTitle="Ingredientes">
+		<PageLayout pageTitle="Ingredientes" menuSel="ingredients">
 			{ingredients.map(({ id, name, idIngredientType }) => {
 				return (
 					<ItemCard
