@@ -15,8 +15,14 @@
 	position: fixed;
 	transition: $transition_duration;
 	z-index: 10;
+	svg {
+		transition: $transition_duration;
+	}
 	&:hover {
 		background-color: $color_highlight_dark;
 		border-radius: 50% 50% 0 50%;
+		svg {
+			transform: rotate(90deg);
+		}
 	}
 }
