@@ -6,7 +6,7 @@ import './DaysNav.scss';
 
 const DaysNav = ({ selectedDay, onChangeDay }) => {
 	const day = new Date(selectedDay);
-	const weekDayNum = day.getDay();
+	const weekDayNum = day.getDay() ? day.getDay() - 1 : 6;
 	const firstWeekDay = subtractDays(day, weekDayNum).getTime();
 	const selectedWeek = [];
 
