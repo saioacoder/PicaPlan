@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { removeItem } from '../../logic/shared';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faAngleRight,
@@ -10,7 +12,15 @@ import {
 
 import './ItemCard.scss';
 
-const ItemCard = ({ name, category = '', extraInfo = '', size = '' }) => {
+const ItemCard = ({
+	id,
+	name,
+	type,
+	category = '',
+	extraInfo = '',
+	size = '',
+	onClickRemove,
+}) => {
 	const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
 	const iSubmenu = <FontAwesomeIcon icon={faEllipsisV} />;
@@ -20,6 +30,15 @@ const ItemCard = ({ name, category = '', extraInfo = '', size = '' }) => {
 
 	const handleSubmenu = () => {
 		setIsSubmenuOpen(!isSubmenuOpen);
+	};
+
+	const handleEditItem = async (type, id) => {
+		console.log('editar', type, id);
+	};
+
+	const handleRemoveItem = async (type, id) => {
+		const result = await removeItem(type, id);
+		result && onClickRemove();
 	};
 
 	return (
@@ -50,10 +69,18 @@ const ItemCard = ({ name, category = '', extraInfo = '', size = '' }) => {
 				<button className="itemCard__submenuClose" onClick={handleSubmenu}>
 					{iSubmenuClose}
 				</button>
-				<button type="button" className="itemCard__edit">
+				<button
+					type="button"
+					className="itemCard__edit"
+					onClick={() => handleEditItem(type, id)}
+				>
 					{iEdit}
 				</button>
-				<button type="button" className="itemCard__remove">
+				<button
+					type="button"
+					className="itemCard__remove"
+					onClick={() => handleRemoveItem(type, id)}
+				>
 					{iRemove}
 				</button>
 			</div>
