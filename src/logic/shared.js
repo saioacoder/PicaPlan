@@ -1,18 +1,31 @@
-import { getCollection, getDocumentById } from '../services/data';
+import {
+	getCollection,
+	getDocumentById,
+	removeDocument,
+	addDocument,
+} from '../services/data';
 
-async function getList(name) {
-	try {
-		const data = await getCollection(name);
-		return data ? data : [];
-	} catch (error) {
-		console.log('getList Error:', error);
-		return [];
-	}
+async function getList(listName) {
+	return await getCollection(listName);
 }
 
-async function getListItem(name, id) {
+export async function reloadList(listName, setFunction) {
+	const result = await getList(listName);
+	setFunction(result);
+}
+
+export async function addItem(listName, item) {
+	return await addDocument(listName, item);
+}
+
+export async function removeItem(listName, item) {
+	return await removeDocument(listName, item);
+}
+
+//
+async function getListItem(listName, id) {
 	try {
-		const data = await getDocumentById(name, id);
+		const data = await getDocumentById(listName, id);
 		return data ? data : [];
 	} catch (error) {
 		console.log('getListItem Error:', error);
@@ -25,7 +38,7 @@ export const loadList = async (listName, updateFunction) => {
 	updateFunction(result ? result : []);
 };
 
-export const loadItem = async (name, id, updateFunction) => {
-	const result = await getListItem(name, id);
+export const loadItem = async (listName, id, updateFunction) => {
+	const result = await getListItem(listName, id);
 	updateFunction(result ? result : {});
 };
