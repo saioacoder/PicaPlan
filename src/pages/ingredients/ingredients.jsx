@@ -1,22 +1,30 @@
 import { useState, useEffect } from 'react';
 
-import { loadList, loadItem } from '../../logic/shared';
+import { reloadList } from '../../logic/shared';
 
 import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
+import FormAddIngredient from './components/FormAddIngredient/FormAddIngredient.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const Ingredients = () => {
 	const [ingredients, setIngredients] = useState([]);
-	const [ingredientType, setIngredientType] = useState({});
+	const [ingredientTypes, setIngredientTypes] = useState([]);
 
 	const getIngredientTypeName = (id) => {
-		loadItem('ingredientTypes', id, setIngredientType);
-		return ingredientType.name;
+		if (ingredientTypes) {
+			const result = ingredientTypes.find((type) => type.id === id);
+			return result && result.name;
+		}
+	};
+
+	const reloadIngredientsList = () => {
+		reloadList('ingredients', setIngredients);
 	};
 
 	useEffect(() => {
-		loadList('ingredients', setIngredients);
+		reloadIngredientsList();
+		reloadList('ingredientTypes', setIngredientTypes);
 	}, []);
 
 	return (
@@ -25,12 +33,16 @@ const Ingredients = () => {
 				return (
 					<ItemCard
 						key={id}
+						id={id}
 						name={name}
+						type="ingredients"
 						category={getIngredientTypeName(idIngredientType)}
 						size="small"
+						onClickRemove={reloadIngredientsList}
 					/>
 				);
 			})}
+			<FormAddIngredient onSubmit={reloadIngredientsList} />
 			<ButtonAddItem type="ingredient" />
 		</PageLayout>
 	);
