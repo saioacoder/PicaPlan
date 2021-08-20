@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { loadList } from '../../logic/shared';
 
 import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
-import DaysNav from '../../components/DaysNav/DaysNav.jsx';
-import Meal from '../../components/Meal/Meal.jsx';
+import DaysNav from './components/DaysNav/DaysNav.jsx';
+import Meal from './components/Meal/Meal.jsx';
 import NoData from '../../components/NoData/NoData.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
