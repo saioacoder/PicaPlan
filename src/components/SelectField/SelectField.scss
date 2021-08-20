@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+
+.selectField {
+	label {
+		font-weight: $font_weight_mediumbold;
+	}
+	select {
+		background-color: $color_background_light;
+		padding: 4px 15px;
+		width: 100%;
+	}
+}
