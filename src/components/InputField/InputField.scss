@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+
+.inputField {
+	label {
+		font-weight: $font_weight_mediumbold;
+	}
+	input {
+		background-color: $color_background_light;
+		display: block;
+		padding: 4px 15px;
+	}
+}
