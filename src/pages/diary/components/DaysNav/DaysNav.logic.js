@@ -1,4 +1,4 @@
-import { DAYS_NAME } from '../../logic/constants';
+import { DAYS_NAME } from '../../../../logic/constants';
 
 export const sumDays = (date, days) => {
 	let result = new Date(date);
