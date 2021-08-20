@@ -1,6 +1,17 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
+export async function getCollection(collection) {
+	try {
+		const result = await firebase.firestore().collection(collection).get();
+		const resultParsed = result.docs.map((doc) => parseDocument(doc));
+		return resultParsed.length ? resultParsed : [];
+	} catch (error) {
+		console.log('getCollection Error:', error);
+		return null;
+	}
+}
+
 export async function addDocument(collection, document) {
 	try {
 		const result = await firebase
@@ -13,6 +24,18 @@ export async function addDocument(collection, document) {
 		return null;
 	}
 }
+
+export async function removeDocument(collection, id) {
+	try {
+		await firebase.firestore().collection(collection).doc(id).delete();
+		return true;
+	} catch (error) {
+		console.log('removeDocument Error:', error);
+		return false;
+	}
+}
+
+//
 
 export async function addDocumentWithId(collection, id, document) {
 	try {
@@ -31,16 +54,6 @@ export async function updateDocumentWithId(collection, id, change) {
 	} catch (error) {
 		console.log('updateDocumentWithId Error: ', error);
 		return false;
-	}
-}
-
-export async function getCollection(collection) {
-	try {
-		const allDocs = await firebase.firestore().collection(collection).get();
-		return allDocs.docs.map((doc) => parseDocument(doc));
-	} catch (error) {
-		console.log('getCollection Error:', error);
-		return null;
 	}
 }
 
@@ -82,16 +95,6 @@ export async function getDocumentsByConditions(collection, conditions) {
 			result: null,
 			error: true,
 		};
-	}
-}
-
-export async function removeDocumentWithId(collection, id) {
-	try {
-		await firebase.firestore().collection(collection).doc(id).delete();
-		return true;
-	} catch (error) {
-		console.log('removeDocumentWithId Error:', error);
-		return null;
 	}
 }
 
