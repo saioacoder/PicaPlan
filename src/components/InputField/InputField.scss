@@ -3,11 +3,11 @@
 .inputField {
 	margin-top: $spacing_xs;
 	&__container {
-		cursor: text;
+		background-color: $color_background_light;
+		border-radius: $radius_s;
 		position: relative;
 	}
 	&__label {
-		cursor: text;
 		font-size: $font_size_s;
 		padding-left: $spacing_b;
 		position: absolute;
@@ -20,9 +20,9 @@
 		}
 	}
 	&__field {
-		background-color: $color_background_light;
-		border-radius: $radius_s;
 		padding: $spacing_b $spacing_b $spacing_xxs;
+		position: relative;
 		width: 100%;
+		z-index: 1;
 	}
 }
