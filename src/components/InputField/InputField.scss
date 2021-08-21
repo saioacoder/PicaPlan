@@ -1,12 +1,28 @@
 @import '../../styles/variables';
 
 .inputField {
-	label {
-		font-weight: $font_weight_mediumbold;
+	margin-top: $spacing_xs;
+	&__container {
+		cursor: text;
+		position: relative;
 	}
-	input {
+	&__label {
+		cursor: text;
+		font-size: $font_size_s;
+		padding-left: $spacing_b;
+		position: absolute;
+		top: calc(50% - 1rem);
+		transition: $transition_duration;
+		&--aside {
+			color: $color_highlight;
+			font-size: $font_size_xxs;
+			top: $spacing_xxxs;
+		}
+	}
+	&__field {
 		background-color: $color_background_light;
-		display: block;
-		padding: 4px 15px;
+		border-radius: $radius_s;
+		padding: $spacing_b $spacing_b $spacing_xxs;
+		width: 100%;
 	}
 }
