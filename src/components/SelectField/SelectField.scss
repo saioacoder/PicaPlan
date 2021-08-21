@@ -1,12 +1,29 @@
 @import '../../styles/variables';
 
 .selectField {
-	label {
-		font-weight: $font_weight_mediumbold;
-	}
-	select {
+	margin-top: $spacing_xs;
+	&__container {
 		background-color: $color_background_light;
-		padding: 4px 15px;
+		border-radius: $radius_s;
+		position: relative;
+	}
+	&__label {
+		font-size: $font_size_s;
+		padding-left: $spacing_b;
+		position: absolute;
+		top: calc(50% - 1rem);
+		transition: $transition_duration;
+		&--aside {
+			color: $color_highlight;
+			font-size: $font_size_xxs;
+			top: $spacing_xxxs;
+		}
+	}
+	&__field {
+		cursor: pointer;
+		padding: $spacing_b $spacing_b $spacing_xxs;
+		position: relative;
 		width: 100%;
+		z-index: 1;
 	}
 }
