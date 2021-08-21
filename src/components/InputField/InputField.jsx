@@ -19,7 +19,7 @@ const InputField = ({ id, label, value, onChange, type = 'text' }) => {
 							? 'inputField__label inputField__label--aside'
 							: 'inputField__label'
 					}
-					for={id}
+					htmlFor={id}
 				>
 					{label}
 				</label>
