@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 import { reloadList } from '../../logic/shared';
 
-import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
 import FormAddIngredient from './components/FormAddIngredient/FormAddIngredient.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
@@ -46,7 +45,6 @@ const Ingredients = () => {
 				ingredientTypes={ingredientTypes}
 				onSubmit={reloadIngredientsList}
 			/>
-			<ButtonAddItem type="ingredient" />
 		</PageLayout>
 	);
 };
