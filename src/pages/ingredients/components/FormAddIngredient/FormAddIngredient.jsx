@@ -5,9 +5,9 @@ import { addItem } from '../../../../logic/shared';
 import InputField from '../../../../components/InputField/InputField.jsx';
 import SelectField from '../../../../components/SelectField/SelectField.jsx';
 
-const FormAddIngredient = ({ onSubmit }) => {
+const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 	const [name, setName] = useState('');
-	const [ingredientTypes, setIngredientTypes] = useState([]);
+	const [idIngredientType, setIdIngredientType] = useState([]);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
@@ -30,8 +30,9 @@ const FormAddIngredient = ({ onSubmit }) => {
 			<SelectField
 				id="idIngredientType"
 				label="Tipo de ingrediente"
-				value={ingredientTypes}
-				onChange={({ target: { value } }) => setName(value)}
+				options={ingredientTypes}
+				value={idIngredientType}
+				onChange={({ target: { value } }) => setIdIngredientType(value)}
 			/>
 			<button type="submit">Añadir</button>
 		</form>

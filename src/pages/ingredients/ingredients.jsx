@@ -42,7 +42,10 @@ const Ingredients = () => {
 					/>
 				);
 			})}
-			<FormAddIngredient onSubmit={reloadIngredientsList} />
+			<FormAddIngredient
+				ingredientTypes={ingredientTypes}
+				onSubmit={reloadIngredientsList}
+			/>
 			<ButtonAddItem type="ingredient" />
 		</PageLayout>
 	);
