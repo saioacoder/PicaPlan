@@ -13,19 +13,43 @@ import './FormAddIngredient.scss';
 const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 	const [name, setName] = useState('');
 	const [idIngredientType, setIdIngredientType] = useState('');
+	const [nameError, setNameError] = useState(false);
+	const [idIngredientTypeError, setIdIngredientTypeError] = useState(false);
 	const [isAddFormOpen, setIsAddFormOpen] = useState(false);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
-		const item = {
-			name,
-			idIngredientType,
-		};
-		const result = addItem('ingredients', item);
-		result && onSubmit();
-		setIsAddFormOpen(false);
+
+		setNameError(false);
+		setIdIngredientTypeError(false);
+
+		let error = false;
+		if (!name) {
+			error = true;
+			setNameError(true);
+		}
+		if (!idIngredientType) {
+			error = true;
+			setIdIngredientTypeError(true);
+		}
+
+		if (!error) {
+			const item = {
+				name,
+				idIngredientType,
+			};
+			const result = addItem('ingredients', item);
+			result && onSubmit();
+			handleReset();
+		}
+	};
+
+	const handleReset = () => {
 		setName('');
 		setIdIngredientType('');
+		setNameError(false);
+		setIdIngredientTypeError(false);
+		setIsAddFormOpen(false);
 	};
 
 	return (
@@ -44,6 +68,8 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 					id="name"
 					label="Nombre"
 					value={name}
+					hasError={nameError}
+					errorMessage="Campo obligatorio"
 					onChange={({ target: { value } }) => setName(value)}
 				/>
 				<SelectField
@@ -51,14 +77,12 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 					label="Tipo de ingrediente"
 					options={ingredientTypes}
 					value={idIngredientType}
+					hasError={idIngredientTypeError}
+					errorMessage="Campo obligatorio"
 					onChange={({ target: { value } }) => setIdIngredientType(value)}
 				/>
 				<Button>Añadir ingrediente</Button>
-				<Button
-					secondary
-					type="button"
-					onClick={() => setIsAddFormOpen(false)}
-				>
+				<Button secondary type="button" onClick={handleReset}>
 					Cancelar
 				</Button>
 			</form>
