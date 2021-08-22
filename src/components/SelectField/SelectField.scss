@@ -4,8 +4,12 @@
 	margin-top: $spacing_xs;
 	&__container {
 		background-color: $color_background_light;
+		border: 2px solid transparent;
 		border-radius: $radius_s;
 		position: relative;
+		&--error {
+			border-color: $color_highlight;
+		}
 	}
 	&__label {
 		font-size: $font_size_s;
@@ -25,5 +29,13 @@
 		position: relative;
 		width: 100%;
 		z-index: 1;
+	}
+	&__error {
+		color: $color_highlight;
+		font-size: $font_size_xs;
+		font-style: italic;
+		font-weight: $font_weight_bold;
+		padding: $spacing_xxxs $spacing_b 0;
+		text-align: left;
 	}
 }

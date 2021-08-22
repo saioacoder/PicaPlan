@@ -2,7 +2,15 @@ import { useEffect, useState } from 'react';
 
 import './SelectField.scss';
 
-const SelectField = ({ id, label, options, value, onChange }) => {
+const SelectField = ({
+	id,
+	label,
+	options,
+	value,
+	onChange,
+	hasError,
+	errorMessage,
+}) => {
 	const [labelAside, setLabelAside] = useState(false);
 	const [isFocus, setIsFocus] = useState(false);
 
@@ -12,7 +20,13 @@ const SelectField = ({ id, label, options, value, onChange }) => {
 
 	return (
 		<div className="selectField">
-			<div className="selectField__container">
+			<div
+				className={
+					hasError
+						? 'selectField__container selectField__container--error'
+						: 'selectField__container'
+				}
+			>
 				<label
 					className={
 						labelAside
@@ -41,6 +55,9 @@ const SelectField = ({ id, label, options, value, onChange }) => {
 					})}
 				</select>
 			</div>
+			{hasError && errorMessage && (
+				<p className="selectField__error">{errorMessage}</p>
+			)}
 		</div>
 	);
 };
