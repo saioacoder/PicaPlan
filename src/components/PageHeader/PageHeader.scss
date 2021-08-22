@@ -1,0 +1,8 @@
+@import '../../styles/variables';
+
+.pageHeader {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	padding: $spacing_b $spacing_s $spacing_xs;
+}
