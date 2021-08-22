@@ -7,13 +7,12 @@
 	flex-direction: column;
 	left: 0;
 	padding: $spacing_b $spacing_s $spacing_s;
-	position: absolute;
+	position: fixed;
 	right: 0;
 	text-align: center;
 	transform: translateX(100%);
 	transition: 0.6s;
 	top: 0;
-	z-index: 11;
 	&--open {
 		transform: translateX(0);
 	}
