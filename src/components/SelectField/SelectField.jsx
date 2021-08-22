@@ -26,6 +26,7 @@ const SelectField = ({ id, label, options, value, onChange }) => {
 				<select
 					className="selectField__field"
 					id={id}
+					value={value}
 					onChange={onChange}
 					onFocus={() => setIsFocus(true)}
 					onBlur={() => setIsFocus(false)}
