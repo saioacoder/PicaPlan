@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { loadList } from '../../logic/shared';
 
-import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
+import FormAddIngredientType from '../../components/FormAddIngredientType/FormAddIngredientType.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
@@ -18,7 +18,9 @@ const IngredientTypes = () => {
 			{ingredientTypes.map(({ id, name }) => {
 				return <ItemCard key={id} name={name} size="small" />;
 			})}
-			<ButtonAddItem type="ingredientType" />
+			<FormAddIngredientType
+			//onSubmit={reloadIngredientsList}
+			/>
 		</PageLayout>
 	);
 };

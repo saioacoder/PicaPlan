@@ -2,20 +2,16 @@ import { useState } from 'react';
 
 import { addItem } from '../../logic/shared';
 
-import Button from '../Button/Button.jsx';
-import ButtonAddItem from '../ButtonAddItem/ButtonAddItem.jsx';
+import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
-import PageTitle from '../PageTitle/PageTitle.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
-
-import './FormAddIngredient.scss';
 
 const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 	const [name, setName] = useState('');
 	const [idIngredientType, setIdIngredientType] = useState('');
 	const [nameError, setNameError] = useState(false);
 	const [idIngredientTypeError, setIdIngredientTypeError] = useState(false);
-	const [isAddFormOpen, setIsAddFormOpen] = useState(false);
+	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
@@ -25,12 +21,12 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 
 		let error = false;
 		if (!name) {
-			error = true;
 			setNameError(true);
+			error = true;
 		}
 		if (!idIngredientType) {
-			error = true;
 			setIdIngredientTypeError(true);
+			error = true;
 		}
 
 		if (!error) {
@@ -49,44 +45,35 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 		setIdIngredientType('');
 		setNameError(false);
 		setIdIngredientTypeError(false);
-		setIsAddFormOpen(false);
+		setIsFormOpen(false);
 	};
 
 	return (
-		<>
-			<ButtonAddItem onClick={() => setIsAddFormOpen(true)} />
-			<form
-				className={
-					isAddFormOpen
-						? 'formAddIngredient formAddIngredient--open'
-						: 'formAddIngredient'
-				}
-				onSubmit={handleAddItem}
-			>
-				<PageTitle title="Ingredientes" />
-				<InputField
-					id="name"
-					label="Nombre"
-					value={name}
-					hasError={nameError}
-					errorMessage="Campo obligatorio"
-					onChange={({ target: { value } }) => setName(value)}
-				/>
-				<SelectField
-					id="idIngredientType"
-					label="Tipo de ingrediente"
-					options={ingredientTypes}
-					value={idIngredientType}
-					hasError={idIngredientTypeError}
-					errorMessage="Campo obligatorio"
-					onChange={({ target: { value } }) => setIdIngredientType(value)}
-				/>
-				<Button>Añadir ingrediente</Button>
-				<Button secondary type="button" onClick={handleReset}>
-					Cancelar
-				</Button>
-			</form>
-		</>
+		<FormManageItem
+			pageTitle="Ingredientes"
+			onSubmit={handleAddItem}
+			onCancel={handleReset}
+			isFormOpen={isFormOpen}
+			onFormOpen={() => setIsFormOpen(true)}
+		>
+			<InputField
+				id="name"
+				label="Nombre"
+				value={name}
+				hasError={nameError}
+				errorMessage="Campo obligatorio"
+				onChange={({ target: { value } }) => setName(value)}
+			/>
+			<SelectField
+				id="idIngredientType"
+				label="Tipo de ingrediente"
+				options={ingredientTypes}
+				value={idIngredientType}
+				hasError={idIngredientTypeError}
+				errorMessage="Campo obligatorio"
+				onChange={({ target: { value } }) => setIdIngredientType(value)}
+			/>
+		</FormManageItem>
 	);
 };
 
