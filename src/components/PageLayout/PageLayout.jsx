@@ -1,11 +1,11 @@
-import Header from '../Header/Header.jsx';
+import PageHeader from '../PageHeader/PageHeader.jsx';
 
 import './PageLayout.scss';
 
 const PageLayout = ({ pageTitle, menuSel, children }) => {
 	return (
 		<>
-			<Header pageTitle={pageTitle} menuSel={menuSel} />
+			<PageHeader title={pageTitle} menuSel={menuSel} />
 			<main>{children}</main>
 		</>
 	);
