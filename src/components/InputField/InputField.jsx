@@ -2,7 +2,15 @@ import { useEffect, useState } from 'react';
 
 import './InputField.scss';
 
-const InputField = ({ id, label, value, onChange, type = 'text' }) => {
+const InputField = ({
+	id,
+	label,
+	value,
+	onChange,
+	type = 'text',
+	hasError,
+	errorMessage,
+}) => {
 	const [labelAside, setLabelAside] = useState(false);
 	const [isFocus, setIsFocus] = useState(false);
 
@@ -12,7 +20,13 @@ const InputField = ({ id, label, value, onChange, type = 'text' }) => {
 
 	return (
 		<div className="inputField">
-			<div className="inputField__container">
+			<div
+				className={
+					hasError
+						? 'inputField__container inputField__container--error'
+						: 'inputField__container'
+				}
+			>
 				<label
 					className={
 						labelAside
@@ -33,6 +47,9 @@ const InputField = ({ id, label, value, onChange, type = 'text' }) => {
 					onBlur={() => setIsFocus(false)}
 				/>
 			</div>
+			{hasError && errorMessage && (
+				<p className="inputField__error">{errorMessage}</p>
+			)}
 		</div>
 	);
 };
