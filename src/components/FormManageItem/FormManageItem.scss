@@ -17,6 +17,12 @@
 	&--open {
 		transform: translateX(0);
 	}
+	&__actions {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: $spacing_xs;
+		margin-top: $spacing_xs;
+	}
 	.pageTitle {
 		margin-bottom: $spacing_xxs;
 	}

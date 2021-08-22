@@ -25,10 +25,12 @@ const FormManageItem = ({
 			>
 				<PageTitle title={pageTitle} />
 				{children}
-				<Button>Añadir</Button>
-				<Button type="button" secondary onClick={onCancel}>
-					Cancelar
-				</Button>
+				<div className="formManageItem__actions">
+					<Button type="button" secondary onClick={onCancel}>
+						Cancelar
+					</Button>
+					<Button>Añadir</Button>
+				</div>
 			</form>
 		</>
 	);
