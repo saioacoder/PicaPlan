@@ -1,4 +1,4 @@
-import { DAYS_NAME } from '../../../../logic/constants';
+import { DAYS_NAME } from '../../logic/constants';
 
 import { formateDate, sumDays, subtractDays } from './DaysNav.logic';
 

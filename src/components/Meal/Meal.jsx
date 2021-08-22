@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { loadItem } from '../../../../logic/shared';
+import { loadItem } from '../../logic/shared';
 
-import ItemCard from '../../../../components/ItemCard/ItemCard.jsx';
+import ItemCard from '../ItemCard/ItemCard.jsx';
 
 const Meal = ({ plateData }) => {
 	const { idPlate, idPlateType, quantity } = plateData;
