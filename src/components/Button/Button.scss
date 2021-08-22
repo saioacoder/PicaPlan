@@ -2,15 +2,23 @@
 
 .button {
 	background-color: $color_highlight;
+	border: 2px solid $color_highlight;
 	border-radius: $radius_s;
 	color: $color_background_light;
 	font-weight: $font_weight_bold;
 	margin-top: $spacing_xs;
-	padding: $spacing_s $spacing_b $spacing_s;
+	padding: $spacing_xs $spacing_b $spacing_xs;
 	text-align: center;
 	transition: $transition_duration;
 	width: 100%;
+	&__secondary {
+		background-color: transparent;
+		color: $color_highlight;
+		font-weight: $font_weight_extrabold;
+	}
 	&:hover {
 		background-color: $color_highlight_dark;
+		border-color: $color_highlight_dark;
+		color: $color_background_light;
 	}
 }
