@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-import { addItem } from '../../../../logic/shared';
+import { addItem } from '../../logic/shared';
 
-import Button from '../../../../components/Button/Button.jsx';
-import ButtonAddItem from '../../../../components/ButtonAddItem/ButtonAddItem.jsx';
-import InputField from '../../../../components/InputField/InputField.jsx';
-import SelectField from '../../../../components/SelectField/SelectField.jsx';
+import Button from '../Button/Button.jsx';
+import ButtonAddItem from '../ButtonAddItem/ButtonAddItem.jsx';
+import InputField from '../InputField/InputField.jsx';
+import PageTitle from '../PageTitle/PageTitle.jsx';
+import SelectField from '../SelectField/SelectField.jsx';
 
 import './FormAddIngredient.scss';
 
@@ -18,10 +19,13 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 		e.preventDefault();
 		const item = {
 			name,
-			idIngredientType: '6VJaDulLoNTGvT2Ie9zZ',
+			idIngredientType,
 		};
 		const result = addItem('ingredients', item);
 		result && onSubmit();
+		setIsAddFormOpen(false);
+		setName('');
+		setIdIngredientType('');
 	};
 
 	return (
@@ -35,6 +39,7 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 				}
 				onSubmit={handleAddItem}
 			>
+				<PageTitle title="Ingredientes" />
 				<InputField
 					id="name"
 					label="Nombre"
@@ -49,6 +54,13 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 					onChange={({ target: { value } }) => setIdIngredientType(value)}
 				/>
 				<Button>Añadir ingrediente</Button>
+				<Button
+					secondary
+					type="button"
+					onClick={() => setIsAddFormOpen(false)}
+				>
+					Cancelar
+				</Button>
 			</form>
 		</>
 	);

@@ -1,4 +1,4 @@
-@import '../../../../styles/variables';
+@import '../../styles/variables';
 
 .formAddIngredient {
 	background-color: $color_background;
@@ -6,7 +6,7 @@
 	display: flex;
 	flex-direction: column;
 	left: 0;
-	padding: $spacing_xxs $spacing_s $spacing_s;
+	padding: $spacing_b $spacing_s $spacing_s;
 	position: absolute;
 	right: 0;
 	text-align: center;
@@ -16,5 +16,8 @@
 	z-index: 11;
 	&--open {
 		transform: translateX(0);
+	}
+	.pageTitle {
+		margin-bottom: $spacing_xxs;
 	}
 }
