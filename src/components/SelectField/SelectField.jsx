@@ -13,32 +13,33 @@ const SelectField = ({
 }) => {
 	const [labelAside, setLabelAside] = useState(false);
 	const [isFocus, setIsFocus] = useState(false);
+	const fieldName = 'selectField';
 
 	useEffect(() => {
 		value || isFocus ? setLabelAside(true) : setLabelAside(false);
 	}, [value, isFocus]);
 
 	return (
-		<div className="selectField">
+		<div className={fieldName}>
 			<div
 				className={
 					hasError
-						? 'selectField__container selectField__container--error'
-						: 'selectField__container'
+						? `${fieldName}__container ${fieldName}__container--error`
+						: `${fieldName}__container`
 				}
 			>
 				<label
 					className={
 						labelAside
-							? 'selectField__label selectField__label--aside'
-							: 'selectField__label'
+							? `${fieldName}__label ${fieldName}__label--aside`
+							: `${fieldName}__label`
 					}
 					htmlFor={id}
 				>
 					{label}
 				</label>
 				<select
-					className="selectField__field"
+					className={`${fieldName}__field`}
 					id={id}
 					value={value}
 					onChange={onChange}
@@ -56,7 +57,7 @@ const SelectField = ({
 				</select>
 			</div>
 			{hasError && errorMessage && (
-				<p className="selectField__error">{errorMessage}</p>
+				<p className={`${fieldName}__error`}>{errorMessage}</p>
 			)}
 		</div>
 	);

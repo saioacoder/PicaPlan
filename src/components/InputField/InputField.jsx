@@ -13,32 +13,33 @@ const InputField = ({
 }) => {
 	const [labelAside, setLabelAside] = useState(false);
 	const [isFocus, setIsFocus] = useState(false);
+	const fieldName = 'inputField';
 
 	useEffect(() => {
 		value || isFocus ? setLabelAside(true) : setLabelAside(false);
 	}, [value, isFocus]);
 
 	return (
-		<div className="inputField">
+		<div className={fieldName}>
 			<div
 				className={
 					hasError
-						? 'inputField__container inputField__container--error'
-						: 'inputField__container'
+						? `${fieldName}__container ${fieldName}__container--error`
+						: `${fieldName}__container`
 				}
 			>
 				<label
 					className={
 						labelAside
-							? 'inputField__label inputField__label--aside'
-							: 'inputField__label'
+							? `${fieldName}__label ${fieldName}__label--aside`
+							: `${fieldName}__label`
 					}
 					htmlFor={id}
 				>
 					{label}
 				</label>
 				<input
-					className="inputField__field"
+					className={`${fieldName}__field`}
 					id={id}
 					type={type}
 					value={value}
@@ -48,7 +49,7 @@ const InputField = ({
 				/>
 			</div>
 			{hasError && errorMessage && (
-				<p className="inputField__error">{errorMessage}</p>
+				<p className={`${fieldName}__error`}>{errorMessage}</p>
 			)}
 		</div>
 	);
