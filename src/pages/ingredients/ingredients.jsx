@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { reloadList } from '../../logic/shared';
 
-import FormAddIngredient from './components/FormAddIngredient/FormAddIngredient.jsx';
+import FormAddIngredient from '../../components/FormAddIngredient/FormAddIngredient.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
