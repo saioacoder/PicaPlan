@@ -1,24 +1,37 @@
 import { useState, useEffect } from 'react';
 
-import { loadList } from '../../logic/shared';
+import { reloadList } from '../../logic/shared';
 
-import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
+import FormAddPlate from '../../components/FormAddPlate/FormAddPlate.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const Plates = () => {
 	const [plates, setPlates] = useState([]);
 
+	const reloadPlateList = () => {
+		reloadList('plates', 'name', setPlates);
+	};
+
 	useEffect(() => {
-		loadList('plates', setPlates);
+		reloadPlateList();
 	}, []);
 
 	return (
 		<PageLayout pageTitle="Platos" menuSel="plates">
 			{plates.map(({ id, name }) => {
-				return <ItemCard key={id} name={name} size="small" />;
+				return (
+					<ItemCard
+						key={id}
+						id={id}
+						name={name}
+						type="plates"
+						size="small"
+						onClickRemove={reloadPlateList}
+					/>
+				);
 			})}
-			<ButtonAddItem type="plate" />
+			<FormAddPlate onSubmit={reloadPlateList} />
 		</PageLayout>
 	);
 };
