@@ -1,16 +1,22 @@
 import { useState } from 'react';
 
+import { FOODMAP_LEVEL } from '../../logic/constants';
 import { addItem } from '../../logic/shared';
 
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
-const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
+const FormAddIngredient = ({ ingredientTypes, units, onSubmit }) => {
 	const [name, setName] = useState('');
 	const [idIngredientType, setIdIngredientType] = useState('');
+	const [foodmapLevel, setFoodmapLevel] = useState('');
+	const [idUnit, setIdUnit] = useState('');
+
 	const [nameError, setNameError] = useState(false);
 	const [idIngredientTypeError, setIdIngredientTypeError] = useState(false);
+	const [foodmapLevelError, setFoodmapLevelError] = useState(false);
+	const [idUnitError, setIdUnitError] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const handleAddItem = async (e) => {
@@ -18,6 +24,8 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 
 		setNameError(false);
 		setIdIngredientTypeError(false);
+		setFoodmapLevelError(false);
+		setIdUnitError(false);
 
 		let error = false;
 		if (!name) {
@@ -28,11 +36,21 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 			setIdIngredientTypeError(true);
 			error = true;
 		}
+		if (!foodmapLevel) {
+			setFoodmapLevelError(true);
+			error = true;
+		}
+		if (!idUnit) {
+			setIdUnitError(true);
+			error = true;
+		}
 
 		if (!error) {
 			const item = {
 				name,
 				idIngredientType,
+				foodmapLevel,
+				idUnit,
 			};
 			const result = addItem('ingredients', item);
 			result && onSubmit();
@@ -43,8 +61,13 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 	const handleReset = () => {
 		setName('');
 		setIdIngredientType('');
+		setFoodmapLevel(false);
+		setIdUnit(false);
+
 		setNameError(false);
 		setIdIngredientTypeError(false);
+		setFoodmapLevelError(false);
+		setIdUnitError(false);
 		setIsFormOpen(false);
 	};
 
@@ -72,6 +95,24 @@ const FormAddIngredient = ({ ingredientTypes, onSubmit }) => {
 				hasError={idIngredientTypeError}
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setIdIngredientType(value)}
+			/>
+			<SelectField
+				id="foodmapLevel"
+				label="Nivel de Foodmap"
+				options={FOODMAP_LEVEL}
+				value={foodmapLevel}
+				hasError={foodmapLevelError}
+				errorMessage="Campo obligatorio"
+				onChange={({ target: { value } }) => setFoodmapLevel(value)}
+			/>
+			<SelectField
+				id="idUnit"
+				label="Unidad"
+				options={units}
+				value={idUnit}
+				hasError={idUnitError}
+				errorMessage="Campo obligatorio"
+				onChange={({ target: { value } }) => setIdUnit(value)}
 			/>
 		</FormManageItem>
 	);
