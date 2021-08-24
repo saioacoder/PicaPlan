@@ -18,12 +18,12 @@ const Ingredients = () => {
 	};
 
 	const reloadIngredientsList = () => {
-		reloadList('ingredients', setIngredients);
+		reloadList('ingredients', 'name', setIngredients);
 	};
 
 	useEffect(() => {
 		reloadIngredientsList();
-		reloadList('ingredientTypes', setIngredientTypes);
+		reloadList('ingredientTypes', 'name', setIngredientTypes);
 	}, []);
 
 	return (

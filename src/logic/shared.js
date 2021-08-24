@@ -9,9 +9,12 @@ async function getList(listName) {
 	return await getCollection(listName);
 }
 
-export async function reloadList(listName, setFunction) {
+export async function reloadList(listName, sortParam, setFunction) {
 	const result = await getList(listName);
-	setFunction(result);
+	const resultSorted = result.sort((a, b) => {
+		return a[sortParam].localeCompare(b[sortParam]);
+	});
+	setFunction(resultSorted);
 }
 
 export async function addItem(listName, item) {

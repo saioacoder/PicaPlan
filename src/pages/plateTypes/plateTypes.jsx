@@ -10,7 +10,7 @@ const PlateTypes = () => {
 	const [plateTypes, setPlateTypes] = useState([]);
 
 	const reloadPlateTypeList = () => {
-		reloadList('plateTypes', setPlateTypes);
+		reloadList('plateTypes', 'name', setPlateTypes);
 	};
 
 	useEffect(() => {

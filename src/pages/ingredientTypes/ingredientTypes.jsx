@@ -10,7 +10,7 @@ const IngredientTypes = () => {
 	const [ingredientTypes, setIngredientTypes] = useState([]);
 
 	const reloadIngredientTypeList = () => {
-		reloadList('ingredientTypes', setIngredientTypes);
+		reloadList('ingredientTypes', 'name', setIngredientTypes);
 	};
 
 	useEffect(() => {
