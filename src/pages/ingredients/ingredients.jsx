@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList } from '../../logic/shared';
+import { reloadList, showColor } from '../../logic/shared';
 import { FOODMAP_LEVEL } from '../../logic/constants';
 
 import FormAddIngredient from '../../components/FormAddIngredient/FormAddIngredient.jsx';
@@ -15,7 +15,7 @@ const Ingredients = () => {
 	const getIngredientTypeName = (id) => {
 		if (ingredientTypes) {
 			const result = ingredientTypes.find((type) => type.id === id);
-			return result && result.name;
+			return result && showColor(result.color, result.name);
 		}
 	};
 
