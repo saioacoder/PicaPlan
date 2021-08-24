@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList } from '../../logic/shared';
+import { reloadList, showColor } from '../../logic/shared';
 
 import FormAddIngredientType from '../../components/FormAddIngredientType/FormAddIngredientType.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
@@ -19,13 +19,14 @@ const IngredientTypes = () => {
 
 	return (
 		<PageLayout pageTitle="Tipos de ingredientes" menuSel="ingredientTypes">
-			{ingredientTypes.map(({ id, name }) => {
+			{ingredientTypes.map(({ id, name, color }) => {
 				return (
 					<ItemCard
 						key={id}
 						id={id}
 						name={name}
 						type="ingredientTypes"
+						extraInfo={showColor(color, color)}
 						size="small"
 						onClickRemove={reloadIngredientTypeList}
 					/>
