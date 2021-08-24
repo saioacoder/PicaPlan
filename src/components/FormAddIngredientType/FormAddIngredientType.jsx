@@ -7,23 +7,31 @@ import InputField from '../InputField/InputField.jsx';
 
 const FormAddIngredientType = ({ onSubmit }) => {
 	const [name, setName] = useState('');
+	const [color, setColor] = useState('');
 	const [nameError, setNameError] = useState(false);
+	const [colorError, setColorError] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
 
 		setNameError(false);
+		setColorError(false);
 
 		let error = false;
 		if (!name) {
 			error = true;
 			setNameError(true);
 		}
+		if (!color) {
+			error = true;
+			setColorError(true);
+		}
 
 		if (!error) {
 			const item = {
 				name,
+				color,
 			};
 			const result = addItem('ingredientTypes', item);
 			result && onSubmit();
@@ -33,7 +41,9 @@ const FormAddIngredientType = ({ onSubmit }) => {
 
 	const handleReset = () => {
 		setName('');
+		setColor('');
 		setNameError(false);
+		setColorError(false);
 		setIsFormOpen(false);
 	};
 
@@ -52,6 +62,14 @@ const FormAddIngredientType = ({ onSubmit }) => {
 				hasError={nameError}
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
+			/>
+			<InputField
+				id="color"
+				label="Color"
+				value={color}
+				hasError={colorError}
+				errorMessage="Campo obligatorio"
+				onChange={({ target: { value } }) => setColor(value)}
 			/>
 		</FormManageItem>
 	);
