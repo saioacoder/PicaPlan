@@ -25,6 +25,13 @@ export async function removeItem(listName, item) {
 	return await removeDocument(listName, item);
 }
 
+export const showColor = (color, content) => {
+	const styles = {
+		color,
+	};
+	return <span style={styles}>{content}</span>;
+};
+
 //
 async function getListItem(listName, id) {
 	try {
