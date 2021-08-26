@@ -1,13 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCarrot } from '@fortawesome/free-solid-svg-icons';
+import { I_LOGO } from '../../logic/constants';
 
 import './NoData.scss';
 
 const NoData = ({ message }) => {
-	const iEmpty = <FontAwesomeIcon icon={faCarrot} />;
 	return (
 		<div className="noData">
-			{iEmpty}
+			{I_LOGO}
 			<p>{message}</p>
 		</div>
 	);

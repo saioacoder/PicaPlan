@@ -1,14 +1,12 @@
 import { useState } from 'react';
 
-import { removeItem } from '../../logic/shared';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faAngleRight,
-	faEllipsisV,
-	faPen,
-	faTrashAlt,
-} from '@fortawesome/free-solid-svg-icons';
+	I_EDIT,
+	I_REMOVE,
+	I_SUBMENU,
+	I_SUBMENU_CLOSE,
+} from '../../logic/constants';
+import { removeItem } from '../../logic/shared';
 
 import './ItemCard.scss';
 
@@ -22,11 +20,6 @@ const ItemCard = ({
 	onClickRemove,
 }) => {
 	const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-
-	const iSubmenu = <FontAwesomeIcon icon={faEllipsisV} />;
-	const iSubmenuClose = <FontAwesomeIcon icon={faAngleRight} />;
-	const iEdit = <FontAwesomeIcon icon={faPen} />;
-	const iRemove = <FontAwesomeIcon icon={faTrashAlt} />;
 
 	const handleSubmenu = () => {
 		setIsSubmenuOpen(!isSubmenuOpen);
@@ -57,7 +50,7 @@ const ItemCard = ({
 				className="itemCard__submenuOpen"
 				onClick={handleSubmenu}
 			>
-				{iSubmenu}
+				{I_SUBMENU}
 			</button>
 			<div
 				className={
@@ -67,21 +60,21 @@ const ItemCard = ({
 				}
 			>
 				<button className="itemCard__submenuClose" onClick={handleSubmenu}>
-					{iSubmenuClose}
+					{I_SUBMENU_CLOSE}
 				</button>
 				<button
 					type="button"
 					className="itemCard__edit"
 					onClick={() => handleEditItem(type, id)}
 				>
-					{iEdit}
+					{I_EDIT}
 				</button>
 				<button
 					type="button"
 					className="itemCard__remove"
 					onClick={() => handleRemoveItem(type, id)}
 				>
-					{iRemove}
+					{I_REMOVE}
 				</button>
 			</div>
 		</article>

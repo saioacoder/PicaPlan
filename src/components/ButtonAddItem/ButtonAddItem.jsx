@@ -1,13 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { I_ADD } from '../../logic/constants';
 
 import './ButtonAddItem.scss';
 
 const ButtonAddItem = ({ onClick }) => {
-	const iAdd = <FontAwesomeIcon icon={faPlus} />;
 	return (
 		<button className="buttonAddItem" type="button" onClick={onClick}>
-			{iAdd}
+			{I_ADD}
 		</button>
 	);
 };

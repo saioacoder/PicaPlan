@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { I_CLOSE, I_MENU } from '../../logic/constants';
 
 import './Menu.scss';
 
 const Header = ({ itemSel }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const iMenu = <FontAwesomeIcon icon={faBars} />;
-	const iClose = <FontAwesomeIcon icon={faTimes} />;
 	return (
 		<>
 			<button
@@ -17,7 +14,7 @@ const Header = ({ itemSel }) => {
 				className="menu__buttonOpen"
 				onClick={() => setIsMenuOpen(true)}
 			>
-				{iMenu}
+				{I_MENU}
 			</button>
 			<nav className={isMenuOpen ? 'menu menu--open' : 'menu'}>
 				<button
@@ -25,7 +22,7 @@ const Header = ({ itemSel }) => {
 					className="menu__buttonClose"
 					onClick={() => setIsMenuOpen(false)}
 				>
-					{iClose}
+					{I_CLOSE}
 				</button>
 				<Link
 					to="/"

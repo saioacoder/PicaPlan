@@ -1,9 +1,7 @@
 import { useState } from 'react';
 
+import { I_ADD } from '../../logic/constants';
 import { addItem } from '../../logic/shared';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../Button/Button.jsx';
 import FieldGroup from '../FieldGroup/FieldGroup.jsx';
@@ -23,8 +21,6 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 	const [idIngredientError, setIdIngredientError] = useState(false);
 	const [quantityError, setQuantityError] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
-
-	const iAdd = <FontAwesomeIcon icon={faPlus} />;
 
 	const handleAddIngredient = async (e) => {
 		setIdIngredientError(false);
@@ -122,7 +118,7 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 					onChange={({ target: { value } }) => setQuantity(value)}
 				/>
 				<Button type="button" secondary onClick={handleAddIngredient}>
-					{iAdd}
+					{I_ADD}
 				</Button>
 			</FieldGroup>
 			<TextareaField
