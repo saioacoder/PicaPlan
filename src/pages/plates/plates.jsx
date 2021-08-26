@@ -8,6 +8,7 @@ import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const Plates = () => {
 	const [plates, setPlates] = useState([]);
+	const [ingredients, setIngredients] = useState([]);
 
 	const reloadPlateList = () => {
 		reloadList('plates', 'name', setPlates);
@@ -15,6 +16,7 @@ const Plates = () => {
 
 	useEffect(() => {
 		reloadPlateList();
+		reloadList('ingredients', 'name', setIngredients);
 	}, []);
 
 	return (
@@ -31,7 +33,7 @@ const Plates = () => {
 					/>
 				);
 			})}
-			<FormAddPlate onSubmit={reloadPlateList} />
+			<FormAddPlate ingredients={ingredients} onSubmit={reloadPlateList} />
 		</PageLayout>
 	);
 };
