@@ -4,9 +4,11 @@ import { addItem } from '../../logic/shared';
 
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
+import TextareaField from '../TextareaField/TextareaField.jsx';
 
 const FormAddPlate = ({ onSubmit }) => {
 	const [name, setName] = useState('');
+	const [recipe, setRecipe] = useState('');
 	const [nameError, setNameError] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
@@ -24,6 +26,7 @@ const FormAddPlate = ({ onSubmit }) => {
 		if (!error) {
 			const item = {
 				name,
+				recipe,
 			};
 			const result = addItem('plates', item);
 			result && onSubmit();
@@ -52,6 +55,12 @@ const FormAddPlate = ({ onSubmit }) => {
 				hasError={nameError}
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
+			/>
+			<TextareaField
+				id="recipe"
+				label="Receta"
+				value={recipe}
+				onChange={({ target: { value } }) => setRecipe(value)}
 			/>
 		</FormManageItem>
 	);
