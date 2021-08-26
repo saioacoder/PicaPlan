@@ -1,0 +1,8 @@
+@import '../../styles/variables';
+
+.fieldGroup {
+	border-radius: $radius_s;
+	column-gap: $spacing_xxs;
+	display: grid;
+	grid-template-columns: 5fr 3fr 1fr;
+}
