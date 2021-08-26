@@ -8,7 +8,6 @@ const TextareaField = ({
 	value,
 	rows = 5,
 	onChange,
-	type = 'text',
 	hasError = '',
 	errorMessage = '',
 }) => {
@@ -18,12 +17,12 @@ const TextareaField = ({
 		value,
 		rows,
 	});
-	const fieldName = 'textareaField';
+	const FIELD_NAME = 'textareaField';
 
 	const handleChange = (e) => {
 		const item = e.target;
 		const textareaLineHeight = 24;
-		item.rows = rows;
+		item.rows = state.rows;
 		const currentRows = ~~(item.scrollHeight / textareaLineHeight);
 		item.rows = currentRows;
 		item.scrollTop = item.scrollHeight;
@@ -31,45 +30,44 @@ const TextareaField = ({
 			value: item.value,
 			rows: currentRows,
 		});
-		//onChange();
+		onChange(e);
 	};
 
 	useEffect(() => {
-		value || isFocus ? setLabelAside(true) : setLabelAside(false);
-	}, [value, isFocus]);
+		state.value || isFocus ? setLabelAside(true) : setLabelAside(false);
+	}, [state, isFocus]);
 
 	return (
-		<div className={fieldName}>
+		<div className={FIELD_NAME}>
 			<div
 				className={
 					hasError
-						? `${fieldName}__container ${fieldName}__container--error`
-						: `${fieldName}__container`
+						? `${FIELD_NAME}__container ${FIELD_NAME}__container--error`
+						: `${FIELD_NAME}__container`
 				}
 			>
 				<label
 					className={
 						labelAside
-							? `${fieldName}__label ${fieldName}__label--aside`
-							: `${fieldName}__label`
+							? `${FIELD_NAME}__label ${FIELD_NAME}__label--aside`
+							: `${FIELD_NAME}__label`
 					}
 					htmlFor={id}
 				>
 					{label}
 				</label>
 				<textarea
-					className={`${fieldName}__field`}
+					className={`${FIELD_NAME}__field`}
 					id={id}
-					type={type}
-					value={state.value}
-					rows={state.rows}
+					value={value}
+					rows={rows}
 					onChange={handleChange}
 					onFocus={() => setIsFocus(true)}
 					onBlur={() => setIsFocus(false)}
 				></textarea>
 			</div>
 			{hasError && errorMessage && (
-				<p className={`${fieldName}__error`}>{errorMessage}</p>
+				<p className={`${FIELD_NAME}__error`}>{errorMessage}</p>
 			)}
 		</div>
 	);
