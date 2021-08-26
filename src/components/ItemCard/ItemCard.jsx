@@ -39,11 +39,11 @@ const ItemCard = ({
 			className={size === 'small' ? 'itemCard itemCard--small' : 'itemCard'}
 		>
 			<div className="itemCard__content">
+				<h2 className="itemCard__title">{name}</h2>
 				{category && <span className="itemCard__category">{category}</span>}
 				{extraInfo && (
 					<span className="itemCard__extraInfo">{extraInfo}</span>
 				)}
-				<h2 className="itemCard__title">{name}</h2>
 			</div>
 			<button
 				type="button"
