@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
 	getCollection,
 	getDocumentById,
@@ -26,10 +28,12 @@ export async function removeItem(listName, item) {
 }
 
 export const showColor = (color, content) => {
-	const styles = {
-		color,
-	};
+	const styles = { color };
 	return <span style={styles}>{content}</span>;
+};
+
+export const getIcon = (icon) => {
+	return <FontAwesomeIcon icon={icon} />;
 };
 
 //

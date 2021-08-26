@@ -1,22 +1,41 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getIcon } from './shared';
 import {
-	faPlus,
 	faAngleRight,
-	faEllipsisV,
-	faPen,
-	faTrashAlt,
+	faAppleAlt,
 	faBars,
-	faTimes,
+	faBreadSlice,
 	faCarrot,
+	faCheese,
+	faDrumstickBite,
+	faEllipsisV,
+	faFish,
+	faIceCream,
+	faLeaf,
+	faPen,
+	faPlus,
+	faTimes,
+	faTint,
+	faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
-export const I_ADD = <FontAwesomeIcon icon={faPlus} />;
-export const I_CLOSE = <FontAwesomeIcon icon={faTimes} />;
-export const I_EDIT = <FontAwesomeIcon icon={faPen} />;
-export const I_LOGO = <FontAwesomeIcon icon={faCarrot} />;
-export const I_MENU = <FontAwesomeIcon icon={faBars} />;
-export const I_REMOVE = <FontAwesomeIcon icon={faTrashAlt} />;
-export const I_SUBMENU = <FontAwesomeIcon icon={faEllipsisV} />;
-export const I_SUBMENU_CLOSE = <FontAwesomeIcon icon={faAngleRight} />;
+export const I_ADD = getIcon(faPlus);
+export const I_CLOSE = getIcon(faTimes);
+export const I_EDIT = getIcon(faPen);
+export const I_LOGO = getIcon(faCarrot);
+export const I_MENU = getIcon(faBars);
+export const I_REMOVE = getIcon(faTrashAlt);
+export const I_SUBMENU = getIcon(faEllipsisV);
+export const I_SUBMENU_CLOSE = getIcon(faAngleRight);
+export const I_FOOD = [
+	getIcon(faTint),
+	getIcon(faFish),
+	getIcon(faDrumstickBite),
+	getIcon(faCarrot),
+	getIcon(faAppleAlt),
+	getIcon(faCheese),
+	getIcon(faIceCream),
+	getIcon(faLeaf),
+	getIcon(faBreadSlice),
+];
 
 export const DAYS_NAME = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'];
 
