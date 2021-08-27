@@ -15,21 +15,30 @@
 		border-radius: $radius_b $radius_b 0 $radius_b;
 	}
 	&__content {
+		align-items: center;
+		display: flex;
 		padding: $spacing_xs 0 $spacing_xs $spacing_b;
+	}
+	&__icon > span {
+		align-items: center;
+		background-color: $color_background;
+		border-radius: 50%;
+		color: $color_background_light;
+		display: flex;
+		font-size: $font_size_b;
+		height: 2.5rem;
+		justify-content: center;
+		margin-right: $spacing_xs;
+		width: 2.5rem;
 	}
 	&__category {
 		color: $color_highlight;
 		font-size: $font_size_xxs;
 		font-weight: $font_weight_mediumbold;
-		letter-spacing: 1px;
-		line-height: 0;
-		margin-right: $spacing_xxs;
-		text-transform: uppercase;
 	}
 	&__extraInfo {
 		color: $color_b_extramedium;
 		font-size: $font_size_xxs;
-		line-height: 0;
 	}
 	&__title {
 		font-size: $font_size_l;

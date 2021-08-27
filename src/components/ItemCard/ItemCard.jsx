@@ -16,6 +16,7 @@ const ItemCard = ({
 	type,
 	category = '',
 	extraInfo = '',
+	icon = '',
 	size = '',
 	onClickRemove,
 }) => {
@@ -39,11 +40,16 @@ const ItemCard = ({
 			className={size === 'small' ? 'itemCard itemCard--small' : 'itemCard'}
 		>
 			<div className="itemCard__content">
-				<h2 className="itemCard__title">{name}</h2>
-				{category && <span className="itemCard__category">{category}</span>}
-				{extraInfo && (
-					<span className="itemCard__extraInfo">{extraInfo}</span>
-				)}
+				<span className="itemCard__icon">{icon}</span>
+				<div>
+					<h2 className="itemCard__title">{name}</h2>
+					{category && (
+						<span className="itemCard__category">{category}</span>
+					)}
+					{extraInfo && (
+						<div className="itemCard__extraInfo">{extraInfo}</div>
+					)}
+				</div>
 			</div>
 			<button
 				type="button"
