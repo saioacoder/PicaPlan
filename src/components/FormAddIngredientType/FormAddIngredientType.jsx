@@ -8,8 +8,10 @@ import InputField from '../InputField/InputField.jsx';
 const FormAddIngredientType = ({ onSubmit }) => {
 	const [name, setName] = useState('');
 	const [color, setColor] = useState('');
+	const [icon, setIcon] = useState('');
 	const [nameError, setNameError] = useState(false);
 	const [colorError, setColorError] = useState(false);
+	const [iconError, setIconError] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const handleAddItem = async (e) => {
@@ -17,6 +19,7 @@ const FormAddIngredientType = ({ onSubmit }) => {
 
 		setNameError(false);
 		setColorError(false);
+		setIconError(false);
 
 		let error = false;
 		if (!name) {
@@ -27,11 +30,16 @@ const FormAddIngredientType = ({ onSubmit }) => {
 			error = true;
 			setColorError(true);
 		}
+		if (!icon) {
+			error = true;
+			setIconError(true);
+		}
 
 		if (!error) {
 			const item = {
 				name,
 				color,
+				icon,
 			};
 			const result = addItem('ingredientTypes', item);
 			result && onSubmit();
@@ -42,8 +50,10 @@ const FormAddIngredientType = ({ onSubmit }) => {
 	const handleReset = () => {
 		setName('');
 		setColor('');
+		setIcon('');
 		setNameError(false);
 		setColorError(false);
+		setIconError(false);
 		setIsFormOpen(false);
 	};
 
@@ -70,6 +80,14 @@ const FormAddIngredientType = ({ onSubmit }) => {
 				hasError={colorError}
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setColor(value)}
+			/>
+			<InputField
+				id="icon"
+				label="Icono"
+				value={icon}
+				hasError={iconError}
+				errorMessage="Campo obligatorio"
+				onChange={({ target: { value } }) => setIcon(value)}
 			/>
 		</FormManageItem>
 	);
