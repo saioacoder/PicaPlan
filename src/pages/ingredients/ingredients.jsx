@@ -20,10 +20,8 @@ const Ingredients = () => {
 	};
 
 	const getFoodmapLevel = (id) => {
-		if (id !== '0') {
-			const result = FOODMAP_LEVEL.find((level) => level.id === id);
-			return result && `Foodmap: ${result.name}`;
-		}
+		const result = FOODMAP_LEVEL.find((level) => level.id === id);
+		return result && `Foodmap: ${result.name}`;
 	};
 
 	const reloadIngredientsList = () => {
