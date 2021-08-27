@@ -17,6 +17,7 @@ import {
 	faTint,
 	faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
+
 export const I_ADD = getIcon(faPlus);
 export const I_CLOSE = getIcon(faTimes);
 export const I_EDIT = getIcon(faPen);
@@ -25,16 +26,17 @@ export const I_MENU = getIcon(faBars);
 export const I_REMOVE = getIcon(faTrashAlt);
 export const I_SUBMENU = getIcon(faEllipsisV);
 export const I_SUBMENU_CLOSE = getIcon(faAngleRight);
+
 export const I_FOOD = [
-	getIcon(faTint),
-	getIcon(faFish),
-	getIcon(faDrumstickBite),
-	getIcon(faCarrot),
-	getIcon(faAppleAlt),
-	getIcon(faCheese),
-	getIcon(faIceCream),
-	getIcon(faLeaf),
-	getIcon(faBreadSlice),
+	{ id: 'Tint', icon: getIcon(faTint) },
+	{ id: 'Fish', icon: getIcon(faFish) },
+	{ id: 'DrumstickBite', icon: getIcon(faDrumstickBite) },
+	{ id: 'Carrot', icon: getIcon(faCarrot) },
+	{ id: 'AppleAlt', icon: getIcon(faAppleAlt) },
+	{ id: 'Cheese', icon: getIcon(faCheese) },
+	{ id: 'IceCream', icon: getIcon(faIceCream) },
+	{ id: 'Leaf', icon: getIcon(faLeaf) },
+	{ id: 'BreadSlice', icon: getIcon(faBreadSlice) },
 ];
 
 export const DAYS_NAME = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'];
