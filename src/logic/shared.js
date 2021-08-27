@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { I_FOOD } from './constants';
 
 import {
 	getCollection,
@@ -32,8 +32,10 @@ export const showColor = (color, content) => {
 	return <span style={styles}>{content}</span>;
 };
 
-export const getIcon = (icon) => {
-	return <FontAwesomeIcon icon={icon} />;
+export const getFoodIcon = (id, background) => {
+	const styles = { background };
+	const { icon } = I_FOOD.find((item) => item.id === id);
+	return <span style={styles}>{icon}</span>;
 };
 
 //

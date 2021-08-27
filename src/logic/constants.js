@@ -1,4 +1,5 @@
-import { getIcon } from './shared';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
 	faAngleRight,
 	faAppleAlt,
@@ -17,6 +18,10 @@ import {
 	faTint,
 	faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
+
+export const getIcon = (icon) => {
+	return <FontAwesomeIcon icon={icon} />;
+};
 
 export const I_ADD = getIcon(faPlus);
 export const I_CLOSE = getIcon(faTimes);
