@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList, showColor } from '../../logic/shared';
+import { reloadList, getFoodIcon } from '../../logic/shared';
 import { FOODMAP_LEVEL } from '../../logic/constants';
 
 import FormAddIngredient from '../../components/FormAddIngredient/FormAddIngredient.jsx';
@@ -12,10 +12,10 @@ const Ingredients = () => {
 	const [ingredientTypes, setIngredientTypes] = useState([]);
 	const [units, setUnits] = useState([]);
 
-	const getIngredientTypeName = (id) => {
+	const getIngredientTypeIcon = (id) => {
 		if (ingredientTypes) {
 			const result = ingredientTypes.find((type) => type.id === id);
-			return result && showColor(result.color, result.name);
+			return result && getFoodIcon(result.icon, result.color);
 		}
 	};
 
@@ -45,7 +45,7 @@ const Ingredients = () => {
 						id={id}
 						name={name}
 						type="ingredients"
-						category={getIngredientTypeName(idIngredientType)}
+						icon={getIngredientTypeIcon(idIngredientType)}
 						extraInfo={getFoodmapLevel(foodmapLevel)}
 						size="small"
 						onClickRemove={reloadIngredientsList}
