@@ -7,20 +7,18 @@
 		background-color: $color_highlight;
 		border-radius: 50% 50% 0 50%;
 		color: $color_background_light;
-		font-size: $font_size_m;
-		margin-right: $spacing_xxs;
-		padding: 2px 4px;
-		transform: translateY(-4px);
+		font-size: $font_size_b;
+		margin-right: $spacing_xs;
+		padding: 2px 5px;
+		transform: translateY(-1px);
 		svg {
 			transform: rotate(-90deg);
 		}
 	}
 	&__title {
 		flex-grow: 1;
-		font-size: $font_size_m;
+		font-size: $font_size_l;
 		font-weight: $font_weight_bold;
-		letter-spacing: 0.07rem;
 		text-align: left;
-		text-transform: uppercase;
 	}
 }
