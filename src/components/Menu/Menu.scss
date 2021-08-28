@@ -5,6 +5,7 @@
 	bottom: 0;
 	display: flex;
 	flex-direction: column;
+	font-size: $font_size_m;
 	left: 0;
 	padding: $spacing_b $spacing_s $spacing_s;
 	position: fixed;
@@ -35,14 +36,13 @@
 	&__item {
 		background-color: $color_b_extralight;
 		border-radius: $radius_b;
-		font-size: $font_size_m;
+		font-size: $font_size_b;
 		font-weight: $font_weight_mediumbold;
 		margin-top: $spacing_xxs;
 		padding: $spacing_s;
 		transition: $transition_duration;
 		&:hover {
 			background-color: $color_highlight;
-			border-radius: $radius_b $radius_b 0 $radius_b;
 			color: $color_background_light;
 			font-weight: $font_weight_bold;
 		}
