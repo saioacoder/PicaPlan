@@ -23,10 +23,10 @@ export const formateDate = (day) => {
 	};
 };
 
-export const nextWeek = (day) => {
-	return sumDays(day, 7);
+export const nextWeek = (day, onChangeDay) => {
+	onChangeDay(sumDays(day, 7));
 };
 
-export const prevWeek = (day) => {
-	return subtractDays(day, 7);
+export const prevWeek = (day, onChangeDay) => {
+	onChangeDay(subtractDays(day, 7));
 };

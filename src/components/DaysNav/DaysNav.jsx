@@ -25,7 +25,7 @@ const DaysNav = ({ selectedDay, onChangeDay }) => {
 		<div className="daysNav">
 			<button
 				className="daysNav__prev"
-				onClick={() => onChangeDay(prevWeek(firstWeekDay))}
+				onClick={() => prevWeek(firstWeekDay, onChangeDay)}
 			>
 				{I_PREV}
 			</button>
@@ -49,7 +49,7 @@ const DaysNav = ({ selectedDay, onChangeDay }) => {
 			})}
 			<button
 				className="daysNav__next"
-				onClick={() => onChangeDay(nextWeek(firstWeekDay))}
+				onClick={() => nextWeek(firstWeekDay, onChangeDay)}
 			>
 				{I_NEXT}
 			</button>
