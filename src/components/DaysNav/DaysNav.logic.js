@@ -15,10 +15,12 @@ export const subtractDays = (date, days) => {
 export const formateDate = (day) => {
 	const newDay = new Date(day);
 	const newWeekDay = newDay.getDay() ? newDay.getDay() - 1 : 6;
+	const num = newDay.getDate();
+	const formatedNum = num < 10 ? `0${num}` : num;
 	return {
 		month: newDay.getMonth(),
 		name: DAYS_NAME[newWeekDay],
-		num: newDay.getDate(),
+		num: formatedNum,
 		timestamp: newDay.getTime(),
 	};
 };
