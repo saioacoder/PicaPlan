@@ -22,3 +22,11 @@ export const formateDate = (day) => {
 		timestamp: newDay.getTime(),
 	};
 };
+
+export const nextWeek = (day) => {
+	return sumDays(day, 7);
+};
+
+export const prevWeek = (day) => {
+	return subtractDays(day, 7);
+};

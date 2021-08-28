@@ -1,6 +1,12 @@
 import { I_NEXT, I_PREV, DAYS_NAME, MONTHS } from '../../logic/constants';
 
-import { formateDate, sumDays, subtractDays } from './DaysNav.logic';
+import {
+	formateDate,
+	nextWeek,
+	prevWeek,
+	sumDays,
+	subtractDays,
+} from './DaysNav.logic';
 
 import './DaysNav.scss';
 
@@ -17,7 +23,12 @@ const DaysNav = ({ selectedDay, onChangeDay }) => {
 
 	return (
 		<div className="daysNav">
-			<button className="daysNav__prev">{I_PREV}</button>
+			<button
+				className="daysNav__prev"
+				onClick={() => onChangeDay(prevWeek(firstWeekDay))}
+			>
+				{I_PREV}
+			</button>
 			{selectedWeek.map(({ month, name, num, timestamp }) => {
 				return (
 					<button
@@ -36,7 +47,12 @@ const DaysNav = ({ selectedDay, onChangeDay }) => {
 					</button>
 				);
 			})}
-			<button className="daysNav__next">{I_NEXT}</button>
+			<button
+				className="daysNav__next"
+				onClick={() => onChangeDay(nextWeek(firstWeekDay))}
+			>
+				{I_NEXT}
+			</button>
 		</div>
 	);
 };

@@ -3,8 +3,8 @@
 .daysNav {
 	background-color: $color_background_light;
 	box-shadow: 0 3px 10px 0 transparentize($color_b_extramedium, 0.9);
-	display: flex;
-	justify-content: stretch;
+	display: grid;
+	grid-template-columns: 1fr repeat(7, 2fr) 1fr;
 	margin: 0 -1.6rem $spacing_xs;
 	&__day {
 		border-radius: $radius_s;
