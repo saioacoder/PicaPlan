@@ -14,9 +14,7 @@
 	&__day {
 		background-color: $color_background_light;
 		border-radius: $radius_s;
-		font-size: $font_size_xxs;
-		padding: $spacing_xs $spacing_xxs;
-		text-transform: uppercase;
+		padding: $spacing_xxs $spacing_xxs;
 		transition: $transition_duration;
 		&:hover {
 			background-color: $color_highlight_dark;
@@ -37,8 +35,19 @@
 			cursor: default;
 		}
 	}
+	&__month {
+		font-size: $font_size_xxs;
+		text-transform: uppercase;
+	}
 	&__dayNum {
 		display: block;
 		font-size: $font_size_xl;
+		font-weight: $font_weight_mediumbold;
+		line-height: 0.5;
+		margin-top: 0.6rem;
+	}
+	&__dayName {
+		font-size: $font_size_xxxs;
+		line-height: 0;
 	}
 }

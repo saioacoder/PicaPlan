@@ -44,6 +44,20 @@ export const I_FOOD = [
 	{ id: 'BreadSlice', icon: getIcon(faBreadSlice) },
 ];
 
+export const MONTHS = [
+	'Ene',
+	'Feb',
+	'Mar',
+	'Abr',
+	'May',
+	'Jun',
+	'Jul',
+	'Ago',
+	'Sep',
+	'Oct',
+	'Nov',
+	'Dic',
+];
 export const DAYS_NAME = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'];
 
 export const FOODMAP_LEVEL = [

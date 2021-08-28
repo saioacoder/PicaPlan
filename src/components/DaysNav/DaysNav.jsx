@@ -1,4 +1,4 @@
-import { DAYS_NAME } from '../../logic/constants';
+import { DAYS_NAME, MONTHS } from '../../logic/constants';
 
 import { formateDate, sumDays, subtractDays } from './DaysNav.logic';
 
@@ -17,7 +17,7 @@ const DaysNav = ({ selectedDay, onChangeDay }) => {
 
 	return (
 		<div className="daysNav">
-			{selectedWeek.map(({ name, num, timestamp }) => {
+			{selectedWeek.map(({ month, name, num, timestamp }) => {
 				return (
 					<button
 						key={timestamp}
@@ -29,8 +29,9 @@ const DaysNav = ({ selectedDay, onChangeDay }) => {
 						onClick={() => onChangeDay(timestamp)}
 						type="button"
 					>
-						{name}
+						<span className="daysNav__month">{MONTHS[month]}</span>
 						<span className="daysNav__dayNum">{num}</span>
+						<span className="daysNav__dayName">{name}</span>
 					</button>
 				);
 			})}

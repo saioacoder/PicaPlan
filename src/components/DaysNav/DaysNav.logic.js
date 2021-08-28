@@ -16,6 +16,7 @@ export const formateDate = (day) => {
 	const newDay = new Date(day);
 	const newWeekDay = newDay.getDay() ? newDay.getDay() - 1 : 6;
 	return {
+		month: newDay.getMonth(),
 		name: DAYS_NAME[newWeekDay],
 		num: newDay.getDate(),
 		timestamp: newDay.getTime(),
