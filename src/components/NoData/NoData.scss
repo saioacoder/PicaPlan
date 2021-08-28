@@ -15,8 +15,7 @@
 		animation-name: rotateCookie;
 		font-size: 5rem;
 	}
-	p {
-		font-weight: $font_weight_mediumbold;
+	> div {
 		font-size: $font_size_xxs;
 		letter-spacing: 0.2rem;
 		line-height: 1.6rem;
@@ -24,6 +23,9 @@
 		padding: 0 30%;
 		text-align: center;
 		text-transform: uppercase;
+		strong {
+			font-weight: $font_weight_extrabold;
+		}
 	}
 }
 
