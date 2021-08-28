@@ -4,9 +4,9 @@
 	align-items: center;
 	display: flex;
 	&__logo {
-		background-color: $color_highlight;
+		background-color: $color_b;
 		border-radius: 50% 50% 0 50%;
-		color: $color_background_light;
+		color: $color_background;
 		font-size: $font_size_b;
 		margin-right: $spacing_xs;
 		padding: 2px 5px;
@@ -19,6 +19,5 @@
 		flex-grow: 1;
 		font-size: $font_size_l;
 		font-weight: $font_weight_bold;
-		text-align: left;
 	}
 }
