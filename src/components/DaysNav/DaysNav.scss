@@ -4,11 +4,12 @@
 	background-color: $color_background_light;
 	box-shadow: 0 3px 10px 0 transparentize($color_b_extramedium, 0.9);
 	display: grid;
-	grid-template-columns: 1fr repeat(7, 2fr) 1fr;
+	grid-column-gap: $spacing_xxxs;
+	grid-template-columns: 2fr repeat(7, 3fr) 2fr;
 	margin: 0 -1.6rem $spacing_xs;
+	padding: $spacing_xxxs 0;
 	&__day {
 		border-radius: $radius_s;
-		flex-grow: 2;
 		padding: $spacing_xxs 0;
 		transition: $transition_duration;
 		&:hover {
@@ -30,7 +31,7 @@
 		}
 	}
 	&__month {
-		font-size: $font_size_xxs;
+		font-size: $font_size_xxxs;
 		text-transform: uppercase;
 	}
 	&__dayNum {
@@ -38,31 +39,28 @@
 		font-size: $font_size_xl;
 		font-weight: $font_weight_mediumbold;
 		line-height: 0.5;
-		margin-bottom: 0.2rem;
-		margin-top: 0.6rem;
+		margin-bottom: 0.1rem;
+		margin-top: 0.5rem;
 	}
 	&__dayName {
 		font-size: $font_size_xxxs;
 	}
-	&__next,
-	&__prev {
-		flex-grow: 1;
-		transition: $transition_duration;
-	}
 	&__next {
 		padding-left: $spacing_xxs;
 		text-align: left;
+		transition: $transition_duration;
 		&:hover {
 			text-align: left;
-			transform: translateX(5px);
+			transform: translateX(3px);
 		}
 	}
 	&__prev {
 		padding-right: $spacing_xxs;
 		text-align: right;
+		transition: $transition_duration;
 		&:hover {
 			text-align: right;
-			transform: translateX(-5px);
+			transform: translateX(-3px);
 		}
 	}
 }
