@@ -2,27 +2,22 @@
 
 .buttonAddItem {
 	align-items: center;
-	background-color: $color_highlight;
+	background-color: $color_background_light;
 	border-radius: 50%;
-	bottom: $spacing_xxs;
-	box-shadow: 0 0 8px 2px transparentize($color_b_extramedium, 0.7);
-	color: $color_background_light;
+	bottom: $spacing_xs;
+	box-shadow: 0 5px 10px 0 transparentize($color_b_extramedium, 0.6);
+	color: $color_highlight;
 	display: flex;
 	font-size: $font_size_m;
 	justify-content: center;
-	right: $spacing_xxs;
+	right: $spacing_xs;
 	padding: $spacing_b;
 	position: fixed;
 	transition: $transition_duration;
 	z-index: 10;
-	svg {
-		transition: $transition_duration;
-	}
 	&:hover {
 		background-color: $color_highlight_dark;
 		border-radius: 50% 50% 0 50%;
-		svg {
-			transform: rotate(90deg);
-		}
+		color: $color_background_light;
 	}
 }
