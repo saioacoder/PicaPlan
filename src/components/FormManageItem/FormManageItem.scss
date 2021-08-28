@@ -6,7 +6,7 @@
 	display: flex;
 	flex-direction: column;
 	left: 0;
-	padding: $spacing_b $spacing_s $spacing_s;
+	padding: $spacing_b $spacing_s;
 	position: fixed;
 	right: 0;
 	overflow-y: auto;
@@ -18,11 +18,17 @@
 	&--open {
 		transform: translateX(0);
 	}
+	&__title {
+		font-size: $font_size_l;
+		font-weight: $font_weight_bold;
+		padding-bottom: $spacing_b;
+		text-align: left;
+	}
 	&__actions {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		column-gap: $spacing_xs;
-		margin-top: $spacing_xs;
+		margin-top: $spacing_xxxs;
 	}
 	.pageTitle {
 		margin-bottom: $spacing_xxs;
