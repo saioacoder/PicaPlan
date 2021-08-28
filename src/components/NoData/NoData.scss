@@ -2,7 +2,7 @@
 
 .noData {
 	align-items: center;
-	color: $color_b_medium;
+	color: $color_b_extramedium;
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
@@ -16,11 +16,14 @@
 		font-size: 5rem;
 	}
 	p {
-		color: $color_b_medium;
-		font-style: italic;
-		font-weight: $font_weight_bold;
-		margin-top: $spacing_b;
+		font-weight: $font_weight_mediumbold;
+		font-size: $font_size_xxs;
+		letter-spacing: 0.2rem;
+		line-height: 1.6rem;
+		margin-top: $spacing_m;
+		padding: 0 30%;
 		text-align: center;
+		text-transform: uppercase;
 	}
 }
 
