@@ -1,6 +1,5 @@
 import Button from '../Button/Button.jsx';
 import ButtonAddItem from '../ButtonAddItem/ButtonAddItem.jsx';
-import PageTitle from '../PageTitle/PageTitle.jsx';
 
 import './FormManageItem.scss';
 
@@ -23,7 +22,7 @@ const FormManageItem = ({
 				}
 				onSubmit={onSubmit}
 			>
-				<PageTitle title={pageTitle} />
+				<h2 className="formManageItem__title">{pageTitle}</h2>
 				{children}
 				<div className="formManageItem__actions">
 					<Button type="button" secondary onClick={onCancel}>
