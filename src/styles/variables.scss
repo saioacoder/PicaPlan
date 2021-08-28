@@ -6,6 +6,7 @@ $color_b_light: lighten($color_b, 78%);
 $color_b_extralight: lighten($color_b, 82%);
 
 $color_highlight: #fd5680;
+$color_highlight_light: lighten($color_highlight, 25%);
 $color_highlight_dark: darken($color_highlight, 10%);
 $color_highlight_extradark: darken($color_highlight, 20%);
 

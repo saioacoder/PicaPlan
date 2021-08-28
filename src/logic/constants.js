@@ -6,6 +6,8 @@ import {
 	faBars,
 	faBreadSlice,
 	faCarrot,
+	faChevronLeft,
+	faChevronRight,
 	faCheese,
 	faDrumstickBite,
 	faEllipsisV,
@@ -28,6 +30,8 @@ export const I_CLOSE = getIcon(faTimes);
 export const I_EDIT = getIcon(faPen);
 export const I_LOGO = getIcon(faCarrot);
 export const I_MENU = getIcon(faBars);
+export const I_NEXT = getIcon(faChevronRight);
+export const I_PREV = getIcon(faChevronLeft);
 export const I_REMOVE = getIcon(faTrashAlt);
 export const I_SUBMENU = getIcon(faEllipsisV);
 export const I_SUBMENU_CLOSE = getIcon(faAngleRight);
