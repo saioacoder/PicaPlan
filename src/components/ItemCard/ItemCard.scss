@@ -12,7 +12,6 @@
 	position: relative;
 	transition: $transition_duration;
 	&:hover {
-		border-radius: $radius_b $radius_b 0 $radius_b;
 		box-shadow: 0 5px 7px 0 transparentize($color_b_medium, 0.3);
 	}
 	&__content {
