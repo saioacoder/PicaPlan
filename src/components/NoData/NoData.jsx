@@ -5,7 +5,6 @@ import './NoData.scss';
 const NoData = ({ children }) => {
 	return (
 		<div className="noData">
-			{I_LOGO}
 			<div>{children}</div>
 		</div>
 	);
