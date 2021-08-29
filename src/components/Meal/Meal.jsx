@@ -7,12 +7,12 @@ import ItemCard from '../ItemCard/ItemCard.jsx';
 const Meal = ({ plateData }) => {
 	const { idPlate, idPlateType, quantity } = plateData;
 	const [plate, setPlate] = useState({});
-	const [plateType, setPlateType] = useState({});
+	//const [plateType, setPlateType] = useState({});
 
 	useEffect(() => {
 		if (plateData) {
 			loadItem('plates', idPlate, setPlate);
-			loadItem('plateTypes', idPlateType, setPlateType);
+			//loadItem('plateTypes', idPlateType, setPlateType);
 		}
 	}, [plateData, idPlate, idPlateType]);
 
