@@ -6,7 +6,7 @@
 	display: grid;
 	grid-column-gap: $spacing_xxxs;
 	grid-template-columns: 2fr repeat(7, 3fr) 2fr;
-	margin: 0 -1.6rem $spacing_xs;
+	margin: 0 -1.6rem;
 	padding: $spacing_xxxs 0;
 	&__day {
 		border-radius: $radius_s;
