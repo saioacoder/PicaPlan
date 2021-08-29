@@ -8,6 +8,9 @@
 	grid-template-columns: 2fr repeat(7, 3fr) 2fr;
 	margin: 0 -1.6rem $spacing_xxxs;
 	padding: $spacing_xxxs 0;
+	position: fixed;
+	top: 61px;
+	width: 100%;
 	&__day {
 		border-radius: $radius_s;
 		padding: $spacing_xxs 0;
