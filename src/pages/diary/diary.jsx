@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 
-import { loadList } from '../../logic/shared';
+import { reloadList } from '../../logic/shared';
 
 import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
 import Meal from '../../components/Meal/Meal.jsx';
 import NoData from '../../components/NoData/NoData.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
+import PlateTypeBlock from '../../components/PlateTypeBlock/PlateTypeBlock.jsx';
 
 const Diary = () => {
 	const [days, setDays] = useState([]);
 	const [selectedDay, setSelectedDay] = useState(new Date().getTime());
 	const [selectedDayPlates, setSelectedDayPlates] = useState([]);
+	const [plateTypes, setPlateTypes] = useState([]);
 
 	const isSameDay = (day1, day2) => {
 		const day1Parsed = new Date(day1).setHours(0, 0, 0, 0);
@@ -20,7 +22,8 @@ const Diary = () => {
 	};
 
 	useEffect(() => {
-		loadList('days', setDays);
+		reloadList('days', 'date', setDays);
+		reloadList('plateTypes', 'order', setPlateTypes);
 	}, []);
 
 	useEffect(() => {
@@ -35,23 +38,29 @@ const Diary = () => {
 	return (
 		<PageLayout pageTitle="Diario" menuSel="diary">
 			<DaysNav selectedDay={selectedDay} onChangeDay={setSelectedDay} />
-			{selectedDayPlates.length ? (
-				selectedDayPlates.map((plate) => {
-					return (
-						<Meal
-							key={plate.idPlate + plate.idPlateType}
-							plateData={plate}
-						/>
+			{plateTypes.map((type) => {
+				const platesList =
+					selectedDayPlates.length &&
+					selectedDayPlates.filter(
+						(plate) => plate.idPlateType === type.id
 					);
-				})
-			) : (
-				<NoData>
-					<p>
-						<strong>¡Qué hambre!</strong>
-					</p>
-					<p>Añade un plato a este día</p>
-				</NoData>
-			)}
+				return (
+					<PlateTypeBlock title={type.name}>
+						{platesList.length ? (
+							platesList.map((plate) => {
+								return (
+									<Meal
+										key={plate.idPlate + plate.idPlateType}
+										plateData={plate}
+									/>
+								);
+							})
+						) : (
+							<NoData>Añade un plato a esta sección</NoData>
+						)}
+					</PlateTypeBlock>
+				);
+			})}
 			<ButtonAddItem type="day" />
 		</PageLayout>
 	);
