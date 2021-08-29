@@ -19,7 +19,6 @@ const Meal = ({ plateData }) => {
 	return (
 		<ItemCard
 			name={plate.name}
-			category={plateType.name}
 			extraInfo={quantity > 1 ? `${quantity} platos` : `${quantity} plato`}
 		/>
 	);
