@@ -7,10 +7,9 @@
 	flex-direction: column;
 	font-size: $font_size_m;
 	left: 0;
-	padding: $spacing_b $spacing_s $spacing_s;
+	//padding: $spacing_b $spacing_s $spacing_s;
 	position: fixed;
 	right: 0;
-	text-align: center;
 	transform: translateX(100%);
 	transition: 0.6s;
 	top: 0;
@@ -26,7 +25,7 @@
 	}
 	&__buttonClose {
 		align-self: flex-end;
-		margin-bottom: $spacing_xs;
+		margin: $spacing_b;
 		padding: 0;
 		transition: $transition_duration;
 		&:hover {
@@ -34,21 +33,17 @@
 		}
 	}
 	&__item {
-		background-color: $color_background;
-		border-radius: $radius_b;
+		border-top: 1px solid $color_background;
 		font-size: $font_size_b;
 		font-weight: $font_weight_mediumbold;
-		margin-top: $spacing_xxs;
-		padding: $spacing_s;
+		padding: $spacing_xs $spacing_m;
 		transition: $transition_duration;
 		&:hover {
-			background-color: $color_highlight;
-			color: $color_background_light;
-			font-weight: $font_weight_bold;
+			background-color: $color_background;
 		}
 		&--sel {
-			background: $color_highlight;
-			color: $color_background_light;
+			color: $color_highlight;
+			font-weight: $font_weight_extrabold;
 		}
 	}
 }
