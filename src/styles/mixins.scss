@@ -1,15 +1,5 @@
 @import './variables';
 
-@mixin formErrorMessage {
-	background-color: $color_error_light;
-	border-radius: $radius_b;
-	color: $color_error;
-	margin-top: $spacing_b;
-	padding: $spacing_s;
-	text-align: center;
-	width: 100%;
-}
-
 @mixin desktop {
 	@media (min-width: #{$width_desktop}) {
 		@content;
