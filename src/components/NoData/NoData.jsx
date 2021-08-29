@@ -1,13 +1,7 @@
-import { I_LOGO } from '../../logic/constants';
-
 import './NoData.scss';
 
-const NoData = ({ children }) => {
-	return (
-		<div className="noData">
-			<div>{children}</div>
-		</div>
-	);
+const NoData = ({ content }) => {
+	return <div className="noData">{content}</div>;
 };
 
 export default NoData;

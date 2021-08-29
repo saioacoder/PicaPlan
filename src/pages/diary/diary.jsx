@@ -56,7 +56,7 @@ const Diary = () => {
 								);
 							})
 						) : (
-							<NoData>Añade un plato a esta sección</NoData>
+							<NoData content="Añade un plato a esta sección" />
 						)}
 					</PlateTypeBlock>
 				);
