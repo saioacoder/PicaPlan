@@ -45,7 +45,7 @@ const Diary = () => {
 						(plate) => plate.idPlateType === type.id
 					);
 				return (
-					<PlateTypeBlock title={type.name}>
+					<PlateTypeBlock key={type.id} title={type.name}>
 						{platesList.length ? (
 							platesList.map((plate) => {
 								return (
