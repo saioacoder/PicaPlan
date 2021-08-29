@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+
+.noDataPage {
+	align-items: center;
+	color: $color_b_extramedium;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: center;
+	padding: $spacing_m;
+	svg {
+		animation-duration: 2.5s;
+		animation-iteration-count: infinite;
+		animation-name: rotateCookie;
+		font-size: 5rem;
+	}
+	> div {
+		font-size: $font_size_xxs;
+		letter-spacing: 0.2rem;
+		line-height: 1.6rem;
+		margin-top: $spacing_m;
+		padding: 0 30%;
+		text-align: center;
+		text-transform: uppercase;
+		p {
+			margin-bottom: $spacing_xxxs;
+		}
+		strong {
+			font-size: $font_size_xs;
+			font-weight: $font_weight_extrabold;
+		}
+	}
+}
+
+@keyframes rotateCookie {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(-90deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
