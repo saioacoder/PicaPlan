@@ -15,7 +15,8 @@
 		&:hover {
 			background-color: $color_highlight_light;
 		}
-		&--sel {
+		&--sel,
+		&--sel:hover {
 			background-color: $color_highlight;
 			border-radius: $radius_s;
 			box-shadow: 0 0 8px 2px transparentize($color_b_extramedium, 0.7);
