@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .fieldGroup {
+	align-items: start;
 	border-radius: $radius_s;
 	column-gap: $spacing_xxs;
 	display: grid;

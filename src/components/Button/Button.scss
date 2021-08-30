@@ -6,8 +6,7 @@
 	border-radius: $radius_s;
 	color: $color_background_light;
 	font-weight: $font_weight_bold;
-	margin-top: $spacing_xs;
-	padding: $spacing_xs $spacing_b $spacing_xs;
+	padding: calc((2rem + 0.8rem) / 2) $spacing_b;
 	text-align: center;
 	transition: $transition_duration;
 	width: 100%;
