@@ -16,10 +16,12 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 	const [idIngredient, setIdIngredient] = useState('');
 	const [quantity, setQuantity] = useState(null);
 	const [recipe, setRecipe] = useState('');
+
 	const [nameError, setNameError] = useState(false);
 	const [ingredientListError, setIngredientListError] = useState(false);
 	const [idIngredientError, setIdIngredientError] = useState(false);
 	const [quantityError, setQuantityError] = useState(false);
+
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const handleAddIngredient = async (e) => {
@@ -113,6 +115,7 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 					id="quantity"
 					label="Cantidad"
 					value={quantity}
+					type="number"
 					hasError={quantityError}
 					errorMessage="Campo obligatorio"
 					onChange={({ target: { value } }) => setQuantity(value)}

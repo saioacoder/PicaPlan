@@ -109,6 +109,7 @@ const FormDiary = ({ day, days, plates, plateTypes, onSubmit }) => {
 				id="quantity"
 				label="Cantidad"
 				value={quantity}
+				type="number"
 				hasError={quantityError}
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setQuantity(value)}
