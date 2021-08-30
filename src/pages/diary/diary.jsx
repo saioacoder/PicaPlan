@@ -2,18 +2,19 @@ import { useState, useEffect } from 'react';
 
 import { reloadList } from '../../logic/shared';
 
-import ButtonAddItem from '../../components/ButtonAddItem/ButtonAddItem.jsx';
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
-import Meal from '../../components/Meal/Meal.jsx';
+import FormDiary from '../../components/FormDiary/FormDiary.jsx';
+import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import NoData from '../../components/NoData/NoData.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 import PlateTypeBlock from '../../components/PlateTypeBlock/PlateTypeBlock.jsx';
 
 const Diary = () => {
 	const [days, setDays] = useState([]);
+	const [plates, setPlates] = useState([]);
+	const [plateTypes, setPlateTypes] = useState([]);
 	const [selectedDay, setSelectedDay] = useState(new Date().getTime());
 	const [selectedDayPlates, setSelectedDayPlates] = useState([]);
-	const [plateTypes, setPlateTypes] = useState([]);
 
 	const isSameDay = (day1, day2) => {
 		const day1Parsed = new Date(day1).setHours(0, 0, 0, 0);
@@ -23,16 +24,20 @@ const Diary = () => {
 
 	useEffect(() => {
 		reloadList('days', 'date', setDays);
+		reloadList('plates', 'name', setPlates);
 		reloadList('plateTypes', 'order', setPlateTypes);
 	}, []);
 
 	useEffect(() => {
-		const selectedDayData = days.filter((day) =>
-			isSameDay(day.date, selectedDay)
-		);
-		if (selectedDayData.length)
-			setSelectedDayPlates(selectedDayData[0].plates);
-		else setSelectedDayPlates([]);
+		const getDayPlates = () => {
+			const selectedDayData = days.filter((day) =>
+				isSameDay(day.date, selectedDay)
+			);
+			if (selectedDayData.length)
+				setSelectedDayPlates(selectedDayData[0].plates);
+			else setSelectedDayPlates([]);
+		};
+		getDayPlates();
 	}, [days, selectedDay]);
 
 	return (
@@ -48,10 +53,17 @@ const Diary = () => {
 					<PlateTypeBlock key={type.id} title={type.name}>
 						{platesList.length ? (
 							platesList.map((plate) => {
+								const dayPlateData = plates.filter(
+									(plateData) => plateData.id === plate.idPlate
+								);
 								return (
-									<Meal
-										key={plate.idPlate + plate.idPlateType}
-										plateData={plate}
+									<ItemCard
+										name={dayPlateData[0].name}
+										extraInfo={
+											plate.quantity > 1
+												? `${plate.quantity} platos`
+												: `${plate.quantity} plato`
+										}
 									/>
 								);
 							})
@@ -61,7 +73,11 @@ const Diary = () => {
 					</PlateTypeBlock>
 				);
 			})}
-			<ButtonAddItem type="day" />
+			<FormDiary
+				plates={plates}
+				plateTypes={plateTypes}
+				// onSubmit={reloadIngredientsList}
+			/>
 		</PageLayout>
 	);
 };
