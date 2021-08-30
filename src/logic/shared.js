@@ -2,7 +2,7 @@ import { I_FOOD } from './constants';
 
 import {
 	getCollection,
-	getDocumentById,
+	updateDocumentWithId,
 	removeDocument,
 	addDocument,
 } from '../services/data';
@@ -38,23 +38,7 @@ export const getFoodIcon = (id, background) => {
 	return <span style={styles}>{icon}</span>;
 };
 
-//
-async function getListItem(listName, id) {
-	try {
-		const data = await getDocumentById(listName, id);
-		return data ? data : [];
-	} catch (error) {
-		console.log('getListItem Error:', error);
-		return [];
-	}
+export async function updateListItem(listName, id, item) {
+	const result = await updateDocumentWithId(listName, id, item);
+	return result;
 }
-
-export const loadList = async (listName, updateFunction) => {
-	const result = await getList(listName);
-	updateFunction(result ? result : []);
-};
-
-export const loadItem = async (listName, id, updateFunction) => {
-	const result = await getListItem(listName, id);
-	updateFunction(result ? result : {});
-};
