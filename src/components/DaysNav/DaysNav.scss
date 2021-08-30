@@ -11,6 +11,7 @@
 	position: fixed;
 	top: 61px;
 	width: 100%;
+	z-index: 2;
 	&__day {
 		border-radius: $radius_s;
 		padding: $spacing_xxs 0;
