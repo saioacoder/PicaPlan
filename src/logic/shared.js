@@ -23,6 +23,10 @@ export async function addItem(listName, item) {
 	return await addDocument(listName, item);
 }
 
+export async function updateItem(listName, id, item) {
+	return await updateDocumentWithId(listName, id, item);
+}
+
 export async function removeItem(listName, item) {
 	return await removeDocument(listName, item);
 }
@@ -37,8 +41,3 @@ export const getFoodIcon = (id, background) => {
 	const { icon } = I_FOOD.find((item) => item.id === id);
 	return <span style={styles}>{icon}</span>;
 };
-
-export async function updateListItem(listName, id, item) {
-	const result = await updateDocumentWithId(listName, id, item);
-	return result;
-}

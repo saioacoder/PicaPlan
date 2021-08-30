@@ -13,13 +13,19 @@ const Diary = () => {
 	const [days, setDays] = useState([]);
 	const [plates, setPlates] = useState([]);
 	const [plateTypes, setPlateTypes] = useState([]);
-	const [selectedDay, setSelectedDay] = useState(new Date().getTime());
+	const [selectedDay, setSelectedDay] = useState(
+		new Date().setHours(0, 0, 0, 0)
+	);
 	const [selectedDayPlates, setSelectedDayPlates] = useState([]);
 
 	const isSameDay = (day1, day2) => {
 		const day1Parsed = new Date(day1).setHours(0, 0, 0, 0);
 		const day2Parsed = new Date(day2).setHours(0, 0, 0, 0);
 		return day1Parsed === day2Parsed;
+	};
+
+	const reloadDaysList = () => {
+		reloadList('days', 'date', setDays);
 	};
 
 	useEffect(() => {
@@ -58,6 +64,7 @@ const Diary = () => {
 								);
 								return (
 									<ItemCard
+										key={plate.idPlate + type.id}
 										name={dayPlateData[0].name}
 										extraInfo={
 											plate.quantity > 1
@@ -74,9 +81,11 @@ const Diary = () => {
 				);
 			})}
 			<FormDiary
+				day={selectedDay}
+				days={days}
 				plates={plates}
 				plateTypes={plateTypes}
-				// onSubmit={reloadIngredientsList}
+				onSubmit={reloadDaysList}
 			/>
 		</PageLayout>
 	);
