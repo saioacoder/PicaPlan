@@ -3,5 +3,8 @@
 main {
 	display: flex;
 	flex-direction: column;
-	padding: calc(61px + 76px) $spacing_s $spacing_xxxl;
+	padding: 61px $spacing_s $spacing_xxxl;
+	&.diaryPage {
+		padding-top: calc(61px + 76px);
+	}
 }
