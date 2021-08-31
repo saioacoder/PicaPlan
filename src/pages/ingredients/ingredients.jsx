@@ -45,7 +45,6 @@ const Ingredients = () => {
 						type="ingredients"
 						icon={getIngredientTypeIcon(idIngredientType)}
 						extraInfo={getFoodmapLevel(foodmapLevel)}
-						size="small"
 						onClickRemove={reloadIngredientsList}
 					/>
 				);

@@ -27,7 +27,6 @@ const IngredientTypes = () => {
 						name={name}
 						type="ingredientTypes"
 						icon={getFoodIcon(icon, color)}
-						size="small"
 						onClickRemove={reloadIngredientTypeList}
 					/>
 				);

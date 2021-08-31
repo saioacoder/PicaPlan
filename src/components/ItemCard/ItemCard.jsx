@@ -36,9 +36,7 @@ const ItemCard = ({
 	};
 
 	return (
-		<article
-			className={size === 'small' ? 'itemCard itemCard--small' : 'itemCard'}
-		>
+		<article className="itemCard">
 			<div className="itemCard__content">
 				<span className="itemCard__icon">{icon}</span>
 				<div>

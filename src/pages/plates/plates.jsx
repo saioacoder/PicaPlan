@@ -28,7 +28,6 @@ const Plates = () => {
 						id={id}
 						name={name}
 						type="plates"
-						size="small"
 						onClickRemove={reloadPlateList}
 					/>
 				);

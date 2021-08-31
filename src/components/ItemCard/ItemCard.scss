@@ -17,7 +17,7 @@
 	&__content {
 		align-items: center;
 		display: flex;
-		padding: $spacing_xs 0 $spacing_xs $spacing_b;
+		padding: 1.3rem 0 1.2rem $spacing_b;
 	}
 	&__icon > span {
 		align-items: center;
@@ -31,6 +31,11 @@
 		margin-right: $spacing_xs;
 		width: 2.5rem;
 	}
+	&__title {
+		font-size: $font_size_m;
+		font-weight: $font_weight_mediumbold;
+		width: 100%;
+	}
 	&__category {
 		color: $color_highlight;
 		font-size: $font_size_xxs;
@@ -39,16 +44,6 @@
 	&__extraInfo {
 		color: $color_b_extramedium;
 		font-size: $font_size_xxs;
-	}
-	&__title {
-		font-size: $font_size_l;
-		font-weight: $font_weight_mediumbold;
-		margin-top: $spacing_xxxs;
-		width: 100%;
-	}
-	&--small &__title {
-		font-size: $font_size_m;
-		margin-top: 0;
 	}
 	&__submenuOpen {
 		font-size: $font_size_l;
