@@ -35,18 +35,6 @@ export async function removeDocument(collection, id) {
 	}
 }
 
-//
-
-export async function addDocumentWithId(collection, id, document) {
-	try {
-		await firebase.firestore().collection(collection).doc(id).set(document);
-		return true;
-	} catch (error) {
-		console.log('addDocumentWithId Error:', error);
-		return false;
-	}
-}
-
 export async function updateDocumentWithId(collection, id, change) {
 	try {
 		await firebase.firestore().collection(collection).doc(id).update(change);
@@ -54,47 +42,6 @@ export async function updateDocumentWithId(collection, id, change) {
 	} catch (error) {
 		console.log('updateDocumentWithId Error: ', error);
 		return false;
-	}
-}
-
-export async function getDocumentById(collection, id) {
-	try {
-		const doc = await firebase
-			.firestore()
-			.collection(collection)
-			.doc(id)
-			.get();
-		return doc.exists ? parseDocument(doc) : null;
-	} catch (error) {
-		console.log('getDocumentById Error: ', error);
-		return null;
-	}
-}
-
-export async function getDocumentsByConditions(collection, conditions) {
-	try {
-		let allDocs = firebase.firestore().collection(collection);
-		conditions.forEach(({ field, condition, value }) => {
-			allDocs = allDocs.where(field, condition, value);
-		});
-		allDocs = await allDocs.get();
-		if (allDocs.docs.length > 0) {
-			return {
-				result: allDocs.docs.map((doc) => parseDocument(doc)),
-				error: false,
-			};
-		} else {
-			return {
-				result: null,
-				error: false,
-			};
-		}
-	} catch (error) {
-		console.log('getDocumentsByConditions Error: ', error);
-		return {
-			result: null,
-			error: true,
-		};
 	}
 }
 
