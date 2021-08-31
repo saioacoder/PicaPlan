@@ -53,6 +53,14 @@ textarea {
 	appearance: none;
 	font-family: $font_family;
 }
+input,
+select,
+textarea {
+	&:-webkit-autofill {
+		background-clip: text;
+		box-shadow: none !important;
+	}
+}
 button {
 	cursor: pointer;
 }
