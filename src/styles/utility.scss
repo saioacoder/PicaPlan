@@ -1,0 +1,26 @@
+$spacing: (
+	0rem,
+	0.4rem,
+	0.8rem,
+	1.2rem,
+	1.6rem,
+	2rem,
+	2.4rem,
+	2.8rem,
+	3.2rem,
+	3.6rem,
+	4rem
+);
+$direction: ('bottom', 'left', 'right', 'top');
+$direction_short: ('b', 'l', 'r', 't');
+
+@for $i from 1 to 12 {
+	@for $j from 1 to 5 {
+		.m#{nth($direction_short, $j)}_#{$i} {
+			margin-#{nth($direction, $j)}: nth($spacing, $i);
+		}
+		.p#{nth($direction_short, $j)}_#{$i} {
+			padding-#{nth($direction, $j)}: nth($spacing, $i);
+		}
+	}
+}
