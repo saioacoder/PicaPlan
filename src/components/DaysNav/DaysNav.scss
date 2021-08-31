@@ -6,7 +6,7 @@
 	display: grid;
 	grid-column-gap: $spacing_xxxs;
 	grid-template-columns: 2fr repeat(7, 3fr) 2fr;
-	margin: 0 -1.6rem $spacing_xxxs;
+	margin: 0 -1.6rem $spacing_xxs;
 	padding: $spacing_xxxs 0;
 	position: fixed;
 	top: 61px;
@@ -14,7 +14,7 @@
 	z-index: 2;
 	&__day {
 		border-radius: $radius_s;
-		padding: $spacing_xxs 0;
+		padding: 0.8rem 0 1rem;
 		transition: $transition_duration;
 		&:hover {
 			background-color: $color_highlight_light;
