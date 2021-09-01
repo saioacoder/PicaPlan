@@ -2,7 +2,8 @@ import { I_FOOD } from './constants';
 
 import {
 	getCollection,
-	updateDocumentWithId,
+	//getSubcollection,
+	updateDocument,
 	removeDocument,
 	addDocument,
 } from '../services/data';
@@ -10,6 +11,10 @@ import {
 async function getList(listName) {
 	return await getCollection(listName);
 }
+
+// async function getSublist(listName, idList) {
+// 	return await getSubcollection(listName);
+// }
 
 export async function reloadList(listName, sortParam, setFunction) {
 	const result = await getList(listName);
@@ -19,12 +24,20 @@ export async function reloadList(listName, sortParam, setFunction) {
 	setFunction(resultSorted);
 }
 
+// export async function reloadSublist(listName, sortParam, setFunction) {
+// 	const result = await getList(listName);
+// 	const resultSorted = result.sort((a, b) => {
+// 		return a[sortParam].toString().localeCompare(b[sortParam].toString());
+// 	});
+// 	setFunction(resultSorted);
+// }
+
 export async function addItem(listName, item) {
 	return await addDocument(listName, item);
 }
 
 export async function updateItem(listName, id, item) {
-	return await updateDocumentWithId(listName, id, item);
+	return await updateDocument(listName, id, item);
 }
 
 export async function removeItem(listName, item) {
