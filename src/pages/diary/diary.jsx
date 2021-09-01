@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList } from '../../logic/shared';
+import { reloadList, removeItem } from '../../logic/shared';
 
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
 import FormDiary from '../../components/FormDiary/FormDiary.jsx';
@@ -26,6 +26,15 @@ const Diary = () => {
 
 	const reloadDaysList = () => {
 		reloadList('days', 'date', setDays);
+	};
+
+	const handleEdit = async (id) => {
+		console.log('editar', id);
+	};
+
+	const handleRemove = async (id) => {
+		//const result = await removeItem('plates', id);
+		//result && reloadDaysList();
 	};
 
 	useEffect(() => {
@@ -71,6 +80,8 @@ const Diary = () => {
 												? `${plate.quantity} platos`
 												: `${plate.quantity} plato`
 										}
+										onRemove={() => handleRemove(plate.idPlate)}
+										onEdit={() => handleEdit(plate.idPlate)}
 									/>
 								);
 							})
