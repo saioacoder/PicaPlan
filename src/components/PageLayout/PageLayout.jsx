@@ -6,7 +6,7 @@ const PageLayout = ({ isDiary = false, pageTitle, menuSel, children }) => {
 	return (
 		<>
 			<PageHeader title={pageTitle} menuSel={menuSel} />
-			<main className={isDiary && 'diaryPage'}>{children}</main>
+			<main className={isDiary ? 'diaryPage' : undefined}>{children}</main>
 		</>
 	);
 };
