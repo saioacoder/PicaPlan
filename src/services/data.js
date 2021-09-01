@@ -25,6 +25,26 @@ export async function addDocument(collection, document) {
 	}
 }
 
+// export async function addDocumentToSubcollection(
+// 	collection,
+// 	idDocument,
+// 	subcollection,
+// 	document
+// ) {
+// 	try {
+// 		const result = await firebase
+// 			.firestore()
+// 			.collection(collection)
+// 			.doc(idDocument)
+// 			.collection(subcollection)
+// 			.add(document);
+// 		return result.id;
+// 	} catch (error) {
+// 		console.log('addDocumentToSubcollection Error:', error);
+// 		return null;
+// 	}
+// }
+
 export async function removeDocument(collection, id) {
 	try {
 		await firebase.firestore().collection(collection).doc(id).delete();
@@ -35,12 +55,12 @@ export async function removeDocument(collection, id) {
 	}
 }
 
-export async function updateDocumentWithId(collection, id, change) {
+export async function updateDocument(collection, id, change) {
 	try {
 		await firebase.firestore().collection(collection).doc(id).update(change);
 		return true;
 	} catch (error) {
-		console.log('updateDocumentWithId Error: ', error);
+		console.log('updateDocument Error: ', error);
 		return false;
 	}
 }
