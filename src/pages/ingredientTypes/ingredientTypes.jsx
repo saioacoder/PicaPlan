@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList, getFoodIcon } from '../../logic/shared';
+import { reloadList, getFoodIcon, removeItem } from '../../logic/shared';
 
 import FormAddIngredientType from '../../components/FormAddIngredientType/FormAddIngredientType.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
@@ -11,6 +11,15 @@ const IngredientTypes = () => {
 
 	const reloadIngredientTypeList = () => {
 		reloadList('ingredientTypes', 'name', setIngredientTypes);
+	};
+
+	const handleEdit = async (id) => {
+		console.log('editar', id);
+	};
+
+	const handleRemove = async (id) => {
+		const result = await removeItem('ingredientTypes', id);
+		result && reloadIngredientTypeList();
 	};
 
 	useEffect(() => {
@@ -27,7 +36,8 @@ const IngredientTypes = () => {
 						name={name}
 						type="ingredientTypes"
 						icon={getFoodIcon(icon, color)}
-						onClickRemove={reloadIngredientTypeList}
+						onRemove={() => handleRemove(id)}
+						onEdit={() => handleEdit(id)}
 					/>
 				);
 			})}

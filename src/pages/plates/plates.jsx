@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList } from '../../logic/shared';
+import { reloadList, removeItem } from '../../logic/shared';
 
 import FormAddPlate from '../../components/FormAddPlate/FormAddPlate.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
@@ -12,6 +12,15 @@ const Plates = () => {
 
 	const reloadPlateList = () => {
 		reloadList('plates', 'name', setPlates);
+	};
+
+	const handleEdit = async (id) => {
+		console.log('editar', id);
+	};
+
+	const handleRemove = async (id) => {
+		const result = await removeItem('plates', id);
+		result && reloadPlateList();
 	};
 
 	useEffect(() => {
@@ -28,7 +37,8 @@ const Plates = () => {
 						id={id}
 						name={name}
 						type="plates"
-						onClickRemove={reloadPlateList}
+						onRemove={() => handleRemove(id)}
+						onEdit={() => handleEdit(id)}
 					/>
 				);
 			})}

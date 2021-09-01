@@ -6,33 +6,21 @@ import {
 	I_SUBMENU,
 	I_SUBMENU_CLOSE,
 } from '../../logic/constants';
-import { removeItem } from '../../logic/shared';
 
 import './ItemCard.scss';
 
 const ItemCard = ({
-	id,
 	name,
-	type,
 	category = '',
 	extraInfo = '',
 	icon = '',
-	size = '',
-	onClickRemove,
+	onRemove,
+	onEdit,
 }) => {
 	const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
 	const handleSubmenu = () => {
 		setIsSubmenuOpen(!isSubmenuOpen);
-	};
-
-	const handleEditItem = async (type, id) => {
-		console.log('editar', type, id);
-	};
-
-	const handleRemoveItem = async (type, id) => {
-		const result = await removeItem(type, id);
-		result && onClickRemove();
 	};
 
 	return (
@@ -66,17 +54,13 @@ const ItemCard = ({
 				<button className="itemCard__submenuClose" onClick={handleSubmenu}>
 					{I_SUBMENU_CLOSE}
 				</button>
-				<button
-					type="button"
-					className="itemCard__edit"
-					onClick={() => handleEditItem(type, id)}
-				>
+				<button type="button" className="itemCard__edit" onClick={onEdit}>
 					{I_EDIT}
 				</button>
 				<button
 					type="button"
 					className="itemCard__remove"
-					onClick={() => handleRemoveItem(type, id)}
+					onClick={onRemove}
 				>
 					{I_REMOVE}
 				</button>
