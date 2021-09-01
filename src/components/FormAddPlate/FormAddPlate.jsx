@@ -52,7 +52,7 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 		e.preventDefault();
 
 		setNameError(false);
-		setIngredientListError(false);
+		// setIngredientListError(false);
 		setQuantityError(false);
 
 		let error = false;
@@ -60,10 +60,10 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 			error = true;
 			setNameError(true);
 		}
-		if (!ingredientList.length) {
-			error = true;
-			setIngredientListError(true);
-		}
+		// if (!ingredientList.length) {
+		// 	error = true;
+		// 	setIngredientListError(true);
+		// }
 
 		if (!error) {
 			const item = {
@@ -101,7 +101,7 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
 			/>
-			<FieldGroup>
+			{/* <FieldGroup>
 				<SelectField
 					id="ingredientList"
 					label="Ingredientes"
@@ -123,7 +123,7 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 				<Button type="button" secondary onClick={handleAddIngredient}>
 					{I_ADD}
 				</Button>
-			</FieldGroup>
+			</FieldGroup> */}
 			<TextareaField
 				id="recipe"
 				label="Receta"
