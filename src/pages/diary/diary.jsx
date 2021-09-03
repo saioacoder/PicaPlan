@@ -11,58 +11,58 @@ import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 import PlateTypeBlock from '../../components/PlateTypeBlock/PlateTypeBlock.jsx';
 
 const Diary = () => {
-	const [days, setDays] = useState([]);
-	const [plates, setPlates] = useState([]);
-	const [plateTypes, setPlateTypes] = useState([]);
+	const [daysList, setDaysList] = useState([]);
+	const [platesList, setPlatesList] = useState([]);
+	const [plateTypesList, setPlateTypesList] = useState([]);
 	const [selectedDay, setSelectedDay] = useState(
 		new Date().setHours(0, 0, 0, 0)
 	);
 	const [selectedDayData, setSelectedDayData] = useState({});
+	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	useEffect(() => {
-		reloadList('days', 'date', setDays);
-		reloadList('plates', 'name', setPlates);
-		reloadList('plateTypes', 'order', setPlateTypes);
+		reloadList('days', 'date', setDaysList);
+		reloadList('plates', 'name', setPlatesList);
+		reloadList('plateTypes', 'order', setPlateTypesList);
 	}, []);
 
 	useEffect(() => {
-		getDayData(days, selectedDay, setSelectedDayData);
-	}, [days, selectedDay]);
+		getDayData(daysList, selectedDay, setSelectedDayData);
+	}, [daysList, selectedDay]);
 
 	return (
 		<PageLayout isDiary={true} pageTitle="Diario" menuSel="diary">
 			<DaysNav selectedDay={selectedDay} onChangeDay={setSelectedDay} />
-			{plateTypes.map((type) => {
-				const platesList =
-					selectedDayData.plates &&
-					selectedDayData.plates.length &&
-					selectedDayData.plates.filter(
-						(plate) => plate.idPlateType === type.id
-					);
+			{plateTypesList.map((plateType) => {
+				const currentPlates = selectedDayData.plates;
+				const blockPlates =
+					currentPlates && currentPlates.length
+						? currentPlates.filter(
+								({ idPlateType }) => idPlateType === plateType.id
+						  )
+						: [];
 				return (
-					<PlateTypeBlock key={type.id} title={type.name}>
-						{platesList && platesList.length ? (
-							platesList.map((plate) => {
-								const dayPlateData = plates.filter(
-									(plateData) => plateData.id === plate.idPlate
+					<PlateTypeBlock key={plateType.id} title={plateType.name}>
+						{blockPlates.length ? (
+							blockPlates.map(({ idPlate, quantity }) => {
+								const plateData = platesList.filter(
+									({ id }) => id === idPlate
 								);
 								return (
 									<ItemCard
-										key={plate.idPlate + type.id}
-										name={dayPlateData[0].name}
-										extraInfo={
-											plate.quantity > 1
-												? `${plate.quantity} platos`
-												: `${plate.quantity} plato`
-										}
+										key={idPlate + plateType.id}
+										name={plateData[0].name}
+										extraInfo={`${quantity} plato${
+											quantity > 1 ? 's' : ''
+										}`}
 										onRemove={() =>
 											handleRemove(
-												plate.idPlate,
+												idPlate,
 												selectedDayData,
-												setDays
+												setDaysList
 											)
 										}
-										onEdit={() => handleEdit(plate.idPlate)}
+										onEdit={() => handleEdit(idPlate, setIsFormOpen)}
 									/>
 								);
 							})
@@ -73,11 +73,15 @@ const Diary = () => {
 				);
 			})}
 			<FormDiary
+				isFormOpen={isFormOpen}
+				setIsFormOpen={setIsFormOpen}
 				day={selectedDay}
-				days={days}
-				plates={plates}
-				plateTypes={plateTypes}
-				onSubmit={() => reloadList('days', 'date', setDays)}
+				daysList={daysList}
+				platesList={platesList}
+				plateTypesList={plateTypesList}
+				isEdit={false}
+				//editPlate={editPlateData}
+				onSubmit={() => reloadList('days', 'date', setDaysList)}
 			/>
 		</PageLayout>
 	);

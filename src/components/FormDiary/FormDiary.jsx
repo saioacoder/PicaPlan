@@ -1,12 +1,21 @@
 import { useState } from 'react';
 
-import { handleAdd } from '../../pages/diary/diary.logic';
+import { handleAdd, handleEdit } from '../../pages/diary/diary.logic';
 
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
-const FormDiary = ({ day, days, plates, plateTypes, onSubmit }) => {
+const FormDiary = ({
+	day,
+	daysList,
+	platesList,
+	plateTypesList,
+	isFormOpen,
+	setIsFormOpen,
+	isEdit,
+	onSubmit,
+}) => {
 	const [idPlate, setIdPlate] = useState('');
 	const [idPlateType, setIdPlateType] = useState('');
 	const [quantity, setQuantity] = useState(1);
@@ -14,8 +23,6 @@ const FormDiary = ({ day, days, plates, plateTypes, onSubmit }) => {
 	const [idPlateError, setIdPlateError] = useState(false);
 	const [idPlateTypeError, setIdPlateTypeError] = useState(false);
 	const [quantityError, setQuantityError] = useState(false);
-
-	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
@@ -44,7 +51,7 @@ const FormDiary = ({ day, days, plates, plateTypes, onSubmit }) => {
 				idPlateType,
 				quantity,
 			};
-			handleAdd(day, days, plate);
+			isEdit ? handleEdit() : handleAdd(day, daysList, plate);
 			onSubmit();
 			handleReset();
 		}
@@ -73,7 +80,7 @@ const FormDiary = ({ day, days, plates, plateTypes, onSubmit }) => {
 			<SelectField
 				id="plates"
 				label="Platos"
-				options={plates}
+				options={platesList}
 				value={idPlate}
 				hasError={idPlateError}
 				errorMessage="Campo obligatorio"
@@ -82,7 +89,7 @@ const FormDiary = ({ day, days, plates, plateTypes, onSubmit }) => {
 			<SelectField
 				id="plateType"
 				label="Tipos de plato"
-				options={plateTypes}
+				options={plateTypesList}
 				value={idPlateType}
 				hasError={idPlateTypeError}
 				errorMessage="Campo obligatorio"
