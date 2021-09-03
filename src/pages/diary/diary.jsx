@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList, removeItem } from '../../logic/shared';
+import { reloadList } from '../../logic/shared';
+import { getDayData, handleEdit, handleRemove } from './diary.logic';
 
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
 import FormDiary from '../../components/FormDiary/FormDiary.jsx';
@@ -16,26 +17,7 @@ const Diary = () => {
 	const [selectedDay, setSelectedDay] = useState(
 		new Date().setHours(0, 0, 0, 0)
 	);
-	const [selectedDayPlates, setSelectedDayPlates] = useState([]);
-
-	const isSameDay = (day1, day2) => {
-		const day1Parsed = new Date(day1).setHours(0, 0, 0, 0);
-		const day2Parsed = new Date(day2).setHours(0, 0, 0, 0);
-		return day1Parsed === day2Parsed;
-	};
-
-	const reloadDaysList = () => {
-		reloadList('days', 'date', setDays);
-	};
-
-	const handleEdit = async (id) => {
-		console.log('editar', id);
-	};
-
-	const handleRemove = async (id) => {
-		//const result = await removeItem('plates', id);
-		//result && reloadDaysList();
-	};
+	const [selectedDayData, setSelectedDayData] = useState({});
 
 	useEffect(() => {
 		reloadList('days', 'date', setDays);
@@ -44,15 +26,7 @@ const Diary = () => {
 	}, []);
 
 	useEffect(() => {
-		const getDayPlates = () => {
-			const selectedDayData = days.filter((day) =>
-				isSameDay(day.date, selectedDay)
-			);
-			if (selectedDayData.length)
-				setSelectedDayPlates(selectedDayData[0].plates);
-			else setSelectedDayPlates([]);
-		};
-		getDayPlates();
+		getDayData(days, selectedDay, setSelectedDayData);
 	}, [days, selectedDay]);
 
 	return (
@@ -60,13 +34,14 @@ const Diary = () => {
 			<DaysNav selectedDay={selectedDay} onChangeDay={setSelectedDay} />
 			{plateTypes.map((type) => {
 				const platesList =
-					selectedDayPlates.length &&
-					selectedDayPlates.filter(
+					selectedDayData.plates &&
+					selectedDayData.plates.length &&
+					selectedDayData.plates.filter(
 						(plate) => plate.idPlateType === type.id
 					);
 				return (
 					<PlateTypeBlock key={type.id} title={type.name}>
-						{platesList.length ? (
+						{platesList && platesList.length ? (
 							platesList.map((plate) => {
 								const dayPlateData = plates.filter(
 									(plateData) => plateData.id === plate.idPlate
@@ -80,7 +55,13 @@ const Diary = () => {
 												? `${plate.quantity} platos`
 												: `${plate.quantity} plato`
 										}
-										onRemove={() => handleRemove(plate.idPlate)}
+										onRemove={() =>
+											handleRemove(
+												plate.idPlate,
+												selectedDayData,
+												setDays
+											)
+										}
 										onEdit={() => handleEdit(plate.idPlate)}
 									/>
 								);
@@ -96,7 +77,7 @@ const Diary = () => {
 				days={days}
 				plates={plates}
 				plateTypes={plateTypes}
-				onSubmit={reloadDaysList}
+				onSubmit={() => reloadList('days', 'date', setDays)}
 			/>
 		</PageLayout>
 	);
