@@ -1,4 +1,9 @@
-import { reloadList, removeItem, updateItem } from '../../logic/shared';
+import {
+	addItem,
+	reloadList,
+	removeItem,
+	updateItem,
+} from '../../logic/shared';
 
 const isSameDay = (day1, day2) => {
 	const day1Parsed = new Date(day1).setHours(0, 0, 0, 0);
@@ -9,6 +14,20 @@ const isSameDay = (day1, day2) => {
 export const getDayData = (days, selectedDay, setSelectedDayData) => {
 	const data = days.filter((day) => isSameDay(day.date, selectedDay));
 	setSelectedDayData(data.length ? data[0] : {});
+};
+
+export const handleAdd = (day, days, plate) => {
+	const dayData = days.filter((item) => item.date === day);
+	if (dayData.length) {
+		dayData[0].plates.push(plate);
+		updateItem('days', dayData[0].id, dayData[0]);
+	} else {
+		const item = {
+			date: day,
+			plates: [plate],
+		};
+		addItem('days', item);
+	}
 };
 
 export const handleEdit = async (id) => {

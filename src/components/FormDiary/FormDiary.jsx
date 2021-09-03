@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { addItem, updateItem } from '../../logic/shared';
+import { handleAdd } from '../../pages/diary/diary.logic';
 
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
@@ -9,7 +9,7 @@ import SelectField from '../SelectField/SelectField.jsx';
 const FormDiary = ({ day, days, plates, plateTypes, onSubmit }) => {
 	const [idPlate, setIdPlate] = useState('');
 	const [idPlateType, setIdPlateType] = useState('');
-	const [quantity, setQuantity] = useState('');
+	const [quantity, setQuantity] = useState(1);
 
 	const [idPlateError, setIdPlateError] = useState(false);
 	const [idPlateTypeError, setIdPlateTypeError] = useState(false);
@@ -39,29 +39,12 @@ const FormDiary = ({ day, days, plates, plateTypes, onSubmit }) => {
 		}
 
 		if (!error) {
-			const dayData = days.filter((item) => item.date === day);
-			if (dayData.length) {
-				const item = {
-					idPlate,
-					idPlateType,
-					quantity,
-				};
-				dayData[0].plates.push(item);
-				updateItem('days', dayData[0].id, dayData[0]);
-			} else {
-				const item = {
-					date: day,
-					plates: [
-						{
-							idPlate,
-							idPlateType,
-							quantity,
-						},
-					],
-				};
-				addItem('days', item);
-			}
-
+			const plate = {
+				idPlate,
+				idPlateType,
+				quantity,
+			};
+			handleAdd(day, days, plate);
 			onSubmit();
 			handleReset();
 		}
