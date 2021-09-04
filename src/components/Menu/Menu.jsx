@@ -52,7 +52,7 @@ const Header = ({ itemSel }) => {
 							: 'menu__item'
 					}
 				>
-					Tipos de ingredientes
+					Tipo de ingredientes
 				</Link>
 				<Link
 					to="/plates"
@@ -72,7 +72,7 @@ const Header = ({ itemSel }) => {
 							: 'menu__item'
 					}
 				>
-					Tipos de platos
+					Tipo de platos
 				</Link>
 			</nav>
 		</>
