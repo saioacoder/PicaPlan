@@ -28,7 +28,7 @@ const FormDiary = ({
 	const [idPlateTypeError, setIdPlateTypeError] = useState(false);
 	const [quantityError, setQuantityError] = useState(false);
 
-	const handleAddItem = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		setIdPlateError(false);
@@ -57,7 +57,7 @@ const FormDiary = ({
 				idFeeling,
 			};
 			isEdit
-				? handleEdit(selectedDay, selectedDayData, plate)
+				? handleEdit(idPlate, selectedDayData, plate)
 				: handleAdd(selectedDay, selectedDayData, plate);
 			onSubmit();
 			handleReset();
@@ -88,7 +88,7 @@ const FormDiary = ({
 	return (
 		<FormManageItem
 			pageTitle="Platos"
-			onSubmit={handleAddItem}
+			onSubmit={handleSubmit}
 			onCancel={handleReset}
 			isFormOpen={isFormOpen}
 			isEdit={isEdit}

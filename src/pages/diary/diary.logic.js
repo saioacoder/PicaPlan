@@ -48,21 +48,13 @@ export const handleLoadEdit = (
 	});
 };
 
-export const handleEdit = async (
-	idPlate,
-	idPlateType,
-	quantity,
-	setIsFormOpen,
-	setIsEdit,
-	setFormData
-) => {
-	// setIsFormOpen(true);
-	// setIsEdit(true);
-	// setFormData({
-	// 	idPlate,
-	// 	idPlateType,
-	// 	quantity,
-	// });
+export const handleEdit = async (id, selectedDayData, plate) => {
+	const remainingPlates = selectedDayData.plates.filter((item) => {
+		return item.idPlate !== id;
+	});
+	const newSelectedDayData = { ...selectedDayData };
+	newSelectedDayData.plates = [...remainingPlates, plate];
+	updateItem('days', selectedDayData.id, newSelectedDayData);
 };
 
 export const handleRemove = async (id, selectedDayData, setDaysList) => {
