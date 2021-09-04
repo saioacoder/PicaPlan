@@ -6,6 +6,7 @@ import { getDayData, handleLoadEditData, handleRemove } from './diary.logic';
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
 import FormDiary from '../../components/FormDiary/FormDiary.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
+import MessageBox from '../../components/MessageBox/MessageBox.jsx';
 import NoData from '../../components/NoData/NoData.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 import PlateTypeBlock from '../../components/PlateTypeBlock/PlateTypeBlock.jsx';
@@ -26,6 +27,10 @@ const Diary = () => {
 	});
 	const [isEdit, setIsEdit] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
+	const [messageBox, setMessageBox] = useState({
+		content: '',
+		isError: false,
+	});
 
 	useEffect(() => {
 		reloadList('days', 'date', setDaysList);
@@ -66,7 +71,8 @@ const Diary = () => {
 											handleRemove(
 												idPlate,
 												selectedDayData,
-												setDaysList
+												setDaysList,
+												setMessageBox
 											)
 										}
 										onEdit={() =>
@@ -92,6 +98,7 @@ const Diary = () => {
 			<FormDiary
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
+				setMessageBox={setMessageBox}
 				selectedDay={selectedDay}
 				selectedDayData={selectedDayData}
 				platesList={platesList}
@@ -101,6 +108,9 @@ const Diary = () => {
 				fieldValues={formData}
 				onSubmit={() => reloadList('days', 'date', setDaysList)}
 			/>
+			<MessageBox isError={messageBox.isError} setMessageBox={setMessageBox}>
+				{messageBox.content}
+			</MessageBox>
 		</PageLayout>
 	);
 };

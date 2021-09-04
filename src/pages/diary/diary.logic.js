@@ -57,7 +57,12 @@ export const handleEdit = async (id, selectedDayData, plate) => {
 	updateItem('days', selectedDayData.id, newSelectedDayData);
 };
 
-export const handleRemove = async (id, selectedDayData, setDaysList) => {
+export const handleRemove = async (
+	id,
+	selectedDayData,
+	setDaysList,
+	setMessageBox
+) => {
 	const remainingPlates = selectedDayData.plates.filter((plate) => {
 		return plate.idPlate !== id;
 	});
@@ -66,5 +71,11 @@ export const handleRemove = async (id, selectedDayData, setDaysList) => {
 	const result = remainingPlates.length
 		? updateItem('days', selectedDayData.id, newSelectedDayData)
 		: await removeItem('days', selectedDayData.id);
-	result && reloadList('days', 'date', setDaysList);
+	if (result) {
+		reloadList('days', 'date', setDaysList);
+		setMessageBox({
+			content: 'Plato borrado',
+			isError: false,
+		});
+	}
 };

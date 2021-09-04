@@ -14,6 +14,7 @@ const FormDiary = ({
 	plateTypesList,
 	isFormOpen,
 	setIsFormOpen,
+	setMessageBox,
 	setIsEdit,
 	isEdit,
 	fieldValues,
@@ -61,6 +62,10 @@ const FormDiary = ({
 				: handleAdd(selectedDay, selectedDayData, plate);
 			onSubmit();
 			handleReset();
+			setMessageBox({
+				content: 'Plato añadido',
+				isError: false,
+			});
 		}
 	};
 
