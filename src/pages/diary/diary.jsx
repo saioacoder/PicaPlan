@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { reloadList } from '../../logic/shared';
-import { getDayData, handleLoadEdit, handleRemove } from './diary.logic';
+import { getDayData, handleLoadEditData, handleRemove } from './diary.logic';
 
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
 import FormDiary from '../../components/FormDiary/FormDiary.jsx';
@@ -70,7 +70,7 @@ const Diary = () => {
 											)
 										}
 										onEdit={() =>
-											handleLoadEdit(
+											handleLoadEditData(
 												idPlate,
 												plateType.id,
 												quantity,

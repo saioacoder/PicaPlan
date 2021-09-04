@@ -29,7 +29,7 @@ export const handleAdd = (selectedDay, selectedDayData, plate) => {
 	}
 };
 
-export const handleLoadEdit = (
+export const handleLoadEditData = (
 	idPlate,
 	idPlateType,
 	quantity,
