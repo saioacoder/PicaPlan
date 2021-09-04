@@ -5,7 +5,12 @@ import { addItem } from '../../logic/shared';
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 
-const FormIngredientType = ({ isFormOpen, setIsFormOpen, onSubmit }) => {
+const FormIngredientType = ({
+	isFormOpen,
+	setIsFormOpen,
+	setMessageBox,
+	onSubmit,
+}) => {
 	const [name, setName] = useState('');
 	const [color, setColor] = useState('');
 	const [icon, setIcon] = useState('');
@@ -42,8 +47,14 @@ const FormIngredientType = ({ isFormOpen, setIsFormOpen, onSubmit }) => {
 				icon,
 			};
 			const result = addItem('ingredientTypes', item);
-			result && onSubmit();
-			handleReset();
+			if (result) {
+				onSubmit();
+				handleReset();
+				setMessageBox({
+					content: 'Tipo de ingrediente añadido',
+					isError: false,
+				});
+			}
 		}
 	};
 

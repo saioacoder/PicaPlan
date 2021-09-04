@@ -4,11 +4,16 @@ import { reloadList, getFoodIcon, removeItem } from '../../logic/shared';
 
 import FormIngredientType from '../../components/FormIngredientType/FormIngredientType.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
+import MessageBox from '../../components/MessageBox/MessageBox.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const IngredientTypes = () => {
 	const [ingredientTypesList, setIngredientTypesList] = useState([]);
 	const [isFormOpen, setIsFormOpen] = useState(false);
+	const [messageBox, setMessageBox] = useState({
+		content: '',
+		isError: false,
+	});
 
 	const reloadIngredientTypeList = () => {
 		reloadList('ingredientTypes', 'name', setIngredientTypesList);
@@ -20,7 +25,13 @@ const IngredientTypes = () => {
 
 	const handleRemove = async (id) => {
 		const result = await removeItem('ingredientTypes', id);
-		result && reloadIngredientTypeList();
+		if (result) {
+			reloadIngredientTypeList();
+			setMessageBox({
+				content: 'Tipo de ingrediente borrado',
+				isError: false,
+			});
+		}
 	};
 
 	useEffect(() => {
@@ -45,8 +56,12 @@ const IngredientTypes = () => {
 			<FormIngredientType
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
+				setMessageBox={setMessageBox}
 				onSubmit={reloadIngredientTypeList}
 			/>
+			<MessageBox isError={messageBox.isError} setMessageBox={setMessageBox}>
+				{messageBox.content}
+			</MessageBox>
 		</PageLayout>
 	);
 };
