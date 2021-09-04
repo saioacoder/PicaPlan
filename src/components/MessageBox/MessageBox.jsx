@@ -4,20 +4,27 @@ import './MessageBox.scss';
 
 const MessageBox = ({
 	isError = false,
-	isOpen = false,
-	autoHideDelay = 4000,
+	autoHideDelay = 3500,
+	setMessageBox,
 	children,
 }) => {
 	const [autoHide, setAutoHide] = useState(false);
 
-	const classOpen = isOpen && !autoHide ? 'messageBox--open' : '';
+	const classOpen = children !== '' && !autoHide ? 'messageBox--open' : '';
 	const classError = isError ? 'messageBox__error' : '';
 
 	useEffect(() => {
-		setTimeout(() => {
-			setAutoHide(true);
-		}, autoHideDelay);
-	}, [autoHideDelay]);
+		if (children !== '') {
+			setTimeout(() => {
+				setAutoHide(true);
+				setMessageBox({
+					content: '',
+					isError: false,
+				});
+				setAutoHide(false);
+			}, autoHideDelay);
+		}
+	}, [children, autoHideDelay, setMessageBox]);
 
 	return (
 		<div className={`messageBox ${classOpen} ${classError}`}>{children}</div>
