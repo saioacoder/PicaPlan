@@ -63,7 +63,7 @@ const FormDiary = ({
 			onSubmit();
 			handleReset();
 			setMessageBox({
-				content: 'Plato añadido',
+				content: `Plato ${isEdit ? 'editado' : 'añadido'}`,
 				isError: false,
 			});
 		}
