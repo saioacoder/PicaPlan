@@ -16,24 +16,53 @@ export const getDayData = (days, selectedDay, setSelectedDayData) => {
 	setSelectedDayData(data.length ? data[0] : {});
 };
 
-export const handleAdd = (day, daysList, plate) => {
-	const dayData = daysList.filter((item) => item.date === day);
-	if (dayData.length) {
-		dayData[0].plates.push(plate);
-		updateItem('days', dayData[0].id, dayData[0]);
+export const handleAdd = (selectedDay, selectedDayData, plate) => {
+	if (selectedDayData.plates && selectedDayData.plates.length) {
+		selectedDayData.plates.push(plate);
+		updateItem('days', selectedDayData.id, selectedDayData);
 	} else {
-		const item = {
-			date: day,
+		const data = {
+			date: selectedDay,
 			plates: [plate],
 		};
-		addItem('days', item);
+		addItem('days', data);
 	}
 };
 
-export const handleEdit = async (id, setIsFormOpen) => {
-	console.log('editar', id);
+export const handleLoadEdit = (
+	idPlate,
+	idPlateType,
+	quantity,
+	idFeeling,
+	setIsFormOpen,
+	setIsEdit,
+	setFormData
+) => {
 	setIsFormOpen(true);
-	//Pass plate data to the form
+	setIsEdit(true);
+	setFormData({
+		idPlate,
+		idPlateType,
+		quantity,
+		idFeeling,
+	});
+};
+
+export const handleEdit = async (
+	idPlate,
+	idPlateType,
+	quantity,
+	setIsFormOpen,
+	setIsEdit,
+	setFormData
+) => {
+	// setIsFormOpen(true);
+	// setIsEdit(true);
+	// setFormData({
+	// 	idPlate,
+	// 	idPlateType,
+	// 	quantity,
+	// });
 };
 
 export const handleRemove = async (id, selectedDayData, setDaysList) => {

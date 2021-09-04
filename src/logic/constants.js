@@ -70,3 +70,9 @@ export const FOODMAP_LEVEL = [
 	{ id: '2', name: 'Medio' },
 	{ id: '3', name: 'Alto' },
 ];
+
+export const FEELING = [
+	{ id: '0', name: 'Bien' },
+	{ id: '1', name: 'Regular' },
+	{ id: '2', name: 'Mal' },
+];

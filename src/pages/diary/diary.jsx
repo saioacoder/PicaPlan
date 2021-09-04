@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { reloadList } from '../../logic/shared';
-import { getDayData, handleEdit, handleRemove } from './diary.logic';
+import { getDayData, handleLoadEdit, handleRemove } from './diary.logic';
 
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
 import FormDiary from '../../components/FormDiary/FormDiary.jsx';
@@ -18,6 +18,13 @@ const Diary = () => {
 		new Date().setHours(0, 0, 0, 0)
 	);
 	const [selectedDayData, setSelectedDayData] = useState({});
+	const [formData, setFormData] = useState({
+		idPlate: '',
+		idPlateType: '',
+		quantity: 1,
+		idFeeling: '',
+	});
+	const [isEdit, setIsEdit] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	useEffect(() => {
@@ -44,7 +51,7 @@ const Diary = () => {
 				return (
 					<PlateTypeBlock key={plateType.id} title={plateType.name}>
 						{blockPlates.length ? (
-							blockPlates.map(({ idPlate, quantity }) => {
+							blockPlates.map(({ idPlate, quantity, idFeeling }) => {
 								const plateData = platesList.filter(
 									({ id }) => id === idPlate
 								);
@@ -62,7 +69,17 @@ const Diary = () => {
 												setDaysList
 											)
 										}
-										onEdit={() => handleEdit(idPlate, setIsFormOpen)}
+										onEdit={() =>
+											handleLoadEdit(
+												idPlate,
+												plateType.id,
+												quantity,
+												idFeeling,
+												setIsFormOpen,
+												setIsEdit,
+												setFormData
+											)
+										}
 									/>
 								);
 							})
@@ -75,12 +92,13 @@ const Diary = () => {
 			<FormDiary
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
-				day={selectedDay}
-				daysList={daysList}
+				selectedDay={selectedDay}
+				selectedDayData={selectedDayData}
 				platesList={platesList}
 				plateTypesList={plateTypesList}
-				isEdit={false}
-				//editPlate={editPlateData}
+				isEdit={isEdit}
+				setIsEdit={setIsEdit}
+				fieldValues={formData}
 				onSubmit={() => reloadList('days', 'date', setDaysList)}
 			/>
 		</PageLayout>

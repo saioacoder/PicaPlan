@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+import { FEELING } from '../../logic/constants';
 import { handleAdd, handleEdit } from '../../pages/diary/diary.logic';
 
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
@@ -7,18 +8,21 @@ import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
 const FormDiary = ({
-	day,
-	daysList,
+	selectedDay,
+	selectedDayData,
 	platesList,
 	plateTypesList,
 	isFormOpen,
 	setIsFormOpen,
+	setIsEdit,
 	isEdit,
+	fieldValues,
 	onSubmit,
 }) => {
 	const [idPlate, setIdPlate] = useState('');
 	const [idPlateType, setIdPlateType] = useState('');
 	const [quantity, setQuantity] = useState(1);
+	const [idFeeling, setIdFeeling] = useState('');
 
 	const [idPlateError, setIdPlateError] = useState(false);
 	const [idPlateTypeError, setIdPlateTypeError] = useState(false);
@@ -50,8 +54,11 @@ const FormDiary = ({
 				idPlate,
 				idPlateType,
 				quantity,
+				idFeeling,
 			};
-			isEdit ? handleEdit() : handleAdd(day, daysList, plate);
+			isEdit
+				? handleEdit(selectedDay, selectedDayData, plate)
+				: handleAdd(selectedDay, selectedDayData, plate);
 			onSubmit();
 			handleReset();
 		}
@@ -60,14 +67,23 @@ const FormDiary = ({
 	const handleReset = () => {
 		setIdPlate('');
 		setIdPlateType('');
-		setQuantity('');
+		setQuantity(1);
+		setIdFeeling('');
 
 		setIdPlateError(false);
 		setIdPlateTypeError(false);
 		setQuantityError(false);
 
 		setIsFormOpen(false);
+		setIsEdit(false);
 	};
+
+	useEffect(() => {
+		setIdPlate(fieldValues.idPlate);
+		setIdPlateType(fieldValues.idPlateType);
+		setQuantity(fieldValues.quantity);
+		setIdFeeling(fieldValues.idFeeling);
+	}, [fieldValues]);
 
 	return (
 		<FormManageItem
@@ -75,6 +91,7 @@ const FormDiary = ({
 			onSubmit={handleAddItem}
 			onCancel={handleReset}
 			isFormOpen={isFormOpen}
+			isEdit={isEdit}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
 			<SelectField
@@ -103,6 +120,13 @@ const FormDiary = ({
 				hasError={quantityError}
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setQuantity(value)}
+			/>
+			<SelectField
+				id="feeling"
+				label="¿Cómo te ha sentado?"
+				options={FEELING}
+				value={idFeeling}
+				onChange={({ target: { value } }) => setIdFeeling(value)}
 			/>
 		</FormManageItem>
 	);
