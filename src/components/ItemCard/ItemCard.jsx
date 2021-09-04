@@ -23,6 +23,16 @@ const ItemCard = ({
 		setIsSubmenuOpen(!isSubmenuOpen);
 	};
 
+	const handleEdit = () => {
+		setIsSubmenuOpen(!isSubmenuOpen);
+		onEdit();
+	};
+
+	const handleRemove = () => {
+		setIsSubmenuOpen(!isSubmenuOpen);
+		onRemove();
+	};
+
 	return (
 		<article className="itemCard">
 			<div className="itemCard__content">
@@ -54,13 +64,17 @@ const ItemCard = ({
 				<button className="itemCard__submenuClose" onClick={handleSubmenu}>
 					{I_SUBMENU_CLOSE}
 				</button>
-				<button type="button" className="itemCard__edit" onClick={onEdit}>
+				<button
+					type="button"
+					className="itemCard__edit"
+					onClick={handleEdit}
+				>
 					{I_EDIT}
 				</button>
 				<button
 					type="button"
 					className="itemCard__remove"
-					onClick={onRemove}
+					onClick={handleRemove}
 				>
 					{I_REMOVE}
 				</button>
