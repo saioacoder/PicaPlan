@@ -10,7 +10,7 @@ import InputField from '../InputField/InputField.jsx';
 // import SelectField from '../SelectField/SelectField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
 
-const FormPlate = ({ ingredients, onSubmit }) => {
+const FormPlate = ({ isFormOpen, setIsFormOpen, ingredients, onSubmit }) => {
 	const [name, setName] = useState('');
 	// const [ingredientList, setIngredientList] = useState([]);
 	// const [idIngredient, setIdIngredient] = useState('');
@@ -21,8 +21,6 @@ const FormPlate = ({ ingredients, onSubmit }) => {
 	// const [ingredientListError, setIngredientListError] = useState(false);
 	// const [idIngredientError, setIdIngredientError] = useState(false);
 	// const [quantityError, setQuantityError] = useState(false);
-
-	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	// const handleAddIngredient = async (e) => {
 	// 	setIdIngredientError(false);

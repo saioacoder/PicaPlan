@@ -5,14 +5,14 @@ import { addItem } from '../../logic/shared';
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 
-const FormIngredientType = ({ onSubmit }) => {
+const FormIngredientType = ({ isFormOpen, setIsFormOpen, onSubmit }) => {
 	const [name, setName] = useState('');
 	const [color, setColor] = useState('');
 	const [icon, setIcon] = useState('');
+
 	const [nameError, setNameError] = useState(false);
 	const [colorError, setColorError] = useState(false);
 	const [iconError, setIconError] = useState(false);
-	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();

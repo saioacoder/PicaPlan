@@ -5,10 +5,9 @@ import { addItem } from '../../logic/shared';
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 
-const FormPlateType = ({ onSubmit }) => {
+const FormPlateType = ({ isFormOpen, setIsFormOpen, onSubmit }) => {
 	const [name, setName] = useState('');
 	const [nameError, setNameError] = useState(false);
-	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();

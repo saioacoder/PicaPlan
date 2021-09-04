@@ -9,6 +9,7 @@ import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 const Plates = () => {
 	const [plates, setPlates] = useState([]);
 	const [ingredients, setIngredients] = useState([]);
+	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const reloadPlateList = () => {
 		reloadList('plates', 'name', setPlates);
@@ -42,7 +43,12 @@ const Plates = () => {
 					/>
 				);
 			})}
-			<FormPlate ingredients={ingredients} onSubmit={reloadPlateList} />
+			<FormPlate
+				ingredients={ingredients}
+				isFormOpen={isFormOpen}
+				setIsFormOpen={setIsFormOpen}
+				onSubmit={reloadPlateList}
+			/>
 		</PageLayout>
 	);
 };

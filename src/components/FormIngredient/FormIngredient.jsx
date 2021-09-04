@@ -7,7 +7,13 @@ import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
-const FormIngredient = ({ ingredientTypes, units, onSubmit }) => {
+const FormIngredient = ({
+	ingredientTypes,
+	units,
+	isFormOpen,
+	setIsFormOpen,
+	onSubmit,
+}) => {
 	const [name, setName] = useState('');
 	const [idIngredientType, setIdIngredientType] = useState('');
 	const [foodmapLevel, setFoodmapLevel] = useState('');
@@ -17,7 +23,6 @@ const FormIngredient = ({ ingredientTypes, units, onSubmit }) => {
 	const [idIngredientTypeError, setIdIngredientTypeError] = useState(false);
 	const [foodmapLevelError, setFoodmapLevelError] = useState(false);
 	const [idUnitError, setIdUnitError] = useState(false);
-	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();

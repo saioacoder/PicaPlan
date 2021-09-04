@@ -8,6 +8,7 @@ import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const IngredientTypes = () => {
 	const [ingredientTypes, setIngredientTypes] = useState([]);
+	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const reloadIngredientTypeList = () => {
 		reloadList('ingredientTypes', 'name', setIngredientTypes);
@@ -41,7 +42,11 @@ const IngredientTypes = () => {
 					/>
 				);
 			})}
-			<FormIngredientType onSubmit={reloadIngredientTypeList} />
+			<FormIngredientType
+				isFormOpen={isFormOpen}
+				setIsFormOpen={setIsFormOpen}
+				onSubmit={reloadIngredientTypeList}
+			/>
 		</PageLayout>
 	);
 };

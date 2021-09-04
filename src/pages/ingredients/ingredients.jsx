@@ -11,6 +11,7 @@ const Ingredients = () => {
 	const [ingredients, setIngredients] = useState([]);
 	const [ingredientTypes, setIngredientTypes] = useState([]);
 	const [units, setUnits] = useState([]);
+	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const getIngredientTypeIcon = (id) => {
 		if (ingredientTypes) {
@@ -62,6 +63,8 @@ const Ingredients = () => {
 			<FormIngredient
 				ingredientTypes={ingredientTypes}
 				units={units}
+				isFormOpen={isFormOpen}
+				setIsFormOpen={setIsFormOpen}
 				onSubmit={reloadIngredientsList}
 			/>
 		</PageLayout>
