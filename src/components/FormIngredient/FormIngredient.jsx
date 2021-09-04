@@ -12,6 +12,7 @@ const FormIngredient = ({
 	unitsList,
 	isFormOpen,
 	setIsFormOpen,
+	setMessageBox,
 	onSubmit,
 }) => {
 	const [name, setName] = useState('');
@@ -58,8 +59,14 @@ const FormIngredient = ({
 				idUnit,
 			};
 			const result = addItem('ingredients', item);
-			result && onSubmit();
-			handleReset();
+			if (result) {
+				onSubmit();
+				handleReset();
+				setMessageBox({
+					content: 'Ingrediente añadido',
+					isError: false,
+				});
+			}
 		}
 	};
 

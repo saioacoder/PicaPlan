@@ -21,7 +21,13 @@ export const handleEdit = async (id, setIngredientsList) => {
 	console.log('editar', id);
 };
 
-export const handleRemove = async (id, setIngredientsList) => {
+export const handleRemove = async (id, setIngredientsList, setMessageBox) => {
 	const result = await removeItem('ingredients', id);
-	result && reloadIngredientsList(setIngredientsList);
+	if (result) {
+		reloadIngredientsList(setIngredientsList);
+		setMessageBox({
+			content: 'Ingrediente borrado',
+			isError: false,
+		});
+	}
 };

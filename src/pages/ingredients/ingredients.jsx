@@ -11,6 +11,7 @@ import {
 
 import FormIngredient from '../../components/FormIngredient/FormIngredient.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
+import MessageBox from '../../components/MessageBox/MessageBox.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const Ingredients = () => {
@@ -18,6 +19,10 @@ const Ingredients = () => {
 	const [ingredientTypesList, setIngredientTypesList] = useState([]);
 	const [unitsList, setUnitsList] = useState([]);
 	const [isFormOpen, setIsFormOpen] = useState(false);
+	const [messageBox, setMessageBox] = useState({
+		content: '',
+		isError: false,
+	});
 
 	useEffect(() => {
 		reloadIngredientsList(setIngredientsList);
@@ -40,7 +45,9 @@ const Ingredients = () => {
 								ingredientTypesList
 							)}
 							extraInfo={getFoodmapLevel(foodmapLevel)}
-							onRemove={() => handleRemove(id, setIngredientsList)}
+							onRemove={() =>
+								handleRemove(id, setIngredientsList, setMessageBox)
+							}
 							onEdit={() => handleEdit(id, setIngredientsList)}
 						/>
 					);
@@ -51,8 +58,12 @@ const Ingredients = () => {
 				unitsList={unitsList}
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
+				setMessageBox={setMessageBox}
 				onSubmit={() => reloadIngredientsList(setIngredientsList)}
 			/>
+			<MessageBox isError={messageBox.isError} setMessageBox={setMessageBox}>
+				{messageBox.content}
+			</MessageBox>
 		</PageLayout>
 	);
 };
