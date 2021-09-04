@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { reloadList, getFoodIcon, removeItem } from '../../logic/shared';
 import { FOODMAP_LEVEL } from '../../logic/constants';
 
-import FormAddIngredient from '../../components/FormAddIngredient/FormAddIngredient.jsx';
+import FormIngredient from '../../components/FormIngredient/FormIngredient.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
@@ -59,7 +59,7 @@ const Ingredients = () => {
 					/>
 				);
 			})}
-			<FormAddIngredient
+			<FormIngredient
 				ingredientTypes={ingredientTypes}
 				units={units}
 				onSubmit={reloadIngredientsList}

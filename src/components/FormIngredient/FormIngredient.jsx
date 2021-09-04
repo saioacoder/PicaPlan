@@ -7,7 +7,7 @@ import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
-const FormAddIngredient = ({ ingredientTypes, units, onSubmit }) => {
+const FormIngredient = ({ ingredientTypes, units, onSubmit }) => {
 	const [name, setName] = useState('');
 	const [idIngredientType, setIdIngredientType] = useState('');
 	const [foodmapLevel, setFoodmapLevel] = useState('');
@@ -118,4 +118,4 @@ const FormAddIngredient = ({ ingredientTypes, units, onSubmit }) => {
 	);
 };
 
-export default FormAddIngredient;
+export default FormIngredient;

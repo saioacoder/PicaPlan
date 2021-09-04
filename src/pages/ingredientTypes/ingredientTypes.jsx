@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { reloadList, getFoodIcon, removeItem } from '../../logic/shared';
 
-import FormAddIngredientType from '../../components/FormAddIngredientType/FormAddIngredientType.jsx';
+import FormIngredientType from '../../components/FormIngredientType/FormIngredientType.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
@@ -41,7 +41,7 @@ const IngredientTypes = () => {
 					/>
 				);
 			})}
-			<FormAddIngredientType onSubmit={reloadIngredientTypeList} />
+			<FormIngredientType onSubmit={reloadIngredientTypeList} />
 		</PageLayout>
 	);
 };

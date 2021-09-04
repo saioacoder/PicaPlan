@@ -5,7 +5,7 @@ import { addItem } from '../../logic/shared';
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 
-const FormAddPlateType = ({ onSubmit }) => {
+const FormPlateType = ({ onSubmit }) => {
 	const [name, setName] = useState('');
 	const [nameError, setNameError] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
@@ -57,4 +57,4 @@ const FormAddPlateType = ({ onSubmit }) => {
 	);
 };
 
-export default FormAddPlateType;
+export default FormPlateType;

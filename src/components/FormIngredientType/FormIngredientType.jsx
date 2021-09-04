@@ -5,7 +5,7 @@ import { addItem } from '../../logic/shared';
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 
-const FormAddIngredientType = ({ onSubmit }) => {
+const FormIngredientType = ({ onSubmit }) => {
 	const [name, setName] = useState('');
 	const [color, setColor] = useState('');
 	const [icon, setIcon] = useState('');
@@ -93,4 +93,4 @@ const FormAddIngredientType = ({ onSubmit }) => {
 	);
 };
 
-export default FormAddIngredientType;
+export default FormIngredientType;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { reloadList, removeItem } from '../../logic/shared';
 
-import FormAddPlateType from '../../components/FormAddPlateType/FormAddPlateType.jsx';
+import FormPlateType from '../../components/FormPlateType/FormPlateType.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
@@ -40,7 +40,7 @@ const PlateTypes = () => {
 					/>
 				);
 			})}
-			<FormAddPlateType onSubmit={reloadPlateTypeList} />
+			<FormPlateType onSubmit={reloadPlateTypeList} />
 		</PageLayout>
 	);
 };

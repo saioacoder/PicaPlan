@@ -10,7 +10,7 @@ import InputField from '../InputField/InputField.jsx';
 // import SelectField from '../SelectField/SelectField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
 
-const FormAddPlate = ({ ingredients, onSubmit }) => {
+const FormPlate = ({ ingredients, onSubmit }) => {
 	const [name, setName] = useState('');
 	// const [ingredientList, setIngredientList] = useState([]);
 	// const [idIngredient, setIdIngredient] = useState('');
@@ -134,4 +134,4 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 	);
 };
 
-export default FormAddPlate;
+export default FormPlate;

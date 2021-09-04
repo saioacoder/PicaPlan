@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { reloadList, removeItem } from '../../logic/shared';
 
-import FormAddPlate from '../../components/FormAddPlate/FormAddPlate.jsx';
+import FormPlate from '../../components/FormPlate/FormPlate.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
@@ -42,7 +42,7 @@ const Plates = () => {
 					/>
 				);
 			})}
-			<FormAddPlate ingredients={ingredients} onSubmit={reloadPlateList} />
+			<FormPlate ingredients={ingredients} onSubmit={reloadPlateList} />
 		</PageLayout>
 	);
 };
