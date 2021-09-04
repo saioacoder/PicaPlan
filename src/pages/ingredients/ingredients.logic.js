@@ -17,7 +17,7 @@ export const reloadIngredientsList = (setIngredientsList) => {
 	reloadList('ingredients', 'name', setIngredientsList);
 };
 
-export const handleEdit = async (id) => {
+export const handleEdit = async (id, setIngredientsList) => {
 	console.log('editar', id);
 };
 

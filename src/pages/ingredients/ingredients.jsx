@@ -41,7 +41,7 @@ const Ingredients = () => {
 							)}
 							extraInfo={getFoodmapLevel(foodmapLevel)}
 							onRemove={() => handleRemove(id, setIngredientsList)}
-							onEdit={() => handleEdit(id)}
+							onEdit={() => handleEdit(id, setIngredientsList)}
 						/>
 					);
 				}
