@@ -10,7 +10,13 @@ import InputField from '../InputField/InputField.jsx';
 // import SelectField from '../SelectField/SelectField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
 
-const FormPlate = ({ isFormOpen, setIsFormOpen, ingredients, onSubmit }) => {
+const FormPlate = ({
+	isFormOpen,
+	setIsFormOpen,
+	setMessageBox,
+	ingredients,
+	onSubmit,
+}) => {
 	const [name, setName] = useState('');
 	// const [ingredientList, setIngredientList] = useState([]);
 	// const [idIngredient, setIdIngredient] = useState('');
@@ -70,8 +76,14 @@ const FormPlate = ({ isFormOpen, setIsFormOpen, ingredients, onSubmit }) => {
 				recipe,
 			};
 			const result = addItem('plates', item);
-			result && onSubmit();
-			handleReset();
+			if (result) {
+				onSubmit();
+				handleReset();
+				setMessageBox({
+					content: 'Plato añadido',
+					isError: false,
+				});
+			}
 		}
 	};
 
