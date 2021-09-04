@@ -7,11 +7,11 @@ import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const PlateTypes = () => {
-	const [plateTypes, setPlateTypes] = useState([]);
+	const [plateTypesList, setPlateTypesList] = useState([]);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const reloadPlateTypeList = () => {
-		reloadList('plateTypes', 'name', setPlateTypes);
+		reloadList('plateTypes', 'name', setPlateTypesList);
 	};
 
 	const handleEdit = async (id) => {
@@ -29,7 +29,7 @@ const PlateTypes = () => {
 
 	return (
 		<PageLayout pageTitle="Tipos de platos" menuSel="plateTypes">
-			{plateTypes.map(({ id, name }) => {
+			{plateTypesList.map(({ id, name }) => {
 				return (
 					<ItemCard
 						key={id}

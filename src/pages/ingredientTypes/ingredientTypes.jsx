@@ -7,11 +7,11 @@ import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const IngredientTypes = () => {
-	const [ingredientTypes, setIngredientTypes] = useState([]);
+	const [ingredientTypesList, setIngredientTypesList] = useState([]);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const reloadIngredientTypeList = () => {
-		reloadList('ingredientTypes', 'name', setIngredientTypes);
+		reloadList('ingredientTypes', 'name', setIngredientTypesList);
 	};
 
 	const handleEdit = async (id) => {
@@ -29,7 +29,7 @@ const IngredientTypes = () => {
 
 	return (
 		<PageLayout pageTitle="Tipos de ingredientes" menuSel="ingredientTypes">
-			{ingredientTypes.map(({ id, name, color, icon }) => {
+			{ingredientTypesList.map(({ id, name, color, icon }) => {
 				return (
 					<ItemCard
 						key={id}

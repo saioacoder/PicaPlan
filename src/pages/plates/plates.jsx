@@ -7,12 +7,12 @@ import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const Plates = () => {
-	const [plates, setPlates] = useState([]);
-	const [ingredients, setIngredients] = useState([]);
+	const [platesList, setPlatesList] = useState([]);
+	const [ingredientsList, setIngredientsList] = useState([]);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const reloadPlateList = () => {
-		reloadList('plates', 'name', setPlates);
+		reloadList('plates', 'name', setPlatesList);
 	};
 
 	const handleEdit = async (id) => {
@@ -26,12 +26,12 @@ const Plates = () => {
 
 	useEffect(() => {
 		reloadPlateList();
-		reloadList('ingredients', 'name', setIngredients);
+		reloadList('ingredients', 'name', setIngredientsList);
 	}, []);
 
 	return (
 		<PageLayout pageTitle="Platos" menuSel="plates">
-			{plates.map(({ id, name }) => {
+			{platesList.map(({ id, name }) => {
 				return (
 					<ItemCard
 						key={id}
@@ -44,7 +44,7 @@ const Plates = () => {
 				);
 			})}
 			<FormPlate
-				ingredients={ingredients}
+				ingredientsList={ingredientsList}
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
 				onSubmit={reloadPlateList}

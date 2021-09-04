@@ -8,8 +8,8 @@ import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
 const FormIngredient = ({
-	ingredientTypes,
-	units,
+	ingredientTypesList,
+	unitsList,
 	isFormOpen,
 	setIsFormOpen,
 	onSubmit,
@@ -95,7 +95,7 @@ const FormIngredient = ({
 			<SelectField
 				id="idIngredientType"
 				label="Tipo de ingrediente"
-				options={ingredientTypes}
+				options={ingredientTypesList}
 				value={idIngredientType}
 				hasError={idIngredientTypeError}
 				errorMessage="Campo obligatorio"
@@ -113,7 +113,7 @@ const FormIngredient = ({
 			<SelectField
 				id="idUnit"
 				label="Unidad"
-				options={units}
+				options={unitsList}
 				value={idUnit}
 				hasError={idUnitError}
 				errorMessage="Campo obligatorio"

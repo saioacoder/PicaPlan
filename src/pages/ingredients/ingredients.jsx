@@ -8,14 +8,14 @@ import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const Ingredients = () => {
-	const [ingredients, setIngredients] = useState([]);
-	const [ingredientTypes, setIngredientTypes] = useState([]);
-	const [units, setUnits] = useState([]);
+	const [ingredientsList, setIngredientsList] = useState([]);
+	const [ingredientTypesList, setIngredientTypesList] = useState([]);
+	const [unitsList, setUnitsList] = useState([]);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
 	const getIngredientTypeIcon = (id) => {
-		if (ingredientTypes) {
-			const result = ingredientTypes.find((type) => type.id === id);
+		if (ingredientTypesList) {
+			const result = ingredientTypesList.find((type) => type.id === id);
 			return result && getFoodIcon(result.icon, result.color);
 		}
 	};
@@ -26,7 +26,7 @@ const Ingredients = () => {
 	};
 
 	const reloadIngredientsList = () => {
-		reloadList('ingredients', 'name', setIngredients);
+		reloadList('ingredients', 'name', setIngredientsList);
 	};
 
 	const handleEdit = async (id) => {
@@ -40,29 +40,31 @@ const Ingredients = () => {
 
 	useEffect(() => {
 		reloadIngredientsList();
-		reloadList('ingredientTypes', 'name', setIngredientTypes);
-		reloadList('units', 'name', setUnits);
+		reloadList('ingredientTypes', 'name', setIngredientTypesList);
+		reloadList('units', 'name', setUnitsList);
 	}, []);
 
 	return (
 		<PageLayout pageTitle="Ingredientes" menuSel="ingredients">
-			{ingredients.map(({ id, name, idIngredientType, foodmapLevel }) => {
-				return (
-					<ItemCard
-						key={id}
-						id={id}
-						name={name}
-						type="ingredients"
-						icon={getIngredientTypeIcon(idIngredientType)}
-						extraInfo={getFoodmapLevel(foodmapLevel)}
-						onRemove={() => handleRemove(id)}
-						onEdit={() => handleEdit(id)}
-					/>
-				);
-			})}
+			{ingredientsList.map(
+				({ id, name, idIngredientType, foodmapLevel }) => {
+					return (
+						<ItemCard
+							key={id}
+							id={id}
+							name={name}
+							type="ingredients"
+							icon={getIngredientTypeIcon(idIngredientType)}
+							extraInfo={getFoodmapLevel(foodmapLevel)}
+							onRemove={() => handleRemove(id)}
+							onEdit={() => handleEdit(id)}
+						/>
+					);
+				}
+			)}
 			<FormIngredient
-				ingredientTypes={ingredientTypes}
-				units={units}
+				ingredientTypesList={ingredientTypesList}
+				unitsList={unitsList}
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
 				onSubmit={reloadIngredientsList}
