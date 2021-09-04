@@ -5,7 +5,12 @@ import { addItem } from '../../logic/shared';
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
 
-const FormPlateType = ({ isFormOpen, setIsFormOpen, onSubmit }) => {
+const FormPlateType = ({
+	isFormOpen,
+	setIsFormOpen,
+	setMessageBox,
+	onSubmit,
+}) => {
 	const [name, setName] = useState('');
 	const [nameError, setNameError] = useState(false);
 
@@ -25,8 +30,14 @@ const FormPlateType = ({ isFormOpen, setIsFormOpen, onSubmit }) => {
 				name,
 			};
 			const result = addItem('plateTypes', item);
-			result && onSubmit();
-			handleReset();
+			if (result) {
+				onSubmit();
+				handleReset();
+				setMessageBox({
+					content: 'Tipo de plato añadido',
+					isError: false,
+				});
+			}
 		}
 	};
 

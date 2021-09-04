@@ -4,11 +4,16 @@ import { reloadList, removeItem } from '../../logic/shared';
 
 import FormPlateType from '../../components/FormPlateType/FormPlateType.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
+import MessageBox from '../../components/MessageBox/MessageBox.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const PlateTypes = () => {
 	const [plateTypesList, setPlateTypesList] = useState([]);
 	const [isFormOpen, setIsFormOpen] = useState(false);
+	const [messageBox, setMessageBox] = useState({
+		content: '',
+		isError: false,
+	});
 
 	const reloadPlateTypeList = () => {
 		reloadList('plateTypes', 'name', setPlateTypesList);
@@ -20,7 +25,13 @@ const PlateTypes = () => {
 
 	const handleRemove = async (id) => {
 		const result = await removeItem('plateTypes', id);
-		result && reloadPlateTypeList();
+		if (result) {
+			reloadPlateTypeList();
+			setMessageBox({
+				content: 'Tipo de plato borrado',
+				isError: false,
+			});
+		}
 	};
 
 	useEffect(() => {
@@ -44,8 +55,12 @@ const PlateTypes = () => {
 			<FormPlateType
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
+				setMessageBox={setMessageBox}
 				onSubmit={reloadPlateTypeList}
 			/>
+			<MessageBox isError={messageBox.isError} setMessageBox={setMessageBox}>
+				{messageBox.content}
+			</MessageBox>
 		</PageLayout>
 	);
 };
