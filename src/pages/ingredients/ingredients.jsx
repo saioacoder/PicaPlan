@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList, getFoodIcon, removeItem } from '../../logic/shared';
-import { FOODMAP_LEVEL } from '../../logic/constants';
+import { reloadList } from '../../logic/shared';
+import {
+	getIngredientTypeIcon,
+	getFoodmapLevel,
+	reloadIngredientsList,
+	handleEdit,
+	handleRemove,
+} from './ingredients.logic';
 
 import FormIngredient from '../../components/FormIngredient/FormIngredient.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
@@ -13,33 +19,8 @@ const Ingredients = () => {
 	const [unitsList, setUnitsList] = useState([]);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
-	const getIngredientTypeIcon = (id) => {
-		if (ingredientTypesList) {
-			const result = ingredientTypesList.find((type) => type.id === id);
-			return result && getFoodIcon(result.icon, result.color);
-		}
-	};
-
-	const getFoodmapLevel = (id) => {
-		const result = FOODMAP_LEVEL.find((level) => level.id === id);
-		return result && `Foodmap: ${result.name}`;
-	};
-
-	const reloadIngredientsList = () => {
-		reloadList('ingredients', 'name', setIngredientsList);
-	};
-
-	const handleEdit = async (id) => {
-		console.log('editar', id);
-	};
-
-	const handleRemove = async (id) => {
-		const result = await removeItem('ingredients', id);
-		result && reloadIngredientsList();
-	};
-
 	useEffect(() => {
-		reloadIngredientsList();
+		reloadIngredientsList(setIngredientsList);
 		reloadList('ingredientTypes', 'name', setIngredientTypesList);
 		reloadList('units', 'name', setUnitsList);
 	}, []);
@@ -54,9 +35,12 @@ const Ingredients = () => {
 							id={id}
 							name={name}
 							type="ingredients"
-							icon={getIngredientTypeIcon(idIngredientType)}
+							icon={getIngredientTypeIcon(
+								idIngredientType,
+								ingredientTypesList
+							)}
 							extraInfo={getFoodmapLevel(foodmapLevel)}
-							onRemove={() => handleRemove(id)}
+							onRemove={() => handleRemove(id, setIngredientsList)}
 							onEdit={() => handleEdit(id)}
 						/>
 					);
@@ -67,7 +51,7 @@ const Ingredients = () => {
 				unitsList={unitsList}
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
-				onSubmit={reloadIngredientsList}
+				onSubmit={() => reloadIngredientsList(setIngredientsList)}
 			/>
 		</PageLayout>
 	);
