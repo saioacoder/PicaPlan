@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.messageBox {
+	background-color: $color_highlight;
+	bottom: 0;
+	color: $color_background_light;
+	font-weight: $font_weight_mediumbold;
+	font-style: italic;
+	left: 0;
+	padding: $spacing_xs $spacing_b;
+	position: fixed;
+	right: 0;
+	transform: translateY(100%);
+	transition: $transition_duration;
+	&__error {
+		background-color: $color_b;
+	}
+	&--open {
+		transform: translateY(0);
+	}
+}
