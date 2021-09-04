@@ -8,6 +8,7 @@ const FormManageItem = ({
 	onCancel,
 	onSubmit,
 	isFormOpen,
+	isEdit,
 	onFormOpen,
 	children,
 }) => {
@@ -28,7 +29,7 @@ const FormManageItem = ({
 					<Button type="button" secondary onClick={onCancel}>
 						Cancelar
 					</Button>
-					<Button>Añadir</Button>
+					<Button>{isEdit ? 'Editar' : 'Añadir'}</Button>
 				</div>
 			</form>
 		</>
