@@ -1,74 +1,74 @@
 import { useState } from 'react';
 
-import { I_ADD } from '../../logic/constants';
+// import { I_ADD } from '../../logic/constants';
 import { addItem } from '../../logic/shared';
 
-import Button from '../Button/Button.jsx';
-import FieldGroup from '../FieldGroup/FieldGroup.jsx';
+// import Button from '../Button/Button.jsx';
+// import FieldGroup from '../FieldGroup/FieldGroup.jsx';
 import FormManageItem from '../FormManageItem/FormManageItem.jsx';
 import InputField from '../InputField/InputField.jsx';
-import SelectField from '../SelectField/SelectField.jsx';
+// import SelectField from '../SelectField/SelectField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
 
 const FormAddPlate = ({ ingredients, onSubmit }) => {
 	const [name, setName] = useState('');
-	const [ingredientList, setIngredientList] = useState([]);
-	const [idIngredient, setIdIngredient] = useState('');
-	const [quantity, setQuantity] = useState(null);
+	// const [ingredientList, setIngredientList] = useState([]);
+	// const [idIngredient, setIdIngredient] = useState('');
+	// const [quantity, setQuantity] = useState(null);
 	const [recipe, setRecipe] = useState('');
 
 	const [nameError, setNameError] = useState(false);
-	const [ingredientListError, setIngredientListError] = useState(false);
-	const [idIngredientError, setIdIngredientError] = useState(false);
-	const [quantityError, setQuantityError] = useState(false);
+	// const [ingredientListError, setIngredientListError] = useState(false);
+	// const [idIngredientError, setIdIngredientError] = useState(false);
+	// const [quantityError, setQuantityError] = useState(false);
 
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
-	const handleAddIngredient = async (e) => {
-		setIdIngredientError(false);
-		setQuantityError(false);
+	// const handleAddIngredient = async (e) => {
+	// 	setIdIngredientError(false);
+	// 	setQuantityError(false);
 
-		let error = false;
-		if (!idIngredient) {
-			error = true;
-			setIdIngredientError(true);
-		}
-		if (!quantity) {
-			error = true;
-			setQuantityError(true);
-		}
+	// 	let error = false;
+	// 	if (!idIngredient) {
+	// 		error = true;
+	// 		setIdIngredientError(true);
+	// 	}
+	// 	if (!quantity) {
+	// 		error = true;
+	// 		setQuantityError(true);
+	// 	}
 
-		if (!error) {
-			const item = {
-				idIngredient,
-				quantity,
-			};
-			setIngredientList([...ingredientList, item]);
-			ingredientListError(false);
-		}
-	};
+	// 	if (!error) {
+	// 		const item = {
+	// 			idIngredient,
+	// 			quantity,
+	// 		};
+	// 		setIngredientList([...ingredientList, item]);
+	// 		ingredientListError(false);
+	// 	}
+	// };
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
 
 		setNameError(false);
-		setIngredientListError(false);
-		setQuantityError(false);
+		// setIngredientListError(false);
+		// setQuantityError(false);
 
 		let error = false;
 		if (!name) {
 			error = true;
 			setNameError(true);
 		}
-		if (!ingredientList.length) {
-			error = true;
-			setIngredientListError(true);
-		}
+		// if (!ingredientList.length) {
+		// 	error = true;
+		// 	setIngredientListError(true);
+		// }
 
 		if (!error) {
 			const item = {
 				name,
-				ingredientList,
+				// ingredientList,
 				recipe,
 			};
 			const result = addItem('plates', item);
@@ -79,9 +79,9 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 
 	const handleReset = () => {
 		setName('');
-		setIngredientList([]);
+		// setIngredientList([]);
 		setNameError(false);
-		setIngredientListError(false);
+		// setIngredientListError(false);
 		setIsFormOpen(false);
 	};
 
@@ -101,7 +101,7 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
 			/>
-			<FieldGroup>
+			{/* <FieldGroup>
 				<SelectField
 					id="ingredientList"
 					label="Ingredientes"
@@ -123,7 +123,7 @@ const FormAddPlate = ({ ingredients, onSubmit }) => {
 				<Button type="button" secondary onClick={handleAddIngredient}>
 					{I_ADD}
 				</Button>
-			</FieldGroup>
+			</FieldGroup> */}
 			<TextareaField
 				id="recipe"
 				label="Receta"
