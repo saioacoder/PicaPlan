@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { FEELING } from '../../logic/constants';
 import { handleAdd, handleEdit } from '../../pages/diary/diary.logic';
 
-import FormManageItem from '../FormManageItem/FormManageItem.jsx';
+import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
@@ -91,7 +91,7 @@ const FormDiary = ({
 	}, [fieldValues]);
 
 	return (
-		<FormManageItem
+		<FormLayout
 			pageTitle="Platos"
 			onSubmit={handleSubmit}
 			onCancel={handleReset}
@@ -133,7 +133,7 @@ const FormDiary = ({
 				value={idFeeling}
 				onChange={({ target: { value } }) => setIdFeeling(value)}
 			/>
-		</FormManageItem>
+		</FormLayout>
 	);
 };
 

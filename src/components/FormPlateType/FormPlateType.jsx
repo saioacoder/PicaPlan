@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { addItem } from '../../logic/shared';
 
-import FormManageItem from '../FormManageItem/FormManageItem.jsx';
+import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 
 const FormPlateType = ({
@@ -48,7 +48,7 @@ const FormPlateType = ({
 	};
 
 	return (
-		<FormManageItem
+		<FormLayout
 			pageTitle="Tipos de platos"
 			onSubmit={handleAddItem}
 			onCancel={handleReset}
@@ -63,7 +63,7 @@ const FormPlateType = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
 			/>
-		</FormManageItem>
+		</FormLayout>
 	);
 };
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { addItem } from '../../logic/shared';
 
-import FormManageItem from '../FormManageItem/FormManageItem.jsx';
+import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 
 const FormIngredientType = ({
@@ -69,7 +69,7 @@ const FormIngredientType = ({
 	};
 
 	return (
-		<FormManageItem
+		<FormLayout
 			pageTitle="Tipos de ingredientes"
 			onSubmit={handleAddItem}
 			onCancel={handleReset}
@@ -100,7 +100,7 @@ const FormIngredientType = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setIcon(value)}
 			/>
-		</FormManageItem>
+		</FormLayout>
 	);
 };
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FOODMAP_LEVEL } from '../../logic/constants';
 import { addItem } from '../../logic/shared';
 
-import FormManageItem from '../FormManageItem/FormManageItem.jsx';
+import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
@@ -84,7 +84,7 @@ const FormIngredient = ({
 	};
 
 	return (
-		<FormManageItem
+		<FormLayout
 			pageTitle="Ingredientes"
 			onSubmit={handleAddItem}
 			onCancel={handleReset}
@@ -126,7 +126,7 @@ const FormIngredient = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setIdUnit(value)}
 			/>
-		</FormManageItem>
+		</FormLayout>
 	);
 };
 

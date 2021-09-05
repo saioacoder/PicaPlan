@@ -5,7 +5,7 @@ import { addItem } from '../../logic/shared';
 
 // import Button from '../Button/Button.jsx';
 // import FieldGroup from '../FieldGroup/FieldGroup.jsx';
-import FormManageItem from '../FormManageItem/FormManageItem.jsx';
+import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 // import SelectField from '../SelectField/SelectField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
@@ -96,7 +96,7 @@ const FormPlate = ({
 	};
 
 	return (
-		<FormManageItem
+		<FormLayout
 			pageTitle="Platos"
 			onSubmit={handleAddItem}
 			onCancel={handleReset}
@@ -140,7 +140,7 @@ const FormPlate = ({
 				value={recipe}
 				onChange={({ target: { value } }) => setRecipe(value)}
 			/>
-		</FormManageItem>
+		</FormLayout>
 	);
 };
 

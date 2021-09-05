@@ -1,9 +1,9 @@
 import Button from '../Button/Button.jsx';
 import ButtonAddItem from '../ButtonAddItem/ButtonAddItem.jsx';
 
-import './FormManageItem.scss';
+import './FormLayout.scss';
 
-const FormManageItem = ({
+const FormLayout = ({
 	pageTitle,
 	onCancel,
 	onSubmit,
@@ -17,15 +17,13 @@ const FormManageItem = ({
 			<ButtonAddItem onClick={onFormOpen} />
 			<form
 				className={
-					isFormOpen
-						? 'formManageItem formManageItem--open'
-						: 'formManageItem'
+					isFormOpen ? 'formLayout formLayout--open' : 'formLayout'
 				}
 				onSubmit={onSubmit}
 			>
-				<h2 className="formManageItem__title">{pageTitle}</h2>
+				<h2 className="formLayout__title">{pageTitle}</h2>
 				{children}
-				<div className="formManageItem__actions">
+				<div className="formLayout__actions">
 					<Button type="button" secondary onClick={onCancel}>
 						Cancelar
 					</Button>
@@ -36,4 +34,4 @@ const FormManageItem = ({
 	);
 };
 
-export default FormManageItem;
+export default FormLayout;
