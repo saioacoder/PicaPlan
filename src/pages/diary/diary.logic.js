@@ -27,6 +27,18 @@ export const handleAdd = (selectedDay, selectedDayData, plate) => {
 		};
 		addItem('days', data);
 	}
+	return true;
+};
+
+export const handleLoadEditData = (
+	data,
+	setIsFormOpen,
+	setIsEdit,
+	setFormData
+) => {
+	setIsFormOpen(true);
+	setIsEdit(true);
+	setFormData(data);
 };
 
 export const handleEdit = async (id, selectedDayData, plate) => {
