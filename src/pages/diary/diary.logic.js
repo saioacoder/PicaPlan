@@ -29,25 +29,6 @@ export const handleAdd = (selectedDay, selectedDayData, plate) => {
 	}
 };
 
-export const handleLoadEditData = (
-	idPlate,
-	idPlateType,
-	quantity,
-	idFeeling,
-	setIsFormOpen,
-	setIsEdit,
-	setFormData
-) => {
-	setIsFormOpen(true);
-	setIsEdit(true);
-	setFormData({
-		idPlate,
-		idPlateType,
-		quantity,
-		idFeeling,
-	});
-};
-
 export const handleEdit = async (id, selectedDayData, plate) => {
 	const remainingPlates = selectedDayData.plates.filter((item) => {
 		return item.idPlate !== id;

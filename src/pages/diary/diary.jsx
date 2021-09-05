@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList } from '../../logic/shared';
-import { getDayData, handleLoadEditData, handleRemove } from './diary.logic';
+import { handleLoadEditData, reloadList } from '../../logic/shared';
+import { getDayData, handleRemove } from './diary.logic';
 
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
 import FormDiary from '../../components/FormDiary/FormDiary.jsx';
@@ -60,6 +60,12 @@ const Diary = () => {
 								const plateData = platesList.filter(
 									({ id }) => id === idPlate
 								);
+								const editData = {
+									idPlate,
+									idPlateType: plateType.id,
+									quantity,
+									idFeeling,
+								};
 								return (
 									<ItemCard
 										key={idPlate + plateType.id}
@@ -77,10 +83,7 @@ const Diary = () => {
 										}
 										onEdit={() =>
 											handleLoadEditData(
-												idPlate,
-												plateType.id,
-												quantity,
-												idFeeling,
+												editData,
 												setIsFormOpen,
 												setIsEdit,
 												setFormData
