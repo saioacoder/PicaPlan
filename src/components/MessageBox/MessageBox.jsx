@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import { I_ERROR, I_OK } from '../../logic/constants';
+
 import './MessageBox.scss';
 
 const MessageBox = ({
@@ -27,7 +29,10 @@ const MessageBox = ({
 	}, [children, autoHideDelay, setMessageBox]);
 
 	return (
-		<div className={`messageBox ${classOpen} ${classError}`}>{children}</div>
+		<div className={`messageBox ${classOpen} ${classError}`}>
+			{isError ? I_ERROR : I_OK}
+			{children}
+		</div>
 	);
 };
 

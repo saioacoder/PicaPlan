@@ -6,6 +6,7 @@ import {
 	faBars,
 	faBreadSlice,
 	faCarrot,
+	faCheck,
 	faChevronLeft,
 	faChevronRight,
 	faCheese,
@@ -28,9 +29,11 @@ export const getIcon = (icon) => {
 export const I_ADD = getIcon(faPlus);
 export const I_CLOSE = getIcon(faTimes);
 export const I_EDIT = getIcon(faPen);
+export const I_ERROR = getIcon(faTimes);
 export const I_LOGO = getIcon(faCarrot);
 export const I_MENU = getIcon(faBars);
 export const I_NEXT = getIcon(faChevronRight);
+export const I_OK = getIcon(faCheck);
 export const I_PREV = getIcon(faChevronLeft);
 export const I_REMOVE = getIcon(faTrashAlt);
 export const I_SUBMENU = getIcon(faEllipsisV);

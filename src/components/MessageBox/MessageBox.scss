@@ -19,4 +19,7 @@
 	&--open {
 		transform: translateY(0);
 	}
+	SVG {
+		margin-right: $spacing_xxs;
+	}
 }
