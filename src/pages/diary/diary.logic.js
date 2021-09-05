@@ -47,7 +47,7 @@ export const handleEdit = async (id, selectedDayData, plate) => {
 	});
 	const newSelectedDayData = { ...selectedDayData };
 	newSelectedDayData.plates = [...remainingPlates, plate];
-	updateItem('days', selectedDayData.id, newSelectedDayData);
+	return await updateItem('days', selectedDayData.id, newSelectedDayData);
 };
 
 export const handleRemove = async (
@@ -62,7 +62,7 @@ export const handleRemove = async (
 	const newSelectedDayData = { ...selectedDayData };
 	newSelectedDayData.plates = remainingPlates;
 	const result = remainingPlates.length
-		? updateItem('days', selectedDayData.id, newSelectedDayData)
+		? await updateItem('days', selectedDayData.id, newSelectedDayData)
 		: await removeItem('days', selectedDayData.id);
 	if (result) {
 		reloadList('days', 'date', setDaysList);

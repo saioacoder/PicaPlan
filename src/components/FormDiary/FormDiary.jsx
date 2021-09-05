@@ -57,15 +57,18 @@ const FormDiary = ({
 				quantity,
 				idFeeling,
 			};
-			isEdit
-				? handleEdit(idPlate, selectedDayData, plate)
+			const result = isEdit
+				? await handleEdit(idPlate, selectedDayData, plate)
 				: handleAdd(selectedDay, selectedDayData, plate);
-			onSubmit();
-			handleReset();
+			const content = result
+				? `Plato ${isEdit ? 'editado' : 'añadido'}`
+				: `¡Error! Plato no ${isEdit ? 'editado' : 'añadido'}`;
 			setMessageBox({
-				content: `Plato ${isEdit ? 'editado' : 'añadido'}`,
-				isError: false,
+				content,
+				isError: !result,
 			});
+			handleReset();
+			onSubmit();
 		}
 	};
 
