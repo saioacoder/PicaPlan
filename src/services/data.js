@@ -25,26 +25,6 @@ export async function addDocument(collection, document) {
 	}
 }
 
-// export async function addDocumentToSubcollection(
-// 	collection,
-// 	idDocument,
-// 	subcollection,
-// 	document
-// ) {
-// 	try {
-// 		const result = await firebase
-// 			.firestore()
-// 			.collection(collection)
-// 			.doc(idDocument)
-// 			.collection(subcollection)
-// 			.add(document);
-// 		return result.id;
-// 	} catch (error) {
-// 		console.log('addDocumentToSubcollection Error:', error);
-// 		return null;
-// 	}
-// }
-
 export async function removeDocument(collection, id) {
 	try {
 		await firebase.firestore().collection(collection).doc(id).delete();
