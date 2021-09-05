@@ -4,8 +4,9 @@
 	background-color: $color_highlight;
 	bottom: 0;
 	color: $color_background_light;
-	font-weight: $font_weight_mediumbold;
+	font-size: $font_size_s;
 	font-style: italic;
+	font-weight: $font_weight_mediumbold;
 	left: 0;
 	padding: $spacing_xs $spacing_b;
 	position: fixed;
@@ -20,6 +21,7 @@
 		transform: translateY(0);
 	}
 	SVG {
-		margin-right: $spacing_xxs;
+		margin-right: $spacing_xs;
+		vertical-align: middle;
 	}
 }
