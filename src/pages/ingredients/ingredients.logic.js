@@ -14,12 +14,10 @@ export const getFoodmapLevel = (id) => {
 };
 
 export const handleRemove = async (id, setIngredientsList, setMessageBox) => {
-	const result = await removeItem('ingredients', id);
-	if (result) {
-		reloadList('ingredients', 'name', setIngredientsList);
-		setMessageBox({
-			content: 'Ingrediente borrado',
-			isError: false,
-		});
-	}
+	await removeItem('ingredients', id);
+	reloadList('ingredients', 'name', setIngredientsList);
+	setMessageBox({
+		content: 'Ingrediente borrado',
+		isError: false,
+	});
 };
