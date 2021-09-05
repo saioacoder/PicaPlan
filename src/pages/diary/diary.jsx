@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { handleLoadEditData, reloadList } from '../../logic/shared';
-import { getDayData, handleRemove } from './diary.logic';
+import { reloadList } from '../../logic/shared';
+import { getDayData, handleLoadEditData, handleRemove } from './diary.logic';
 
 import DaysNav from '../../components/DaysNav/DaysNav.jsx';
 import FormDiary from '../../components/FormDiary/FormDiary.jsx';
