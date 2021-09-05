@@ -43,12 +43,15 @@ export const getFoodIcon = (id, background) => {
 };
 
 export const handleLoadEditData = (
+	id,
 	data,
 	setIsFormOpen,
 	setIsEdit,
+	setId,
 	setFormData
 ) => {
 	setIsFormOpen(true);
 	setIsEdit(true);
+	setId(id);
 	setFormData(data);
 };

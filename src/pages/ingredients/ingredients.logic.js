@@ -13,18 +13,10 @@ export const getFoodmapLevel = (id) => {
 	return result && `Foodmap: ${result.name}`;
 };
 
-export const reloadIngredientsList = (setIngredientsList) => {
-	reloadList('ingredients', 'name', setIngredientsList);
-};
-
-export const handleEdit = async (id, setIngredientsList) => {
-	console.log('editar', id);
-};
-
 export const handleRemove = async (id, setIngredientsList, setMessageBox) => {
 	const result = await removeItem('ingredients', id);
 	if (result) {
-		reloadIngredientsList(setIngredientsList);
+		reloadList('ingredients', 'name', setIngredientsList);
 		setMessageBox({
 			content: 'Ingrediente borrado',
 			isError: false,

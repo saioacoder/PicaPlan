@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { FOODMAP_LEVEL } from '../../logic/constants';
-import { addItem } from '../../logic/shared';
+import { addItem, updateItem } from '../../logic/shared';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
 const FormIngredient = ({
+	id,
 	ingredientTypesList,
 	unitsList,
 	isFormOpen,
 	setIsFormOpen,
 	setMessageBox,
+	setIsEdit,
+	isEdit,
+	fieldValues,
 	onSubmit,
 }) => {
 	const [name, setName] = useState('');
@@ -25,7 +29,7 @@ const FormIngredient = ({
 	const [foodmapLevelError, setFoodmapLevelError] = useState(false);
 	const [idUnitError, setIdUnitError] = useState(false);
 
-	const handleAddItem = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		setNameError(false);
@@ -58,12 +62,14 @@ const FormIngredient = ({
 				foodmapLevel,
 				idUnit,
 			};
-			const result = addItem('ingredients', item);
+			const result = isEdit
+				? updateItem('ingredients', id, item)
+				: addItem('ingredients', item);
 			if (result) {
 				onSubmit();
 				handleReset();
 				setMessageBox({
-					content: 'Ingrediente añadido',
+					content: `Ingrediente ${isEdit ? 'editado' : 'añadido'}`,
 					isError: false,
 				});
 			}
@@ -80,15 +86,25 @@ const FormIngredient = ({
 		setIdIngredientTypeError(false);
 		setFoodmapLevelError(false);
 		setIdUnitError(false);
+
 		setIsFormOpen(false);
+		setIsEdit(false);
 	};
+
+	useEffect(() => {
+		setName(fieldValues.name);
+		setIdIngredientType(fieldValues.idIngredientType);
+		setFoodmapLevel(fieldValues.foodmapLevel);
+		setIdUnit(fieldValues.idUnit);
+	}, [fieldValues]);
 
 	return (
 		<FormLayout
 			pageTitle="Ingredientes"
-			onSubmit={handleAddItem}
+			onSubmit={handleSubmit}
 			onCancel={handleReset}
 			isFormOpen={isFormOpen}
+			isEdit={isEdit}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
 			<InputField
