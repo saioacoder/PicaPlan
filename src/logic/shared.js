@@ -27,8 +27,8 @@ export async function updateItem(listName, id, item) {
 	return await updateDocument(listName, id, item);
 }
 
-export async function removeItem(listName, item) {
-	return await removeDocument(listName, item);
+export async function removeItem(listName, id) {
+	await removeDocument(listName, id);
 }
 
 export const showColor = (color, content) => {

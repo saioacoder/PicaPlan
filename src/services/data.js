@@ -26,13 +26,7 @@ export async function addDocument(collection, document) {
 }
 
 export async function removeDocument(collection, id) {
-	try {
-		await firebase.firestore().collection(collection).doc(id).delete();
-		return true;
-	} catch (error) {
-		console.log('removeDocument Error:', error);
-		return false;
-	}
+	await firebase.firestore().collection(collection).doc(id).delete();
 }
 
 export async function updateDocument(collection, id, change) {
