@@ -2,7 +2,6 @@ import { I_FOOD } from './constants';
 
 import {
 	getCollection,
-	//getSubcollection,
 	updateDocument,
 	removeDocument,
 	addDocument,
@@ -12,10 +11,6 @@ async function getList(listName) {
 	return await getCollection(listName);
 }
 
-// async function getSublist(listName, idList) {
-// 	return await getSubcollection(listName);
-// }
-
 export async function reloadList(listName, sortParam, setFunction) {
 	const result = await getList(listName);
 	const resultSorted = result.sort((a, b) => {
@@ -23,14 +18,6 @@ export async function reloadList(listName, sortParam, setFunction) {
 	});
 	setFunction(resultSorted);
 }
-
-// export async function reloadSublist(listName, sortParam, setFunction) {
-// 	const result = await getList(listName);
-// 	const resultSorted = result.sort((a, b) => {
-// 		return a[sortParam].toString().localeCompare(b[sortParam].toString());
-// 	});
-// 	setFunction(resultSorted);
-// }
 
 export async function addItem(listName, item) {
 	return await addDocument(listName, item);
@@ -53,4 +40,15 @@ export const getFoodIcon = (id, background) => {
 	const styles = { background };
 	const { icon } = I_FOOD.find((item) => item.id === id);
 	return <span style={styles}>{icon}</span>;
+};
+
+export const handleLoadEditData = (
+	data,
+	setIsFormOpen,
+	setIsEdit,
+	setFormData
+) => {
+	setIsFormOpen(true);
+	setIsEdit(true);
+	setFormData(data);
 };
