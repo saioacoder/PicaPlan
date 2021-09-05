@@ -63,16 +63,21 @@ const FormIngredient = ({
 				idUnit,
 			};
 			const result = isEdit
-				? updateItem('ingredients', id, item)
-				: addItem('ingredients', item);
-			if (result) {
-				onSubmit();
-				handleReset();
-				setMessageBox({
-					content: `Ingrediente ${isEdit ? 'editado' : 'añadido'}`,
-					isError: false,
-				});
-			}
+				? await updateItem('ingredient', id, item)
+				: await addItem('ingredients', item);
+			result
+				? setMessageBox({
+						content: `Ingrediente ${isEdit ? 'editado' : 'añadido'}`,
+						isError: false,
+				  })
+				: setMessageBox({
+						content: `¡Error! Ingrediente no ${
+							isEdit ? 'editado' : 'añadido'
+						}`,
+						isError: true,
+				  });
+			handleReset();
+			onSubmit();
 		}
 	};
 
