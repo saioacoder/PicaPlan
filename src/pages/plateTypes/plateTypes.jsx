@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList, removeItem } from '../../logic/shared';
+import { handleLoadEditData, reloadList } from '../../logic/shared';
+import { handleRemove } from './plateTypes.logic';
 
 import FormPlateType from '../../components/FormPlateType/FormPlateType.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
@@ -8,47 +9,50 @@ import MessageBox from '../../components/MessageBox/MessageBox.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const PlateTypes = () => {
+	const [id, setId] = useState('');
 	const [plateTypesList, setPlateTypesList] = useState([]);
+	const [formData, setFormData] = useState({
+		name: '',
+		order: '',
+	});
+	const [isEdit, setIsEdit] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 	const [messageBox, setMessageBox] = useState({
 		content: '',
 		isError: false,
 	});
 
-	const reloadPlateTypeList = () => {
-		reloadList('plateTypes', 'name', setPlateTypesList);
-	};
-
-	const handleEdit = async (id) => {
-		console.log('editar', id);
-	};
-
-	const handleRemove = async (id) => {
-		const result = await removeItem('plateTypes', id);
-		if (result) {
-			reloadPlateTypeList();
-			setMessageBox({
-				content: 'Tipo de plato borrado',
-				isError: false,
-			});
-		}
-	};
-
 	useEffect(() => {
-		reloadPlateTypeList();
+		reloadList('plateTypes', 'order', setPlateTypesList);
 	}, []);
 
 	return (
 		<PageLayout pageTitle="Tipos de platos" menuSel="plateTypes">
-			{plateTypesList.map(({ id, name }) => {
+			{plateTypesList.map(({ id, name, order }) => {
+				const editData = {
+					name,
+					order,
+				};
 				return (
 					<ItemCard
 						key={id}
 						id={id}
 						name={name}
 						type="plateTypes"
-						onEdit={() => handleEdit(id)}
-						onRemove={() => handleRemove(id)}
+						extraInfo={order}
+						onRemove={() =>
+							handleRemove(id, setPlateTypesList, setMessageBox)
+						}
+						onEdit={() =>
+							handleLoadEditData(
+								id,
+								editData,
+								setIsFormOpen,
+								setIsEdit,
+								setId,
+								setFormData
+							)
+						}
 					/>
 				);
 			})}
@@ -56,7 +60,13 @@ const PlateTypes = () => {
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
 				setMessageBox={setMessageBox}
-				onSubmit={reloadPlateTypeList}
+				id={id}
+				isEdit={isEdit}
+				setIsEdit={setIsEdit}
+				fieldValues={formData}
+				onSubmit={() =>
+					reloadList('plateTypes', 'order', setPlateTypesList)
+				}
 			/>
 			<MessageBox isError={messageBox.isError} setMessageBox={setMessageBox}>
 				{messageBox.content}

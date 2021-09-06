@@ -1,18 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { addItem } from '../../logic/shared';
+import { addItem, updateItem } from '../../logic/shared';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 
 const FormPlateType = ({
+	id,
 	isFormOpen,
 	setIsFormOpen,
 	setMessageBox,
+	setIsEdit,
+	isEdit,
+	fieldValues,
 	onSubmit,
 }) => {
 	const [name, setName] = useState('');
+	const [order, setOrder] = useState('');
 	const [nameError, setNameError] = useState(false);
+	const [orderError, setOrderError] = useState(false);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
@@ -28,24 +34,38 @@ const FormPlateType = ({
 		if (!error) {
 			const item = {
 				name,
+				order,
 			};
-			const result = addItem('plateTypes', item);
-			if (result) {
-				onSubmit();
-				handleReset();
-				setMessageBox({
-					content: 'Tipo de plato añadido',
-					isError: false,
-				});
-			}
+			const result = isEdit
+				? await updateItem('plateTypes', id, item)
+				: await addItem('plateTypes', item);
+			const content = result
+				? `Tipo de plato ${isEdit ? 'editado' : 'añadido'}`
+				: `¡Error! Tipo de plato no ${isEdit ? 'editado' : 'añadido'}`;
+			setMessageBox({
+				content,
+				isError: !result,
+			});
+			handleReset();
+			onSubmit();
 		}
 	};
 
 	const handleReset = () => {
 		setName('');
+		setOrder('');
+
 		setNameError(false);
+		setOrderError(false);
+
 		setIsFormOpen(false);
+		setIsEdit(false);
 	};
+
+	useEffect(() => {
+		setName(fieldValues.name);
+		setOrder(fieldValues.order);
+	}, [fieldValues]);
 
 	return (
 		<FormLayout
@@ -53,6 +73,7 @@ const FormPlateType = ({
 			onSubmit={handleAddItem}
 			onCancel={handleReset}
 			isFormOpen={isFormOpen}
+			isEdit={isEdit}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
 			<InputField
@@ -62,6 +83,14 @@ const FormPlateType = ({
 				hasError={nameError}
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
+			/>
+			<InputField
+				id="order"
+				label="Orden"
+				value={order}
+				hasError={orderError}
+				errorMessage="Campo obligatorio"
+				onChange={({ target: { value } }) => setOrder(value)}
 			/>
 		</FormLayout>
 	);
