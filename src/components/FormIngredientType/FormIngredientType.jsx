@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { addItem } from '../../logic/shared';
+import { addItem, updateItem } from '../../logic/shared';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 
 const FormIngredientType = ({
+	id,
 	isFormOpen,
 	setIsFormOpen,
 	setMessageBox,
+	setIsEdit,
+	isEdit,
+	fieldValues,
 	onSubmit,
 }) => {
 	const [name, setName] = useState('');
@@ -46,15 +50,20 @@ const FormIngredientType = ({
 				color,
 				icon,
 			};
-			const result = addItem('ingredientTypes', item);
-			if (result) {
-				onSubmit();
-				handleReset();
-				setMessageBox({
-					content: 'Tipo de ingrediente añadido',
-					isError: false,
-				});
-			}
+			const result = isEdit
+				? await updateItem('ingredientTypes', id, item)
+				: await addItem('ingredientTypes', item);
+			const content = result
+				? `Tipo de ingrediente ${isEdit ? 'editado' : 'añadido'}`
+				: `¡Error! Tipo de ingrediente no ${
+						isEdit ? 'editado' : 'añadido'
+				  }`;
+			setMessageBox({
+				content,
+				isError: !result,
+			});
+			handleReset();
+			onSubmit();
 		}
 	};
 
@@ -62,11 +71,20 @@ const FormIngredientType = ({
 		setName('');
 		setColor('');
 		setIcon('');
+
 		setNameError(false);
 		setColorError(false);
 		setIconError(false);
+
 		setIsFormOpen(false);
+		setIsEdit(false);
 	};
+
+	useEffect(() => {
+		setName(fieldValues.name);
+		setColor(fieldValues.color);
+		setIcon(fieldValues.icon);
+	}, [fieldValues]);
 
 	return (
 		<FormLayout

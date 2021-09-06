@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList, getFoodIcon, removeItem } from '../../logic/shared';
+import {
+	reloadList,
+	getFoodIcon,
+	handleLoadEditData,
+} from '../../logic/shared';
+
+import { handleRemove } from './ingredientTypes.logic';
 
 import FormIngredientType from '../../components/FormIngredientType/FormIngredientType.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
@@ -8,39 +14,32 @@ import MessageBox from '../../components/MessageBox/MessageBox.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const IngredientTypes = () => {
+	const [id, setId] = useState('');
 	const [ingredientTypesList, setIngredientTypesList] = useState([]);
+	const [formData, setFormData] = useState({
+		name: '',
+		color: '',
+		icon: '',
+	});
+	const [isEdit, setIsEdit] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 	const [messageBox, setMessageBox] = useState({
 		content: '',
 		isError: false,
 	});
 
-	const reloadIngredientTypeList = () => {
-		reloadList('ingredientTypes', 'name', setIngredientTypesList);
-	};
-
-	const handleEdit = async (id) => {
-		console.log('editar', id);
-	};
-
-	const handleRemove = async (id) => {
-		const result = await removeItem('ingredientTypes', id);
-		if (result) {
-			reloadIngredientTypeList();
-			setMessageBox({
-				content: 'Tipo de ingrediente borrado',
-				isError: false,
-			});
-		}
-	};
-
 	useEffect(() => {
-		reloadIngredientTypeList();
+		reloadList('ingredientTypes', 'name', setIngredientTypesList);
 	}, []);
 
 	return (
 		<PageLayout pageTitle="Tipos de ingredientes" menuSel="ingredientTypes">
 			{ingredientTypesList.map(({ id, name, color, icon }) => {
+				const editData = {
+					name,
+					color,
+					icon,
+				};
 				return (
 					<ItemCard
 						key={id}
@@ -48,8 +47,19 @@ const IngredientTypes = () => {
 						name={name}
 						type="ingredientTypes"
 						icon={getFoodIcon(icon, color)}
-						onRemove={() => handleRemove(id)}
-						onEdit={() => handleEdit(id)}
+						onRemove={() =>
+							handleRemove(id, setIngredientTypesList, setMessageBox)
+						}
+						onEdit={() =>
+							handleLoadEditData(
+								id,
+								editData,
+								setIsFormOpen,
+								setIsEdit,
+								setId,
+								setFormData
+							)
+						}
 					/>
 				);
 			})}
@@ -57,7 +67,13 @@ const IngredientTypes = () => {
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
 				setMessageBox={setMessageBox}
-				onSubmit={reloadIngredientTypeList}
+				id={id}
+				isEdit={isEdit}
+				setIsEdit={setIsEdit}
+				fieldValues={formData}
+				onSubmit={() =>
+					reloadList('ingredientTypes', 'name', setIngredientTypesList)
+				}
 			/>
 			<MessageBox isError={messageBox.isError} setMessageBox={setMessageBox}>
 				{messageBox.content}
