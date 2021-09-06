@@ -13,7 +13,7 @@ const PlateTypes = () => {
 	const [plateTypesList, setPlateTypesList] = useState([]);
 	const [formData, setFormData] = useState({
 		name: '',
-		order: '',
+		order: 0,
 	});
 	const [isEdit, setIsEdit] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);

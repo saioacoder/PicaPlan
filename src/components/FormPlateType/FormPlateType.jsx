@@ -16,7 +16,7 @@ const FormPlateType = ({
 	onSubmit,
 }) => {
 	const [name, setName] = useState('');
-	const [order, setOrder] = useState('');
+	const [order, setOrder] = useState(0);
 	const [nameError, setNameError] = useState(false);
 	const [orderError, setOrderError] = useState(false);
 
@@ -53,7 +53,7 @@ const FormPlateType = ({
 
 	const handleReset = () => {
 		setName('');
-		setOrder('');
+		setOrder(0);
 
 		setNameError(false);
 		setOrderError(false);

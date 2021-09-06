@@ -14,7 +14,9 @@ async function getList(listName) {
 export async function reloadList(listName, sortParam, setFunction) {
 	const result = await getList(listName);
 	const resultSorted = result.sort((a, b) => {
-		return a[sortParam].toString().localeCompare(b[sortParam].toString());
+		return typeof a[sortParam] === 'string'
+			? a[sortParam].toString().localeCompare(b[sortParam].toString())
+			: a[sortParam] - b[sortParam];
 	});
 	setFunction(resultSorted);
 }
