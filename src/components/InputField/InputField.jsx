@@ -16,7 +16,9 @@ const InputField = ({
 	const FIELD_NAME = 'inputField';
 
 	useEffect(() => {
-		value || isFocus ? setLabelAside(true) : setLabelAside(false);
+		(value !== undefined && value !== '') || isFocus
+			? setLabelAside(true)
+			: setLabelAside(false);
 	}, [value, isFocus]);
 
 	return (
