@@ -88,6 +88,7 @@ const FormPlateType = ({
 				id="order"
 				label="Orden"
 				value={order}
+				type="number"
 				hasError={orderError}
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setOrder(value)}
