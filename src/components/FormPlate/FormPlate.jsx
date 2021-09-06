@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // import { I_ADD } from '../../logic/constants';
-import { addItem } from '../../logic/shared';
+import { addItem, updateItem } from '../../logic/shared';
 
 // import Button from '../Button/Button.jsx';
 // import FieldGroup from '../FieldGroup/FieldGroup.jsx';
@@ -11,10 +11,14 @@ import InputField from '../InputField/InputField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
 
 const FormPlate = ({
+	id,
+	ingredients,
 	isFormOpen,
 	setIsFormOpen,
 	setMessageBox,
-	ingredients,
+	setIsEdit,
+	isEdit,
+	fieldValues,
 	onSubmit,
 }) => {
 	const [name, setName] = useState('');
@@ -75,25 +79,36 @@ const FormPlate = ({
 				// ingredientList,
 				recipe,
 			};
-			const result = addItem('plates', item);
-			if (result) {
-				onSubmit();
-				handleReset();
-				setMessageBox({
-					content: 'Plato añadido',
-					isError: false,
-				});
-			}
+			const result = isEdit
+				? await updateItem('plates', id, item)
+				: await addItem('plates', item);
+			const content = result
+				? `Plato ${isEdit ? 'editado' : 'añadido'}`
+				: `¡Error! Plato no ${isEdit ? 'editado' : 'añadido'}`;
+			setMessageBox({
+				content,
+				isError: !result,
+			});
+			handleReset();
+			onSubmit();
 		}
 	};
 
 	const handleReset = () => {
 		setName('');
 		// setIngredientList([]);
+
 		setNameError(false);
 		// setIngredientListError(false);
+
 		setIsFormOpen(false);
+		setIsEdit(false);
 	};
+
+	useEffect(() => {
+		setName(fieldValues.name);
+		setRecipe(fieldValues.recipe);
+	}, [fieldValues]);
 
 	return (
 		<FormLayout
@@ -101,6 +116,7 @@ const FormPlate = ({
 			onSubmit={handleAddItem}
 			onCancel={handleReset}
 			isFormOpen={isFormOpen}
+			isEdit={isEdit}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
 			<InputField

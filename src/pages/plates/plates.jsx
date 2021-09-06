@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { reloadList, removeItem } from '../../logic/shared';
+import { handleLoadEditData, reloadList } from '../../logic/shared';
+
+import { handleRemove } from './plates.logic';
 
 import FormPlate from '../../components/FormPlate/FormPlate.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
@@ -8,58 +10,68 @@ import MessageBox from '../../components/MessageBox/MessageBox.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
 
 const Plates = () => {
+	const [id, setId] = useState('');
 	const [platesList, setPlatesList] = useState([]);
 	const [ingredientsList, setIngredientsList] = useState([]);
+	const [formData, setFormData] = useState({
+		name: '',
+		recipe: '',
+		photo: '',
+		ingredientList: [],
+	});
+	const [isEdit, setIsEdit] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
 	const [messageBox, setMessageBox] = useState({
 		content: '',
 		isError: false,
 	});
 
-	const reloadPlateList = () => {
-		reloadList('plates', 'name', setPlatesList);
-	};
-
-	const handleEdit = async (id) => {
-		console.log('editar', id);
-	};
-
-	const handleRemove = async (id) => {
-		const result = await removeItem('plates', id);
-		if (result) {
-			reloadPlateList();
-			setMessageBox({
-				content: 'Plato borrado',
-				isError: false,
-			});
-		}
-	};
-
 	useEffect(() => {
-		reloadPlateList();
+		reloadList('plates', 'name', setPlatesList);
 		reloadList('ingredients', 'name', setIngredientsList);
 	}, []);
 
 	return (
 		<PageLayout pageTitle="Platos" menuSel="plates">
-			{platesList.map(({ id, name }) => {
+			{platesList.map(({ id, name, recipe, photo, ingredientList }) => {
+				const editData = {
+					name,
+					recipe,
+					photo,
+					ingredientList,
+				};
 				return (
 					<ItemCard
 						key={id}
 						id={id}
 						name={name}
 						type="plates"
-						onRemove={() => handleRemove(id)}
-						onEdit={() => handleEdit(id)}
+						onRemove={() =>
+							handleRemove(id, setPlatesList, setMessageBox)
+						}
+						onEdit={() =>
+							handleLoadEditData(
+								id,
+								editData,
+								setIsFormOpen,
+								setIsEdit,
+								setId,
+								setFormData
+							)
+						}
 					/>
 				);
 			})}
 			<FormPlate
-				ingredientsList={ingredientsList}
 				isFormOpen={isFormOpen}
 				setIsFormOpen={setIsFormOpen}
 				setMessageBox={setMessageBox}
-				onSubmit={reloadPlateList}
+				id={id}
+				ingredientsList={ingredientsList}
+				isEdit={isEdit}
+				setIsEdit={setIsEdit}
+				fieldValues={formData}
+				onSubmit={() => reloadList('plates', 'name', setPlatesList)}
 			/>
 			<MessageBox isError={messageBox.isError} setMessageBox={setMessageBox}>
 				{messageBox.content}
