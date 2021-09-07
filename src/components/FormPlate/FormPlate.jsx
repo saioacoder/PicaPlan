@@ -5,6 +5,7 @@ import { getUnitName } from '../../pages/plates/plates.logic';
 
 import Button from '../Button/Button.jsx';
 import FieldGroup from '../FieldGroup/FieldGroup.jsx';
+import FieldTag from '../FieldTag/FieldTag.jsx';
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
@@ -146,6 +147,10 @@ const FormPlate = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
 			/>
+			<FieldGroup>
+				<FieldTag name="Azucar" subtext="10 gr" />
+				<FieldTag name="Leche" subtext="2 l" />
+			</FieldGroup>
 			<FieldGroup>
 				<SelectField
 					id="ingredientList"
