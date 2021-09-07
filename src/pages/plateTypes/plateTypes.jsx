@@ -33,13 +33,14 @@ const PlateTypes = () => {
 					name,
 					order,
 				};
+				const extraInfo = `${order}º posición`;
 				return (
 					<ItemCard
 						key={id}
 						id={id}
 						name={name}
 						type="plateTypes"
-						extraInfo={order}
+						extraInfo={extraInfo}
 						onRemove={() =>
 							handleRemove(id, setPlateTypesList, setMessageBox)
 						}
