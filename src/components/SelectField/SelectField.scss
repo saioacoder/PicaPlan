@@ -13,7 +13,7 @@
 	}
 	&__label {
 		font-size: $font_size_s;
-		padding-left: $spacing_b;
+		padding-left: $spacing_s;
 		position: absolute;
 		top: calc(50% - 1rem);
 		transition: $transition_duration;
@@ -25,7 +25,7 @@
 	}
 	&__field {
 		cursor: pointer;
-		padding: $spacing_b $spacing_b $spacing_xxs;
+		padding: $spacing_b $spacing_s $spacing_xxs;
 		position: relative;
 		width: 100%;
 		z-index: 1;
@@ -35,7 +35,7 @@
 		font-size: $font_size_xs;
 		font-style: italic;
 		font-weight: $font_weight_bold;
-		padding: $spacing_xxxs $spacing_b 0;
+		padding: $spacing_xxxs $spacing_s 0;
 		text-align: left;
 	}
 }

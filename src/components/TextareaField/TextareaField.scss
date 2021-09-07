@@ -13,7 +13,7 @@
 	}
 	&__label {
 		font-size: $font_size_s;
-		padding-left: $spacing_b;
+		padding-left: $spacing_s;
 		position: absolute;
 		top: $spacing_xs;
 		transition: $transition_duration;
@@ -25,7 +25,7 @@
 	}
 	&__field {
 		line-height: 24px; // Value on JS
-		padding: $spacing_b $spacing_b $spacing_xxs;
+		padding: $spacing_b $spacing_s $spacing_xxs;
 		position: relative;
 		resize: none;
 		width: 100%;
@@ -36,7 +36,7 @@
 		font-size: $font_size_xs;
 		font-style: italic;
 		font-weight: $font_weight_bold;
-		padding: $spacing_xxxs $spacing_b 0;
+		padding: $spacing_xxxs $spacing_s 0;
 		text-align: left;
 	}
 }
