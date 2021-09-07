@@ -1,9 +1,19 @@
 import './Button.scss';
 
-const Button = ({ onClick, type = 'submit', secondary = false, children }) => {
+const Button = ({
+	onClick,
+	type = 'submit',
+	className = '',
+	secondary = false,
+	children,
+}) => {
 	return (
 		<button
-			className={secondary ? 'button button__secondary' : 'button'}
+			className={
+				secondary
+					? `button button__secondary ${className}`
+					: `button ${className}`
+			}
 			onClick={onClick}
 			type={type}
 		>
