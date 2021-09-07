@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import { I_ADD } from '../../logic/constants';
 import { addItem, updateItem, reloadList } from '../../logic/shared';
 import { getUnitName } from '../../pages/plates/plates.logic';
 
@@ -162,6 +161,7 @@ const FormPlate = ({
 					id="quantity"
 					label="Cantidad"
 					value={quantity}
+					className="fx_grow_1"
 					type="number"
 					errorMessage="Campo obligatorio"
 					onChange={({ target: { value } }) => setQuantity(value)}
@@ -171,8 +171,13 @@ const FormPlate = ({
 					value={unitName}
 					className="fx_grow_1"
 				/>
-				<Button type="button" secondary onClick={handleAddIngredient}>
-					{I_ADD}
+				<Button
+					type="button"
+					secondary
+					className="w_100"
+					onClick={handleAddIngredient}
+				>
+					Añadir ingrediente
 				</Button>
 			</FieldGroup>
 			<TextareaField
