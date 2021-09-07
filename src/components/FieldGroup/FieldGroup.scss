@@ -2,8 +2,15 @@
 
 .fieldGroup {
 	align-items: start;
+	background-color: darken($color_background, 5%);
 	border-radius: $radius_s;
-	column-gap: $spacing_xxs;
-	display: grid;
-	grid-template-columns: 5fr 3fr 1fr;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: $spacing_xs;
+	padding: $spacing_xs 0 $spacing_xs $spacing_xs;
+	> * {
+		margin-right: $spacing_xs;
+		width: auto;
+	}
 }
