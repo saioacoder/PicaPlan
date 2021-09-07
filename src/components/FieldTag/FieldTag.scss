@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+.fieldTag {
+	background-color: $color_background_light;
+	border-radius: $radius_s;
+	display: flex;
+	margin-bottom: $spacing_xs;
+	padding: $spacing_xs $spacing_s;
+	text-align: left;
+	&__subtext {
+		color: $color_b_extramedium;
+		font-size: $font_size_xs;
+	}
+	&__button {
+		margin-left: $spacing_xs;
+	}
+}
