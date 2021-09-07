@@ -40,12 +40,16 @@ const Plates = () => {
 					photo,
 					ingredientList,
 				};
+				const extraInfo = `Nº ingredientes: ${
+					ingredientList ? ingredientList.length : 0
+				}`;
 				return (
 					<ItemCard
 						key={id}
 						id={id}
 						name={name}
 						type="plates"
+						extraInfo={extraInfo}
 						onRemove={() =>
 							handleRemove(id, setPlatesList, setMessageBox)
 						}

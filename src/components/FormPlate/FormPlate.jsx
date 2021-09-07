@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 
-// import { I_ADD } from '../../logic/constants';
+import { I_ADD } from '../../logic/constants';
 import { addItem, updateItem } from '../../logic/shared';
 
-// import Button from '../Button/Button.jsx';
-// import FieldGroup from '../FieldGroup/FieldGroup.jsx';
+import Button from '../Button/Button.jsx';
+import FieldGroup from '../FieldGroup/FieldGroup.jsx';
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
-// import SelectField from '../SelectField/SelectField.jsx';
+import SelectField from '../SelectField/SelectField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
 
 const FormPlate = ({
 	id,
-	ingredients,
+	ingredientsList,
 	isFormOpen,
 	setIsFormOpen,
 	setMessageBox,
@@ -22,45 +22,45 @@ const FormPlate = ({
 	onSubmit,
 }) => {
 	const [name, setName] = useState('');
-	// const [ingredientList, setIngredientList] = useState([]);
-	// const [idIngredient, setIdIngredient] = useState('');
-	// const [quantity, setQuantity] = useState(null);
+	const [ingredientList, setIngredientList] = useState([]);
+	const [idIngredient, setIdIngredient] = useState('');
+	const [quantity, setQuantity] = useState(1);
 	const [recipe, setRecipe] = useState('');
 
 	const [nameError, setNameError] = useState(false);
-	// const [ingredientListError, setIngredientListError] = useState(false);
-	// const [idIngredientError, setIdIngredientError] = useState(false);
+	const [ingredientListError, setIngredientListError] = useState(false);
+	const [idIngredientError, setIdIngredientError] = useState(false);
 	// const [quantityError, setQuantityError] = useState(false);
 
-	// const handleAddIngredient = async (e) => {
-	// 	setIdIngredientError(false);
-	// 	setQuantityError(false);
+	const handleAddIngredient = async (e) => {
+		setIdIngredientError(false);
+		// setQuantityError(false);
 
-	// 	let error = false;
-	// 	if (!idIngredient) {
-	// 		error = true;
-	// 		setIdIngredientError(true);
-	// 	}
-	// 	if (!quantity) {
-	// 		error = true;
-	// 		setQuantityError(true);
-	// 	}
+		let error = false;
+		if (!idIngredient) {
+			error = true;
+			setIdIngredientError(true);
+		}
+		// if (!quantity) {
+		// 	error = true;
+		// 	setQuantityError(true);
+		// }
 
-	// 	if (!error) {
-	// 		const item = {
-	// 			idIngredient,
-	// 			quantity,
-	// 		};
-	// 		setIngredientList([...ingredientList, item]);
-	// 		ingredientListError(false);
-	// 	}
-	// };
+		if (!error) {
+			const item = {
+				idIngredient,
+				quantity,
+			};
+			setIngredientList([...ingredientList, item]);
+			ingredientListError(false);
+		}
+	};
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
 
 		setNameError(false);
-		// setIngredientListError(false);
+		setIngredientListError(false);
 		// setQuantityError(false);
 
 		let error = false;
@@ -76,8 +76,8 @@ const FormPlate = ({
 		if (!error) {
 			const item = {
 				name,
-				// ingredientList,
 				recipe,
+				ingredientList,
 			};
 			const result = isEdit
 				? await updateItem('plates', id, item)
@@ -96,10 +96,10 @@ const FormPlate = ({
 
 	const handleReset = () => {
 		setName('');
-		// setIngredientList([]);
+		setIngredientList([]);
 
 		setNameError(false);
-		// setIngredientListError(false);
+		setIngredientListError(false);
 
 		setIsFormOpen(false);
 		setIsEdit(false);
@@ -108,6 +108,7 @@ const FormPlate = ({
 	useEffect(() => {
 		setName(fieldValues.name);
 		setRecipe(fieldValues.recipe);
+		setRecipe(fieldValues.ingredientList);
 	}, [fieldValues]);
 
 	return (
@@ -127,11 +128,11 @@ const FormPlate = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
 			/>
-			{/* <FieldGroup>
+			<FieldGroup>
 				<SelectField
 					id="ingredientList"
 					label="Ingredientes"
-					options={ingredients}
+					options={ingredientsList}
 					value={idIngredient}
 					hasError={idIngredientError}
 					errorMessage="Campo obligatorio"
@@ -142,14 +143,14 @@ const FormPlate = ({
 					label="Cantidad"
 					value={quantity}
 					type="number"
-					hasError={quantityError}
+					// hasError={quantityError}
 					errorMessage="Campo obligatorio"
 					onChange={({ target: { value } }) => setQuantity(value)}
 				/>
 				<Button type="button" secondary onClick={handleAddIngredient}>
 					{I_ADD}
 				</Button>
-			</FieldGroup> */}
+			</FieldGroup>
 			<TextareaField
 				id="recipe"
 				label="Receta"
