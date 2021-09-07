@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 
 import { I_ADD } from '../../logic/constants';
-import { addItem, updateItem } from '../../logic/shared';
+import { addItem, updateItem, reloadList } from '../../logic/shared';
+import { getUnitName } from '../../pages/plates/plates.logic';
 
 import Button from '../Button/Button.jsx';
 import FieldGroup from '../FieldGroup/FieldGroup.jsx';
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import InputField from '../InputField/InputField.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
+import SimpleTextField from '../SimpleTextField/SimpleTextField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
 
 const FormPlate = ({
@@ -22,7 +24,7 @@ const FormPlate = ({
 	onSubmit,
 }) => {
 	const [name, setName] = useState('');
-	const [ingredientList, setIngredientList] = useState([]);
+	const [ingredients, setIngredients] = useState([]);
 	const [idIngredient, setIdIngredient] = useState('');
 	const [quantity, setQuantity] = useState(1);
 	const [recipe, setRecipe] = useState('');
@@ -31,6 +33,9 @@ const FormPlate = ({
 	const [ingredientListError, setIngredientListError] = useState(false);
 	const [idIngredientError, setIdIngredientError] = useState(false);
 	// const [quantityError, setQuantityError] = useState(false);
+
+	const [unitsList, setUnitsList] = useState([]);
+	const [unitName, setUnitName] = useState('');
 
 	const handleAddIngredient = async (e) => {
 		setIdIngredientError(false);
@@ -51,7 +56,7 @@ const FormPlate = ({
 				idIngredient,
 				quantity,
 			};
-			setIngredientList([...ingredientList, item]);
+			setIngredients([...ingredients, item]);
 			ingredientListError(false);
 		}
 	};
@@ -77,7 +82,7 @@ const FormPlate = ({
 			const item = {
 				name,
 				recipe,
-				ingredientList,
+				ingredients,
 			};
 			const result = isEdit
 				? await updateItem('plates', id, item)
@@ -96,7 +101,7 @@ const FormPlate = ({
 
 	const handleReset = () => {
 		setName('');
-		setIngredientList([]);
+		setIngredients([]);
 
 		setNameError(false);
 		setIngredientListError(false);
@@ -110,6 +115,20 @@ const FormPlate = ({
 		setRecipe(fieldValues.recipe);
 		setRecipe(fieldValues.ingredientList);
 	}, [fieldValues]);
+
+	useEffect(() => {
+		if (ingredientsList) {
+			const selectedIngredient = ingredientsList.filter(
+				(item) => item.id === idIngredient
+			);
+			selectedIngredient.length &&
+				setUnitName(getUnitName(selectedIngredient[0].idUnit, unitsList));
+		}
+	}, [idIngredient]);
+
+	useEffect(() => {
+		reloadList('units', 'name', setUnitsList);
+	}, []);
 
 	return (
 		<FormLayout
@@ -132,6 +151,7 @@ const FormPlate = ({
 				<SelectField
 					id="ingredientList"
 					label="Ingredientes"
+					className="w_100"
 					options={ingredientsList}
 					value={idIngredient}
 					hasError={idIngredientError}
@@ -143,9 +163,13 @@ const FormPlate = ({
 					label="Cantidad"
 					value={quantity}
 					type="number"
-					// hasError={quantityError}
 					errorMessage="Campo obligatorio"
 					onChange={({ target: { value } }) => setQuantity(value)}
+				/>
+				<SimpleTextField
+					label="Unidad"
+					value={unitName}
+					className="fx_grow_1"
 				/>
 				<Button type="button" secondary onClick={handleAddIngredient}>
 					{I_ADD}
