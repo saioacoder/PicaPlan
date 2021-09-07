@@ -5,6 +5,7 @@ import './SelectField.scss';
 const SelectField = ({
 	id,
 	label,
+	className = '',
 	options,
 	value,
 	onChange,
@@ -20,7 +21,7 @@ const SelectField = ({
 	}, [value, isFocus]);
 
 	return (
-		<div className={FIELD_NAME}>
+		<div className={`${FIELD_NAME} ${className}`}>
 			<div
 				className={
 					hasError

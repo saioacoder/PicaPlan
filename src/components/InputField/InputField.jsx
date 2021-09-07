@@ -5,6 +5,7 @@ import './InputField.scss';
 const InputField = ({
 	id,
 	label,
+	className = '',
 	value,
 	onChange,
 	type = 'text',
@@ -22,7 +23,7 @@ const InputField = ({
 	}, [value, isFocus]);
 
 	return (
-		<div className={FIELD_NAME}>
+		<div className={`${FIELD_NAME} ${className}`}>
 			<div
 				className={
 					hasError
