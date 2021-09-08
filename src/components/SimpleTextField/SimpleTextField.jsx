@@ -24,7 +24,7 @@ const SimpleTextField = ({ label = '', className = '', value }) => {
 				>
 					{label}
 				</label>
-				<div class={`${FIELD_NAME}__field`}>{value}&nbsp;</div>
+				<div className={`${FIELD_NAME}__field`}>{value}&nbsp;</div>
 			</div>
 		</div>
 	);
