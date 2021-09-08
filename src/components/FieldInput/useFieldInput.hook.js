@@ -6,8 +6,9 @@ export default function useFieldInput(defaultValue, isRequired = false) {
 
 	const handleChange = (e) => {
 		const inputValue = e.target.value;
+		const hasError = isRequired && inputValue === '';
 		setValue(inputValue);
-		isRequired && inputValue === '' ? setError(true) : setError(false);
+		setError(hasError);
 	};
 
 	return [value, setValue, handleChange, error];
