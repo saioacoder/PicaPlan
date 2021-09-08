@@ -8,7 +8,7 @@ import FieldGroup from '../FieldGroup/FieldGroup.jsx';
 import FieldTag from '../FieldTag/FieldTag.jsx';
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import FieldInput from '../FieldInput/FieldInput.jsx';
-import SelectField from '../SelectField/SelectField.jsx';
+import FieldSelect from '../FieldSelect/FieldSelect.jsx';
 import SimpleTextField from '../SimpleTextField/SimpleTextField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
 
@@ -152,7 +152,7 @@ const FormPlate = ({
 				<FieldTag name="Leche" subtext="2 l" />
 			</FieldGroup>
 			<FieldGroup>
-				<SelectField
+				<FieldSelect
 					id="ingredientList"
 					label="Ingredientes"
 					className="w_100"

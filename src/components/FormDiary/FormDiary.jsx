@@ -5,7 +5,7 @@ import { handleAdd, handleEdit } from '../../pages/diary/diary.logic';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import FieldInput from '../FieldInput/FieldInput.jsx';
-import SelectField from '../SelectField/SelectField.jsx';
+import FieldSelect from '../FieldSelect/FieldSelect.jsx';
 
 const FormDiary = ({
 	selectedDay,
@@ -102,7 +102,7 @@ const FormDiary = ({
 			isEdit={isEdit}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
-			<SelectField
+			<FieldSelect
 				id="plates"
 				label="Platos"
 				options={platesList}
@@ -111,7 +111,7 @@ const FormDiary = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setIdPlate(value)}
 			/>
-			<SelectField
+			<FieldSelect
 				id="plateType"
 				label="Tipos de plato"
 				options={plateTypesList}
@@ -129,7 +129,7 @@ const FormDiary = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setQuantity(value)}
 			/>
-			<SelectField
+			<FieldSelect
 				id="feeling"
 				label="¿Cómo te ha sentado?"
 				options={FEELING}

@@ -5,7 +5,7 @@ import { addItem, updateItem } from '../../logic/shared';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import FieldInput from '../FieldInput/FieldInput.jsx';
-import SelectField from '../SelectField/SelectField.jsx';
+import FieldSelect from '../FieldSelect/FieldSelect.jsx';
 
 const FormIngredient = ({
 	id,
@@ -116,7 +116,7 @@ const FormIngredient = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
 			/>
-			<SelectField
+			<FieldSelect
 				id="idIngredientType"
 				label="Tipo de ingrediente"
 				options={ingredientTypesList}
@@ -125,7 +125,7 @@ const FormIngredient = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setIdIngredientType(value)}
 			/>
-			<SelectField
+			<FieldSelect
 				id="foodmapLevel"
 				label="Nivel de Foodmap"
 				options={FOODMAP_LEVEL}
@@ -134,7 +134,7 @@ const FormIngredient = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setFoodmapLevel(value)}
 			/>
-			<SelectField
+			<FieldSelect
 				id="idUnit"
 				label="Unidad"
 				options={unitsList}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import './SelectField.scss';
+import './FieldSelect.scss';
 
-const SelectField = ({
+const FieldSelect = ({
 	id,
 	label,
 	className = '',
@@ -14,7 +14,7 @@ const SelectField = ({
 }) => {
 	const [labelAside, setLabelAside] = useState(false);
 	const [isFocus, setIsFocus] = useState(false);
-	const FIELD_NAME = 'selectField';
+	const FIELD_NAME = 'fieldSelect';
 
 	useEffect(() => {
 		value || isFocus ? setLabelAside(true) : setLabelAside(false);
@@ -64,4 +64,4 @@ const SelectField = ({
 	);
 };
 
-export default SelectField;
+export default FieldSelect;
