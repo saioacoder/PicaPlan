@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { FOODMAP_LEVEL } from '../../logic/constants';
 import { addItem, updateItem } from '../../logic/shared';
+import useFieldInput from '../FieldInput/useFieldInput.hook';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import FieldInput from '../FieldInput/FieldInput.jsx';
@@ -19,12 +20,11 @@ const FormIngredient = ({
 	fieldValues,
 	onSubmit,
 }) => {
-	const [name, setName] = useState('');
+	const [name, setName, handleChangeName, nameError] = useFieldInput('', true);
 	const [idIngredientType, setIdIngredientType] = useState('');
 	const [foodmapLevel, setFoodmapLevel] = useState('');
 	const [idUnit, setIdUnit] = useState('');
 
-	const [nameError, setNameError] = useState(false);
 	const [idIngredientTypeError, setIdIngredientTypeError] = useState(false);
 	const [foodmapLevelError, setFoodmapLevelError] = useState(false);
 	const [idUnitError, setIdUnitError] = useState(false);
@@ -32,14 +32,12 @@ const FormIngredient = ({
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		setNameError(false);
 		setIdIngredientTypeError(false);
 		setFoodmapLevelError(false);
 		setIdUnitError(false);
 
 		let error = false;
-		if (!name) {
-			setNameError(true);
+		if (nameError) {
 			error = true;
 		}
 		if (!idIngredientType) {
@@ -83,7 +81,6 @@ const FormIngredient = ({
 		setFoodmapLevel(false);
 		setIdUnit(false);
 
-		setNameError(false);
 		setIdIngredientTypeError(false);
 		setFoodmapLevelError(false);
 		setIdUnitError(false);
@@ -97,7 +94,7 @@ const FormIngredient = ({
 		setIdIngredientType(fieldValues.idIngredientType);
 		setFoodmapLevel(fieldValues.foodmapLevel);
 		setIdUnit(fieldValues.idUnit);
-	}, [fieldValues]);
+	}, [fieldValues, setName]);
 
 	return (
 		<FormLayout
@@ -114,7 +111,7 @@ const FormIngredient = ({
 				value={name}
 				hasError={nameError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setName(value)}
+				onChange={handleChangeName}
 			/>
 			<FieldSelect
 				id="idIngredientType"
