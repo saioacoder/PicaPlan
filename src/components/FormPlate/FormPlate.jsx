@@ -7,7 +7,7 @@ import Button from '../Button/Button.jsx';
 import FieldGroup from '../FieldGroup/FieldGroup.jsx';
 import FieldTag from '../FieldTag/FieldTag.jsx';
 import FormLayout from '../FormLayout/FormLayout.jsx';
-import InputField from '../InputField/InputField.jsx';
+import FieldInput from '../FieldInput/FieldInput.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 import SimpleTextField from '../SimpleTextField/SimpleTextField.jsx';
 import TextareaField from '../TextareaField/TextareaField.jsx';
@@ -139,7 +139,7 @@ const FormPlate = ({
 			isEdit={isEdit}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
-			<InputField
+			<FieldInput
 				id="name"
 				label="Nombre"
 				value={name}
@@ -162,7 +162,7 @@ const FormPlate = ({
 					errorMessage="Campo obligatorio"
 					onChange={({ target: { value } }) => setIdIngredient(value)}
 				/>
-				<InputField
+				<FieldInput
 					id="quantity"
 					label="Cantidad"
 					value={quantity}

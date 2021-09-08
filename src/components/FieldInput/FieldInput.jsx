@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import './InputField.scss';
+import './FieldInput.scss';
 
-const InputField = ({
+const FieldInput = ({
 	id,
 	label,
 	className = '',
@@ -14,7 +14,7 @@ const InputField = ({
 }) => {
 	const [labelAside, setLabelAside] = useState(false);
 	const [isFocus, setIsFocus] = useState(false);
-	const FIELD_NAME = 'inputField';
+	const FIELD_NAME = 'fieldInput';
 
 	useEffect(() => {
 		(value !== undefined && value !== '') || isFocus
@@ -58,4 +58,4 @@ const InputField = ({
 	);
 };
 
-export default InputField;
+export default FieldInput;

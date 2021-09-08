@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { addItem, updateItem } from '../../logic/shared';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
-import InputField from '../InputField/InputField.jsx';
+import FieldInput from '../FieldInput/FieldInput.jsx';
 
 const FormIngredientType = ({
 	id,
@@ -94,7 +94,7 @@ const FormIngredientType = ({
 			isFormOpen={isFormOpen}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
-			<InputField
+			<FieldInput
 				id="name"
 				label="Nombre"
 				value={name}
@@ -102,7 +102,7 @@ const FormIngredientType = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
 			/>
-			<InputField
+			<FieldInput
 				id="color"
 				label="Color"
 				value={color}
@@ -110,7 +110,7 @@ const FormIngredientType = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setColor(value)}
 			/>
-			<InputField
+			<FieldInput
 				id="icon"
 				label="Icono"
 				value={icon}

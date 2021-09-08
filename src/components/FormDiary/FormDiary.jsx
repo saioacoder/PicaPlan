@@ -4,7 +4,7 @@ import { FEELING } from '../../logic/constants';
 import { handleAdd, handleEdit } from '../../pages/diary/diary.logic';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
-import InputField from '../InputField/InputField.jsx';
+import FieldInput from '../FieldInput/FieldInput.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
 const FormDiary = ({
@@ -120,7 +120,7 @@ const FormDiary = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setIdPlateType(value)}
 			/>
-			<InputField
+			<FieldInput
 				id="quantity"
 				label="Cantidad"
 				value={quantity}

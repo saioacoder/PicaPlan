@@ -4,7 +4,7 @@ import { FOODMAP_LEVEL } from '../../logic/constants';
 import { addItem, updateItem } from '../../logic/shared';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
-import InputField from '../InputField/InputField.jsx';
+import FieldInput from '../FieldInput/FieldInput.jsx';
 import SelectField from '../SelectField/SelectField.jsx';
 
 const FormIngredient = ({
@@ -108,7 +108,7 @@ const FormIngredient = ({
 			isEdit={isEdit}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
-			<InputField
+			<FieldInput
 				id="name"
 				label="Nombre"
 				value={name}

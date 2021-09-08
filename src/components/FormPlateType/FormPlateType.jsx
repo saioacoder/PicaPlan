@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { addItem, updateItem } from '../../logic/shared';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
-import InputField from '../InputField/InputField.jsx';
+import FieldInput from '../FieldInput/FieldInput.jsx';
 
 const FormPlateType = ({
 	id,
@@ -76,7 +76,7 @@ const FormPlateType = ({
 			isEdit={isEdit}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
-			<InputField
+			<FieldInput
 				id="name"
 				label="Nombre"
 				value={name}
@@ -84,7 +84,7 @@ const FormPlateType = ({
 				errorMessage="Campo obligatorio"
 				onChange={({ target: { value } }) => setName(value)}
 			/>
-			<InputField
+			<FieldInput
 				id="order"
 				label="Orden"
 				value={order}
