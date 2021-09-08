@@ -9,8 +9,8 @@ import FieldTag from '../FieldTag/FieldTag.jsx';
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import FieldInput from '../FieldInput/FieldInput.jsx';
 import FieldSelect from '../FieldSelect/FieldSelect.jsx';
-import SimpleTextField from '../SimpleTextField/SimpleTextField.jsx';
-import TextareaField from '../TextareaField/TextareaField.jsx';
+import FieldSimpleText from '../FieldSimpleText/FieldSimpleText.jsx';
+import FieldTextarea from '../FieldTextarea/FieldTextarea.jsx';
 
 const FormPlate = ({
 	id,
@@ -171,7 +171,7 @@ const FormPlate = ({
 					errorMessage="Campo obligatorio"
 					onChange={({ target: { value } }) => setQuantity(value)}
 				/>
-				<SimpleTextField
+				<FieldSimpleText
 					label="Unidad"
 					value={unitName}
 					className="fx_grow_1"
@@ -185,7 +185,7 @@ const FormPlate = ({
 					Añadir ingrediente
 				</Button>
 			</FieldGroup>
-			<TextareaField
+			<FieldTextarea
 				id="recipe"
 				label="Receta"
 				value={recipe}

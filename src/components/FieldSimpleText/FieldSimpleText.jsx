@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import './SimpleTextField.scss';
+import './FieldSimpleText.scss';
 
-const SimpleTextField = ({ label = '', className = '', value }) => {
+const FieldSimpleText = ({ label = '', className = '', value }) => {
 	const [labelAside, setLabelAside] = useState(false);
-	const FIELD_NAME = 'simpleTextField';
+	const FIELD_NAME = 'fieldSimpleText';
 
 	useEffect(() => {
 		value !== undefined && value !== ''
@@ -30,4 +30,4 @@ const SimpleTextField = ({ label = '', className = '', value }) => {
 	);
 };
 
-export default SimpleTextField;
+export default FieldSimpleText;
