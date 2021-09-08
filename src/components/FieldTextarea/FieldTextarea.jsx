@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import './TextareaField.scss';
+import './FieldTextarea.scss';
 
-const TextareaField = ({
+const FieldTextarea = ({
 	id,
 	label,
 	value,
@@ -17,7 +17,7 @@ const TextareaField = ({
 		value,
 		rows,
 	});
-	const FIELD_NAME = 'textareaField';
+	const FIELD_NAME = 'fieldTextarea';
 
 	const handleChange = (e) => {
 		const item = e.target;
@@ -73,4 +73,4 @@ const TextareaField = ({
 	);
 };
 
-export default TextareaField;
+export default FieldTextarea;
