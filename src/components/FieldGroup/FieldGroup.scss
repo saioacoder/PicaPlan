@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .fieldGroup {
-	align-items: start;
+	align-items: flex-start;
 	background-color: darken($color_background, 5%);
 	border-radius: $radius_s;
 	display: flex;
