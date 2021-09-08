@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { addItem, updateItem } from '../../logic/shared';
+import useFieldInput from '../FieldInput/useFieldInput.hook';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import FieldInput from '../FieldInput/FieldInput.jsx';
@@ -15,20 +16,18 @@ const FormPlateType = ({
 	fieldValues,
 	onSubmit,
 }) => {
-	const [name, setName] = useState('');
-	const [order, setOrder] = useState(0);
-	const [nameError, setNameError] = useState(false);
-	const [orderError, setOrderError] = useState(false);
+	const [name, setName, handleChangeName, nameError] = useFieldInput('', true);
+	const [order, setOrder, handleChangeOrder, orderError] = useFieldInput(
+		0,
+		true
+	);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
 
-		setNameError(false);
-
 		let error = false;
-		if (!name) {
+		if (nameError) {
 			error = true;
-			setNameError(true);
 		}
 
 		if (!error) {
@@ -55,9 +54,6 @@ const FormPlateType = ({
 		setName('');
 		setOrder(0);
 
-		setNameError(false);
-		setOrderError(false);
-
 		setIsFormOpen(false);
 		setIsEdit(false);
 	};
@@ -65,7 +61,7 @@ const FormPlateType = ({
 	useEffect(() => {
 		setName(fieldValues.name);
 		setOrder(fieldValues.order);
-	}, [fieldValues]);
+	}, [fieldValues, setName, setOrder]);
 
 	return (
 		<FormLayout
@@ -82,7 +78,7 @@ const FormPlateType = ({
 				value={name}
 				hasError={nameError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setName(value)}
+				onChange={handleChangeName}
 			/>
 			<FieldInput
 				id="order"
@@ -91,7 +87,7 @@ const FormPlateType = ({
 				type="number"
 				hasError={orderError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setOrder(value)}
+				onChange={handleChangeOrder}
 			/>
 		</FormLayout>
 	);

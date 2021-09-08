@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { addItem, updateItem, reloadList } from '../../logic/shared';
 import { getUnitName } from '../../pages/plates/plates.logic';
+import useFieldInput from '../FieldInput/useFieldInput.hook';
 
 import Button from '../Button/Button.jsx';
 import FieldGroup from '../FieldGroup/FieldGroup.jsx';
@@ -23,33 +24,30 @@ const FormPlate = ({
 	fieldValues,
 	onSubmit,
 }) => {
-	const [name, setName] = useState('');
+	const [name, setName, handleChangeName, nameError] = useFieldInput('', true);
 	const [ingredients, setIngredients] = useState([]);
 	const [idIngredient, setIdIngredient] = useState('');
-	const [quantity, setQuantity] = useState(1);
+	const [quantity, setQuantity, handleChangeQuantity, quantityError] =
+		useFieldInput(1, true);
 	const [recipe, setRecipe] = useState('');
 
-	const [nameError, setNameError] = useState(false);
 	const [ingredientListError, setIngredientListError] = useState(false);
 	const [idIngredientError, setIdIngredientError] = useState(false);
-	// const [quantityError, setQuantityError] = useState(false);
 
 	const [unitsList, setUnitsList] = useState([]);
 	const [unitName, setUnitName] = useState('');
 
 	const handleAddIngredient = async (e) => {
 		setIdIngredientError(false);
-		// setQuantityError(false);
 
 		let error = false;
 		if (!idIngredient) {
 			error = true;
 			setIdIngredientError(true);
 		}
-		// if (!quantity) {
-		// 	error = true;
-		// 	setQuantityError(true);
-		// }
+		if (quantityError) {
+			error = true;
+		}
 
 		if (!error) {
 			const item = {
@@ -64,14 +62,11 @@ const FormPlate = ({
 	const handleAddItem = async (e) => {
 		e.preventDefault();
 
-		setNameError(false);
 		setIngredientListError(false);
-		// setQuantityError(false);
 
 		let error = false;
-		if (!name) {
+		if (nameError) {
 			error = true;
-			setNameError(true);
 		}
 		// if (!ingredientList.length) {
 		// 	error = true;
@@ -103,7 +98,6 @@ const FormPlate = ({
 		setName('');
 		setIngredients([]);
 
-		setNameError(false);
 		setIngredientListError(false);
 
 		setIsFormOpen(false);
@@ -114,7 +108,7 @@ const FormPlate = ({
 		setName(fieldValues.name);
 		setRecipe(fieldValues.recipe);
 		setRecipe(fieldValues.ingredientList);
-	}, [fieldValues]);
+	}, [fieldValues, setName]);
 
 	useEffect(() => {
 		if (ingredientsList) {
@@ -124,7 +118,7 @@ const FormPlate = ({
 			selectedIngredient.length &&
 				setUnitName(getUnitName(selectedIngredient[0].idUnit, unitsList));
 		}
-	}, [idIngredient]);
+	}, [idIngredient, ingredientsList, unitsList]);
 
 	useEffect(() => {
 		reloadList('units', 'name', setUnitsList);
@@ -145,7 +139,7 @@ const FormPlate = ({
 				value={name}
 				hasError={nameError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setName(value)}
+				onChange={handleChangeName}
 			/>
 			<FieldGroup>
 				<FieldTag name="Azucar" subtext="10 gr" />
@@ -169,7 +163,7 @@ const FormPlate = ({
 					className="fx_grow_1"
 					type="number"
 					errorMessage="Campo obligatorio"
-					onChange={({ target: { value } }) => setQuantity(value)}
+					onChange={handleChangeQuantity}
 				/>
 				<FieldSimpleText
 					label="Unidad"

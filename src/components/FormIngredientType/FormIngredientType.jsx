@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { addItem, updateItem } from '../../logic/shared';
 import useFieldInput from '../FieldInput/useFieldInput.hook';
