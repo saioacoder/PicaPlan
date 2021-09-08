@@ -23,19 +23,18 @@ const FormDiary = ({
 }) => {
 	const [idPlate, setIdPlate] = useState('');
 	const [idPlateType, setIdPlateType] = useState('');
-	const [quantity, setQuantity, handleChangeQuantity] = useFieldInput(1);
+	const [quantity, setQuantity, handleChangeQuantity, quantityError] =
+		useFieldInput(1, true);
 	const [idFeeling, setIdFeeling] = useState('');
 
 	const [idPlateError, setIdPlateError] = useState(false);
 	const [idPlateTypeError, setIdPlateTypeError] = useState(false);
-	const [quantityError, setQuantityError] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		setIdPlateError(false);
 		setIdPlateTypeError(false);
-		setQuantityError(false);
 
 		let error = false;
 		if (!idPlate) {
@@ -46,9 +45,8 @@ const FormDiary = ({
 			error = true;
 			setIdPlateTypeError(true);
 		}
-		if (!quantity) {
+		if (quantityError) {
 			error = true;
-			setQuantityError(true);
 		}
 
 		if (!error) {
@@ -81,7 +79,6 @@ const FormDiary = ({
 
 		setIdPlateError(false);
 		setIdPlateTypeError(false);
-		setQuantityError(false);
 
 		setIsFormOpen(false);
 		setIsEdit(false);
