@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { FEELING } from '../../logic/constants';
 import { handleAdd, handleEdit } from '../../pages/diary/diary.logic';
+import useFieldInput from '../FieldInput/useFieldInput.hook';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import FieldInput from '../FieldInput/FieldInput.jsx';
@@ -22,7 +23,7 @@ const FormDiary = ({
 }) => {
 	const [idPlate, setIdPlate] = useState('');
 	const [idPlateType, setIdPlateType] = useState('');
-	const [quantity, setQuantity] = useState(1);
+	const [quantity, setQuantity, handleChangeQuantity] = useFieldInput(1);
 	const [idFeeling, setIdFeeling] = useState('');
 
 	const [idPlateError, setIdPlateError] = useState(false);
@@ -91,7 +92,7 @@ const FormDiary = ({
 		setIdPlateType(fieldValues.idPlateType);
 		setQuantity(fieldValues.quantity);
 		setIdFeeling(fieldValues.idFeeling);
-	}, [fieldValues]);
+	}, [fieldValues, setQuantity]);
 
 	return (
 		<FormLayout
@@ -127,7 +128,7 @@ const FormDiary = ({
 				type="number"
 				hasError={quantityError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setQuantity(value)}
+				onChange={handleChangeQuantity}
 			/>
 			<FieldSelect
 				id="feeling"
