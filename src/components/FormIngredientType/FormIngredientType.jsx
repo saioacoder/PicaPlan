@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { addItem, updateItem } from '../../logic/shared';
+import useFieldInput from '../FieldInput/useFieldInput.hook';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import FieldInput from '../FieldInput/FieldInput.jsx';
@@ -15,33 +16,25 @@ const FormIngredientType = ({
 	fieldValues,
 	onSubmit,
 }) => {
-	const [name, setName] = useState('');
-	const [color, setColor] = useState('');
-	const [icon, setIcon] = useState('');
-
-	const [nameError, setNameError] = useState(false);
-	const [colorError, setColorError] = useState(false);
-	const [iconError, setIconError] = useState(false);
+	const [name, setName, handleChangeName, nameError] = useFieldInput('', true);
+	const [color, setColor, handleChangeColor, colorError] = useFieldInput(
+		'',
+		true
+	);
+	const [icon, setIcon, handleChangeIcon, iconError] = useFieldInput('', true);
 
 	const handleAddItem = async (e) => {
 		e.preventDefault();
 
-		setNameError(false);
-		setColorError(false);
-		setIconError(false);
-
 		let error = false;
-		if (!name) {
+		if (nameError) {
 			error = true;
-			setNameError(true);
 		}
-		if (!color) {
+		if (colorError) {
 			error = true;
-			setColorError(true);
 		}
-		if (!icon) {
+		if (iconError) {
 			error = true;
-			setIconError(true);
 		}
 
 		if (!error) {
@@ -72,10 +65,6 @@ const FormIngredientType = ({
 		setColor('');
 		setIcon('');
 
-		setNameError(false);
-		setColorError(false);
-		setIconError(false);
-
 		setIsFormOpen(false);
 		setIsEdit(false);
 	};
@@ -84,7 +73,7 @@ const FormIngredientType = ({
 		setName(fieldValues.name);
 		setColor(fieldValues.color);
 		setIcon(fieldValues.icon);
-	}, [fieldValues]);
+	}, [fieldValues, setName, setColor, setIcon]);
 
 	return (
 		<FormLayout
@@ -92,6 +81,7 @@ const FormIngredientType = ({
 			onSubmit={handleAddItem}
 			onCancel={handleReset}
 			isFormOpen={isFormOpen}
+			isEdit={isEdit}
 			onFormOpen={() => setIsFormOpen(true)}
 		>
 			<FieldInput
@@ -100,7 +90,7 @@ const FormIngredientType = ({
 				value={name}
 				hasError={nameError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setName(value)}
+				onChange={handleChangeName}
 			/>
 			<FieldInput
 				id="color"
@@ -108,7 +98,7 @@ const FormIngredientType = ({
 				value={color}
 				hasError={colorError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setColor(value)}
+				onChange={handleChangeColor}
 			/>
 			<FieldInput
 				id="icon"
@@ -116,7 +106,7 @@ const FormIngredientType = ({
 				value={icon}
 				hasError={iconError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setIcon(value)}
+				onChange={handleChangeIcon}
 			/>
 		</FormLayout>
 	);
