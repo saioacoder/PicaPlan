@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { FEELING } from '../../logic/constants';
 import { handleAdd, handleEdit } from '../../pages/diary/diary.logic';
 import useFieldInput from '../FieldInput/useFieldInput.hook';
+import useFieldSelect from '../FieldSelect/useFieldSelect.hook';
 
 import FormLayout from '../FormLayout/FormLayout.jsx';
 import FieldInput from '../FieldInput/FieldInput.jsx';
@@ -14,41 +15,52 @@ const FormDiary = ({
 	platesList,
 	plateTypesList,
 	isFormOpen,
-	setIsFormOpen,
+	setIsFormOpen, 
 	setMessageBox,
 	setIsEdit,
 	isEdit,
 	fieldValues,
 	onSubmit,
 }) => {
-	const [idPlate, setIdPlate] = useState('');
-	const [idPlateType, setIdPlateType] = useState('');
-	const [quantity, setQuantity, handleChangeQuantity, quantityError] =
-		useFieldInput(1, true);
-	const [idFeeling, setIdFeeling] = useState('');
-
-	const [idPlateError, setIdPlateError] = useState(false);
-	const [idPlateTypeError, setIdPlateTypeError] = useState(false);
+	const [
+		idPlate,
+		setIdPlate,
+		handleChangeIdPlate,
+		idPlateError,
+		setIdPlateError,
+	] = useFieldSelect('', true);
+	const [
+		idPlateType,
+		setIdPlateType,
+		handleChangeIdPlateType,
+		idPlateTypeError,
+		setIdPlateTypeError,
+	] = useFieldSelect('', true);
+	const [
+		quantity,
+		setQuantity,
+		handleChangeQuantity,
+		quantityError,
+		setQuantityError,
+	] = useFieldInput(1, true);
+	const [idFeeling, setIdFeeling, handleChangeIdFeeling] = useFieldSelect('');
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		setIdPlateError(false);
-		setIdPlateTypeError(false);
-
 		let error = false;
-		if (!idPlate) {
+		if (idPlate === '') {
 			error = true;
 			setIdPlateError(true);
 		}
-		if (!idPlateType) {
+		if (idPlateType === '') {
 			error = true;
 			setIdPlateTypeError(true);
 		}
-		if (quantityError) {
+		if (quantity === '') {
 			error = true;
+			setQuantityError(true);
 		}
-
 		if (!error) {
 			const plate = {
 				idPlate,
@@ -77,9 +89,6 @@ const FormDiary = ({
 		setQuantity(1);
 		setIdFeeling('');
 
-		setIdPlateError(false);
-		setIdPlateTypeError(false);
-
 		setIsFormOpen(false);
 		setIsEdit(false);
 	};
@@ -89,7 +98,7 @@ const FormDiary = ({
 		setIdPlateType(fieldValues.idPlateType);
 		setQuantity(fieldValues.quantity);
 		setIdFeeling(fieldValues.idFeeling);
-	}, [fieldValues, setQuantity]);
+	});
 
 	return (
 		<FormLayout
@@ -107,7 +116,7 @@ const FormDiary = ({
 				value={idPlate}
 				hasError={idPlateError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setIdPlate(value)}
+				onChange={handleChangeIdPlate}
 			/>
 			<FieldSelect
 				id="plateType"
@@ -116,7 +125,7 @@ const FormDiary = ({
 				value={idPlateType}
 				hasError={idPlateTypeError}
 				errorMessage="Campo obligatorio"
-				onChange={({ target: { value } }) => setIdPlateType(value)}
+				onChange={handleChangeIdPlateType}
 			/>
 			<FieldInput
 				id="quantity"
@@ -132,7 +141,7 @@ const FormDiary = ({
 				label="¿Cómo te ha sentado?"
 				options={FEELING}
 				value={idFeeling}
-				onChange={({ target: { value } }) => setIdFeeling(value)}
+				onChange={handleChangeIdFeeling}
 			/>
 		</FormLayout>
 	);
