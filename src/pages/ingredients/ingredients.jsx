@@ -7,7 +7,7 @@ import {
 	handleRemove,
 } from './ingredients.logic';
 
-import FormIngredient from '../../components/FormIngredient/FormIngredient.jsx';
+import FormIngredient from '../../components/FormIngredient/FormIngredient2.jsx';
 import ItemCard from '../../components/ItemCard/ItemCard.jsx';
 import MessageBox from '../../components/MessageBox/MessageBox.jsx';
 import PageLayout from '../../components/PageLayout/PageLayout.jsx';
